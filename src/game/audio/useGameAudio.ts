@@ -3,7 +3,6 @@ import type {
   GameFeedbackCue,
   GameFeedbackEvent,
   GameFeedbackHandler,
-  SceneId,
 } from '../sceneTypes'
 
 export interface AudioSettings {
@@ -21,11 +20,16 @@ const DEFAULT_SETTINGS: AudioSettings = {
   voiceEnabled: true,
 }
 
-const SCENE_PROMPTS: Record<SceneId, string> = {
-  stone: '石头挡路啦，请挖掘机来帮忙。',
-  bridge: '把木板放到小桥上吧。',
-  'traffic-light': '点一点红绿灯，小车就能走啦。',
-}
+const VOICE_FILES = {
+  start: 'journey-start.wav',
+  stone: 'stone-hint.wav',
+  bridge: 'bridge-hint.wav',
+  'traffic-light': 'traffic-light-hint.wav',
+  praise: 'scene-complete.wav',
+  finish: 'journey-complete.wav',
+} as const
+
+type VoiceClip = keyof typeof VOICE_FILES
 
 const MUSIC_NOTES = [523.25, 659.25, 587.33, 523.25, 440, 523.25, 659.25, 587.33]
 
@@ -64,10 +68,6 @@ function saveSettings(settings: AudioSettings) {
   }
 }
 
-function getScenePrompt(sceneId: SceneId | undefined): string | null {
-  return sceneId ? SCENE_PROMPTS[sceneId] : null
-}
-
 function getTonePattern(cue: GameFeedbackCue): {
   notes: number[]
   duration: number
@@ -101,16 +101,16 @@ function getTonePattern(cue: GameFeedbackCue): {
   }
 }
 
-function getSpeechText(event: GameFeedbackEvent): string | null {
+function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
   switch (event.cue) {
     case 'journey-start':
-      return '小车出发啦！'
+      return 'start'
     case 'scene-hint':
-      return getScenePrompt(event.sceneId)
+      return event.sceneId ?? null
     case 'scene-complete':
-      return '真棒，小车继续前进！'
+      return 'praise'
     case 'journey-complete':
-      return '小车到家啦，真棒！'
+      return 'finish'
     default:
       return null
   }
@@ -120,9 +120,28 @@ export function useGameAudio(journeyActive: boolean) {
   const [settings, setSettings] = useState<AudioSettings>(loadSettings)
   const settingsRef = useRef(settings)
   const audioContextRef = useRef<AudioContext | null>(null)
-  const voicesRef = useRef<SpeechSynthesisVoice[]>([])
+  const voiceClipsRef = useRef<Partial<Record<VoiceClip, HTMLAudioElement>>>({})
+  const activeVoiceRef = useRef<VoiceClip | null>(null)
+  const pendingHintRef = useRef<VoiceClip | null>(null)
   const musicTimerRef = useRef<number | null>(null)
   const musicIndexRef = useRef(0)
+
+  const stopVoice = useCallback(() => {
+    pendingHintRef.current = null
+    const active = activeVoiceRef.current
+    activeVoiceRef.current = null
+    if (!active) return
+    const audio = voiceClipsRef.current[active]
+    if (!audio) return
+    audio.onended = null
+    audio.onerror = null
+    audio.pause()
+    try {
+      audio.currentTime = 0
+    } catch {
+      // An unloaded clip has no playback position to reset.
+    }
+  }, [])
 
   useEffect(() => {
     settingsRef.current = settings
@@ -130,23 +149,37 @@ export function useGameAudio(journeyActive: boolean) {
   }, [settings])
 
   useEffect(() => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return
+    if (typeof window === 'undefined' || typeof window.Audio === 'undefined') return
 
-    const synthesis = window.speechSynthesis
-    const refreshVoices = () => {
-      voicesRef.current = synthesis.getVoices()
+    for (const clip of Object.keys(VOICE_FILES) as VoiceClip[]) {
+      try {
+        const audio = new window.Audio()
+        audio.preload = 'auto'
+        audio.volume = 0.76
+        audio.src = `${import.meta.env.BASE_URL}audio/voice/${VOICE_FILES[clip]}`
+        voiceClipsRef.current[clip] = audio
+        audio.load()
+      } catch {
+        // A missing browser audio API should not affect gameplay.
+      }
     }
-    refreshVoices()
-    synthesis.addEventListener('voiceschanged', refreshVoices)
 
-    return () => synthesis.removeEventListener('voiceschanged', refreshVoices)
+    return () => {
+      pendingHintRef.current = null
+      activeVoiceRef.current = null
+      for (const audio of Object.values(voiceClipsRef.current)) {
+        if (!audio) continue
+        audio.onended = null
+        audio.onerror = null
+        audio.pause()
+      }
+      voiceClipsRef.current = {}
+    }
   }, [])
 
   useEffect(() => {
-    if (!settings.voiceEnabled && typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel()
-    }
-  }, [settings.voiceEnabled])
+    if (!settings.voiceEnabled) stopVoice()
+  }, [settings.voiceEnabled, stopVoice])
 
   const ensureAudioContext = useCallback((): AudioContext | null => {
     if (typeof window === 'undefined' || typeof window.AudioContext === 'undefined') return null
@@ -223,33 +256,59 @@ export function useGameAudio(journeyActive: boolean) {
     musicTimerRef.current = window.setInterval(playNextNote, 1_700)
   }, [ensureAudioContext, playNotes])
 
-  const speakLocally = useCallback((text: string) => {
+  const playVoiceClip = useCallback((clip: VoiceClip) => {
+    if (!settingsRef.current.voiceEnabled) return
+    const audio = voiceClipsRef.current[clip]
+    if (!audio) return
+
+    if (activeVoiceRef.current === clip) return
+
+    // Let the first scene prompt follow the start phrase, and the next scene
+    // prompt follow the praise. Keep only the newest pending prompt.
     if (
-      typeof window === 'undefined' ||
-      !settingsRef.current.voiceEnabled ||
-      !('speechSynthesis' in window) ||
-      typeof SpeechSynthesisUtterance === 'undefined'
+      (clip === 'stone' || clip === 'bridge' || clip === 'traffic-light') &&
+      (activeVoiceRef.current === 'start' || activeVoiceRef.current === 'praise')
     ) {
+      pendingHintRef.current = clip
       return
     }
 
-    const synthesis = window.speechSynthesis
-    const availableVoices = [...voicesRef.current, ...synthesis.getVoices()]
-    const localChineseVoice = availableVoices.find((voice) =>
-      voice.localService && voice.lang.toLowerCase().startsWith('zh'),
-    )
-    if (!localChineseVoice) return
+    pendingHintRef.current = null
+    const previous = activeVoiceRef.current
+    activeVoiceRef.current = null
+    if (previous) {
+      const previousAudio = voiceClipsRef.current[previous]
+      if (previousAudio) {
+        previousAudio.onended = null
+        previousAudio.onerror = null
+        previousAudio.pause()
+        try {
+          previousAudio.currentTime = 0
+        } catch {
+          // An unloaded clip has no playback position to reset.
+        }
+      }
+    }
 
+    activeVoiceRef.current = clip
+    const finish = () => {
+      if (activeVoiceRef.current !== clip) return
+      activeVoiceRef.current = null
+      audio.onended = null
+      audio.onerror = null
+      const nextHint = pendingHintRef.current
+      pendingHintRef.current = null
+      if (nextHint) playVoiceClip(nextHint)
+    }
+
+    audio.onended = finish
+    audio.onerror = finish
     try {
-      const utterance = new SpeechSynthesisUtterance(text)
-      utterance.voice = localChineseVoice
-      utterance.lang = localChineseVoice.lang
-      utterance.rate = 0.84
-      utterance.pitch = 1.04
-      utterance.volume = 0.76
-      synthesis.speak(utterance)
+      audio.currentTime = 0
+      void audio.play().catch(finish)
     } catch {
-      // Missing or unsupported local speech voices are treated as silent audio.
+      // Audio can fail to load or play without blocking the game.
+      finish()
     }
   }, [])
 
@@ -269,9 +328,9 @@ export function useGameAudio(journeyActive: boolean) {
       }
     }
 
-    const speechText = getSpeechText(event)
-    if (speechText) speakLocally(speechText)
-  }, [ensureAudioContext, playNotes, speakLocally])
+    const voiceClip = getVoiceClip(event)
+    if (voiceClip) playVoiceClip(voiceClip)
+  }, [ensureAudioContext, playNotes, playVoiceClip])
 
   const setAudioSetting = useCallback((key: AudioSettingKey, value: boolean) => {
     const nextSettings = { ...settingsRef.current, [key]: value }
@@ -281,7 +340,8 @@ export function useGameAudio(journeyActive: boolean) {
     if (key === 'musicEnabled' && value && journeyActive) {
       ensureAudioContext()
     }
-  }, [ensureAudioContext, journeyActive])
+    if (key === 'voiceEnabled' && !value) stopVoice()
+  }, [ensureAudioContext, journeyActive, stopVoice])
 
   useEffect(() => {
     if (journeyActive && settings.musicEnabled) {
