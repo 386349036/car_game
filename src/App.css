@@ -712,3 +712,71 @@
   0%, 100% { box-shadow: 0 7px 18px rgb(36 111 79 / 19%); }
   50% { box-shadow: 0 8px 24px rgb(36 111 79 / 34%), 0 0 0 9px rgb(217 240 166 / 48%); }
 }
+.audio-setting-list {
+  margin: 10px 0 2px;
+  border-top: 1px solid rgb(67 102 94 / 10%);
+}
+
+.audio-setting-row {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 2px;
+  border-bottom: 1px solid rgb(67 102 94 / 10%);
+  cursor: pointer;
+}
+
+.audio-setting-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.audio-setting-copy strong {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.audio-setting-copy small {
+  color: #71847b;
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.audio-setting-row input {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+
+.audio-setting-row input:focus-visible {
+  outline: 4px solid #f0a533;
+  outline-offset: 3px;
+}
+
+.audio-settings-note {
+  margin: 12px 0;
+  color: #687c75;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .parent-note {
+    width: min(320px, calc(100vw - 28px));
+    padding: 16px;
+  }
+}
+.parent-note .audio-settings-note {
+  margin: 12px 0;
+  color: #687c75;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
