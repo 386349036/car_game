@@ -2,18 +2,15 @@ import { SCENE_IDS, type SceneId } from './sceneTypes'
 
 export const SCENE_ORDER: readonly SceneId[] = SCENE_IDS
 
-export const SCENE_DETAILS: Record<SceneId, { title: string; previewDescription: string }> = {
+export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
   stone: {
     title: '石头挡路',
-    previewDescription: '石头挡路的正式画面会在后续场景任务中接入。',
   },
   bridge: {
     title: '修好小桥',
-    previewDescription: '铺木板、修好小桥的正式互动会在后续场景任务中接入。',
   },
   'traffic-light': {
     title: '红绿灯放行',
-    previewDescription: '点击红绿灯的正式互动会在后续场景任务中接入。',
   },
 }
 
