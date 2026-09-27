@@ -1,0 +1,257 @@
+:root {
+  --scene-color-sky: #c7edf0;
+  --scene-color-grass: #7fc798;
+  --scene-color-grass-light: #9bd9ae;
+  --scene-color-road: #eaa66d;
+  --scene-color-road-mark: #fff0b1;
+  --scene-color-car: #ffbd59;
+  --scene-color-window: #bce9e9;
+  --scene-color-outline: #8c633d;
+  --scene-color-green: #378f69;
+  --scene-color-green-dark: #287652;
+  --scene-color-coral: #ee9279;
+  --scene-color-ink: #315149;
+  --scene-radius-card: 32px;
+  --scene-radius-control: 22px;
+  --scene-shadow-soft: 0 8px 20px rgb(49 81 73 / 14%);
+}
+
+.scene-backdrop {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(280px, 44vh, 440px);
+  overflow: hidden;
+  border-radius: var(--scene-radius-card);
+  background: var(--scene-color-sky);
+}
+
+.scene-backdrop__sky,
+.scene-backdrop__grass {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+}
+
+.scene-backdrop__sky {
+  background: linear-gradient(
+    180deg,
+    var(--scene-color-sky) 0%,
+    #e2f4da 72%,
+    #d3eccb 100%
+  );
+}
+
+.scene-backdrop__sun {
+  position: absolute;
+  z-index: -1;
+  top: 11%;
+  right: 11%;
+  width: clamp(52px, 9vw, 84px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffdf8a;
+  box-shadow: 0 0 0 12px rgb(255 232 173 / 29%);
+}
+
+.scene-backdrop__cloud {
+  position: absolute;
+  z-index: -1;
+  width: 92px;
+  height: 27px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 82%);
+}
+
+.scene-backdrop__cloud::before,
+.scene-backdrop__cloud::after {
+  position: absolute;
+  bottom: 7px;
+  content: '';
+  border-radius: 50%;
+  background: inherit;
+}
+
+.scene-backdrop__cloud::before {
+  left: 16px;
+  width: 39px;
+  height: 39px;
+}
+
+.scene-backdrop__cloud::after {
+  right: 12px;
+  width: 31px;
+  height: 31px;
+}
+
+.scene-backdrop__cloud--one {
+  top: 27%;
+  left: 10%;
+  transform: scale(.85);
+}
+
+.scene-backdrop__cloud--two {
+  top: 42%;
+  right: 17%;
+  transform: scale(.58);
+  opacity: .72;
+}
+
+.scene-backdrop__grass {
+  z-index: -1;
+  top: auto;
+  height: 39%;
+  background: linear-gradient(180deg, #a6dca9 0%, var(--scene-color-grass) 100%);
+}
+
+.scene-backdrop__hill {
+  position: absolute;
+  z-index: -1;
+  bottom: 26%;
+  height: 25%;
+  border-radius: 55% 55% 0 0 / 82% 82% 0 0;
+}
+
+.scene-backdrop__hill--back {
+  left: -13%;
+  width: 78%;
+  background: var(--scene-color-grass-light);
+  transform: rotate(-4deg);
+}
+
+.scene-backdrop__hill--front {
+  right: -16%;
+  bottom: 25%;
+  width: 88%;
+  height: 22%;
+  background: var(--scene-color-grass);
+  transform: rotate(4deg);
+}
+
+.scene-backdrop__road {
+  position: absolute;
+  z-index: 0;
+  right: -10%;
+  bottom: -17%;
+  left: -10%;
+  height: 47%;
+  overflow: hidden;
+  border-top: 9px solid #fff5d4;
+  border-radius: 50% 50% 0 0 / 19% 19% 0 0;
+  background: var(--scene-color-road);
+  transform: rotate(-1.5deg);
+}
+
+.scene-backdrop__road-marks {
+  position: absolute;
+  top: 47%;
+  left: -2%;
+  width: 104%;
+  height: 5px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--scene-color-road-mark) 0 36px,
+    transparent 36px 67px
+  );
+  opacity: .86;
+}
+
+.scene-backdrop__content {
+  position: relative;
+  z-index: 1;
+  min-height: inherit;
+}
+
+.scene-car {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  overflow: visible;
+}
+
+.scene-button {
+  --scene-button-fill: var(--scene-color-green);
+  --scene-button-edge: var(--scene-color-green-dark);
+
+  min-width: min(220px, 100%);
+  min-height: 66px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  color: #fffef7;
+  font: inherit;
+  font-size: 1.08rem;
+  font-weight: 850;
+  line-height: 1.2;
+  background: var(--scene-button-fill);
+  border: 0;
+  border-bottom: 6px solid var(--scene-button-edge);
+  border-radius: var(--scene-radius-control);
+  box-shadow: var(--scene-shadow-soft);
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.scene-button--warm {
+  --scene-button-fill: var(--scene-color-coral);
+  --scene-button-edge: #cb705d;
+}
+
+.scene-button:hover:not(:disabled) {
+  filter: brightness(1.04);
+  transform: translateY(-2px);
+}
+
+.scene-button:active:not(:disabled) {
+  border-bottom-width: 2px;
+  box-shadow: 0 3px 10px rgb(49 81 73 / 14%);
+  transform: translateY(3px);
+}
+
+.scene-button:focus-visible {
+  outline: 4px solid #f0a533;
+  outline-offset: 4px;
+}
+
+.scene-button:disabled {
+  cursor: default;
+  filter: saturate(.72);
+  opacity: .76;
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop {
+    min-height: clamp(290px, 48svh, 410px);
+    border-radius: 26px;
+  }
+
+  .scene-backdrop__hill--back {
+    left: -30%;
+    width: 110%;
+  }
+
+  .scene-backdrop__hill--front {
+    right: -35%;
+    width: 120%;
+  }
+
+  .scene-backdrop__road {
+    right: -28%;
+    left: -28%;
+    height: 44%;
+  }
+
+  .scene-button {
+    min-width: min(200px, 100%);
+    min-height: 62px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-button {
+    transition: none;
+  }
+}
