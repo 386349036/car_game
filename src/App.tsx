@@ -1,20 +1,15 @@
-import { useState } from 'react'
+import { useCallback, useReducer, useRef, useState, type MouseEvent } from 'react'
 import './App.css'
+import { gameFlowReducer, getSceneNumber, INITIAL_GAME_FLOW, SCENE_DETAILS, SCENE_ORDER } from './game/flow'
+import type { GameFeedbackEvent, SceneId } from './game/sceneTypes'
+import { useGentleHint } from './game/useGentleHint'
 
-type Screen = 'home' | 'journey' | 'complete'
-
-const screenContent: Record<Screen, { eyebrow: string; title: string; description: string; action: string }> = {
+const staticScreenContent = {
   home: {
     eyebrow: '一段轻松的小旅程',
     title: '小汽车修路',
     description: '陪小车一起出发，路上会有小小的惊喜。',
     action: '开始出发',
-  },
-  journey: {
-    eyebrow: '小车已经准备好啦',
-    title: '一起上路吧',
-    description: '接下来，小车会遇到几件需要你帮忙的小事。',
-    action: '继续前进',
   },
   complete: {
     eyebrow: '旅程完成',
@@ -25,23 +20,72 @@ const screenContent: Record<Screen, { eyebrow: string; title: string; descriptio
 }
 
 function App() {
-  const [screen, setScreen] = useState<Screen>('home')
+  const [flow, dispatch] = useReducer(gameFlowReducer, INITIAL_GAME_FLOW)
   const [parentPanelOpen, setParentPanelOpen] = useState(false)
-  const content = screenContent[screen]
+  const completedSceneRef = useRef<SceneId | null>(null)
+  const sceneId = flow.screen === 'scene' ? flow.sceneId : null
+
+  const handleFeedback = useCallback((_event: GameFeedbackEvent) => {
+    // Task 7 will connect these semantic events to the shared audio controls.
+  }, [])
+  const { hintVisible, onInteractionActivity } = useGentleHint({
+    sceneId,
+    onFeedback: handleFeedback,
+  })
+
+  const handleSceneComplete = useCallback((expectedSceneId: SceneId) => {
+    if (
+      flow.screen !== 'scene' ||
+      flow.sceneId !== expectedSceneId ||
+      completedSceneRef.current === expectedSceneId
+    ) {
+      return
+    }
+
+    completedSceneRef.current = expectedSceneId
+    const isFinalScene = expectedSceneId === SCENE_ORDER[SCENE_ORDER.length - 1]
+    handleFeedback({
+      cue: isFinalScene ? 'journey-complete' : 'scene-complete',
+      sceneId: expectedSceneId,
+    })
+    dispatch({ type: 'complete-scene', sceneId: expectedSceneId })
+  }, [flow, handleFeedback])
 
   function handleMainAction() {
     setParentPanelOpen(false)
-    setScreen((current) => {
-      if (current === 'home') return 'journey'
-      if (current === 'journey') return 'complete'
-      return 'home'
-    })
+
+    if (flow.screen === 'scene') {
+      onInteractionActivity('activity')
+      handleSceneComplete(flow.sceneId)
+      return
+    }
+
+    completedSceneRef.current = null
+    handleFeedback({ cue: 'journey-start' })
+    dispatch({ type: 'start' })
   }
+
+  function goHome(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
+    completedSceneRef.current = null
+    setParentPanelOpen(false)
+    dispatch({ type: 'go-home' })
+  }
+
+  const screen = flow.screen === 'scene' ? 'journey' : flow.screen
+  const content = flow.screen === 'scene'
+    ? {
+        eyebrow: '第 ' + getSceneNumber(flow.sceneId) + ' 段 · 流程预览',
+        title: SCENE_DETAILS[flow.sceneId].title,
+        description: SCENE_DETAILS[flow.sceneId].previewDescription,
+        action: flow.sceneId === 'traffic-light' ? '到达终点' : '继续前进',
+      }
+    : staticScreenContent[flow.screen]
 
   return (
     <div className="app-shell">
       <header className="app-header">
-        <a className="brand" href="#top" aria-label="小车小队，回到首页" onClick={() => setScreen('home')}>
+        <a className="brand" href="#top" aria-label="小车小队，回到首页" onClick={goHome}>
           <span className="brand-mark" aria-hidden="true">
             <CarBadge />
           </span>
@@ -72,8 +116,8 @@ function App() {
       </header>
 
       <main id="top" className="main-content">
-        <section className={`journey-card journey-card--${screen}`} aria-labelledby="screen-title">
-          <div className={`scene-art scene-art--${screen}`} aria-hidden="true">
+        <section className={'journey-card journey-card--' + screen} aria-labelledby="screen-title">
+          <div className={'scene-art scene-art--' + screen} aria-hidden="true">
             <span className="sun" />
             <span className="cloud cloud--one" />
             <span className="cloud cloud--two" />
@@ -83,7 +127,7 @@ function App() {
               <span className="road-dashes" />
             </div>
             <CarIllustration />
-            {screen === 'complete' && <span className="celebration-dots" />}
+            {flow.screen === 'complete' && <span className="celebration-dots" />}
           </div>
 
           <div className="screen-copy" aria-live="polite">
@@ -96,10 +140,15 @@ function App() {
           </div>
 
           <div className="journey-action">
-            <button className="primary-action" type="button" onClick={handleMainAction}>
+            <button
+              className={'primary-action' + (hintVisible ? ' primary-action--hint' : '')}
+              type="button"
+              onClick={handleMainAction}
+              data-scene-id={sceneId ?? undefined}
+            >
               <span>{content.action}</span>
               <span className="action-icon" aria-hidden="true">
-                {screen === 'complete' ? <ReplayIcon /> : <ArrowIcon />}
+                {flow.screen === 'complete' ? <ReplayIcon /> : <ArrowIcon />}
               </span>
             </button>
           </div>

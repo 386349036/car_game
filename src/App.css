@@ -634,3 +634,81 @@
     transition-duration: 0.01ms !important;
   }
 }
+.gentle-tap-target {
+  min-width: 104px;
+  min-height: 104px;
+  display: inline-grid;
+  place-items: center;
+  padding: 8px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 30px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gentle-tap-target:active {
+  transform: scale(0.96);
+}
+
+.gentle-tap-target:focus-visible,
+.gentle-drag-item:focus-visible {
+  outline: 5px solid #f0a533;
+  outline-offset: 5px;
+}
+
+.gentle-tap-target:disabled {
+  cursor: default;
+}
+
+.gentle-tap-target--nudge {
+  animation: gentle-wiggle 340ms ease-in-out;
+}
+
+.gentle-drag-item {
+  position: relative;
+  z-index: 2;
+  min-width: 108px;
+  min-height: 108px;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 280ms cubic-bezier(0.2, 0.8, 0.25, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gentle-drag-item[data-drag-state='dragging'] {
+  z-index: 8;
+  cursor: grabbing;
+  filter: drop-shadow(0 12px 12px rgb(49 81 73 / 19%));
+  transition: none;
+}
+
+.gentle-drag-item[data-drag-state='returning'] {
+  cursor: grab;
+}
+
+.gentle-drag-item[data-drag-state='placed'] {
+  z-index: 4;
+  cursor: default;
+}
+
+.primary-action--hint {
+  animation: gentle-pulse 1.7s ease-in-out infinite;
+}
+
+@keyframes gentle-wiggle {
+  0%, 100% { transform: rotate(0); }
+  28% { transform: rotate(-3deg); }
+  70% { transform: rotate(3deg); }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% { box-shadow: 0 7px 18px rgb(36 111 79 / 19%); }
+  50% { box-shadow: 0 8px 24px rgb(36 111 79 / 34%), 0 0 0 9px rgb(217 240 166 / 48%); }
+}
