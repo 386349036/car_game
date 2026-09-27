@@ -1,0 +1,48 @@
+:root {
+  font-family: "Arial Rounded MT Bold", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  color: #315149;
+  background: #edf7e6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --ink: #315149;
+  --green: #378f69;
+  --green-dark: #287652;
+  --coral: #ee9279;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: #edf7e6;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 13% 17%, rgb(255 255 255 / 82%), transparent 34%),
+    radial-gradient(ellipse at 94% 83%, rgb(202 232 194 / 48%), transparent 31%),
+    #edf7e6;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  color: #284e40;
+  background: #cceba7;
+}
