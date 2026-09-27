@@ -1,8 +1,9 @@
-import { useCallback, useReducer, useRef, useState, type MouseEvent } from 'react'
+import { useCallback, useEffect, useReducer, useRef, useState, type MouseEvent } from 'react'
 import './App.css'
 import { gameFlowReducer, getSceneNumber, INITIAL_GAME_FLOW, SCENE_DETAILS, SCENE_ORDER } from './game/flow'
-import type { GameFeedbackEvent, SceneId } from './game/sceneTypes'
+import type { SceneId } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
+import { useGameAudio } from './game/audio/useGameAudio'
 
 const staticScreenContent = {
   home: {
@@ -25,13 +26,23 @@ function App() {
   const completedSceneRef = useRef<SceneId | null>(null)
   const sceneId = flow.screen === 'scene' ? flow.sceneId : null
 
-  const handleFeedback = useCallback((_event: GameFeedbackEvent) => {
-    // Task 7 will connect these semantic events to the shared audio controls.
-  }, [])
+  const { settings: audioSettings, setAudioSetting, handleFeedback } = useGameAudio(flow.screen === 'scene')
+  const promptedSceneRef = useRef<SceneId | null>(null)
   const { hintVisible, onInteractionActivity } = useGentleHint({
     sceneId,
     onFeedback: handleFeedback,
   })
+
+  useEffect(() => {
+    if (flow.screen !== 'scene') {
+      promptedSceneRef.current = null
+      return
+    }
+
+    if (promptedSceneRef.current === flow.sceneId) return
+    promptedSceneRef.current = flow.sceneId
+    handleFeedback({ cue: 'scene-hint', sceneId: flow.sceneId })
+  }, [flow.screen, sceneId, handleFeedback])
 
   const handleSceneComplete = useCallback((expectedSceneId: SceneId) => {
     if (
@@ -104,9 +115,44 @@ function App() {
             <span>家长设置</span>
           </button>
           {parentPanelOpen && (
-            <aside className="parent-note" id="parent-note" aria-label="家长设置说明">
+            <aside className="parent-note" id="parent-note" aria-label="家长声音设置">
               <strong>给大人的小角落</strong>
-              <p>音乐、音效和语音开关会在后续加入。</p>
+              <div className="audio-setting-list" role="group" aria-label="声音设置">
+                <label className="audio-setting-row">
+                  <span className="audio-setting-copy">
+                    <strong>背景音乐</strong>
+                    <small>轻柔旋律</small>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={audioSettings.musicEnabled}
+                    onChange={(event) => setAudioSetting('musicEnabled', event.currentTarget.checked)}
+                  />
+                </label>
+                <label className="audio-setting-row">
+                  <span className="audio-setting-copy">
+                    <strong>互动音效</strong>
+                    <small>点击与完成反馈</small>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={audioSettings.effectsEnabled}
+                    onChange={(event) => setAudioSetting('effectsEnabled', event.currentTarget.checked)}
+                  />
+                </label>
+                <label className="audio-setting-row">
+                  <span className="audio-setting-copy">
+                    <strong>中文语音</strong>
+                    <small>使用设备本地语音</small>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={audioSettings.voiceEnabled}
+                    onChange={(event) => setAudioSetting('voiceEnabled', event.currentTarget.checked)}
+                  />
+                </label>
+              </div>
+              <p className="audio-settings-note">只使用本地音效和设备已安装的中文语音；没有可用语音时也能继续玩。</p>
               <button type="button" className="note-close" onClick={() => setParentPanelOpen(false)}>
                 知道啦
               </button>
