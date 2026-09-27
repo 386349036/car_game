@@ -1,0 +1,311 @@
+.traffic-light-scene {
+  min-height: clamp(360px, 51vh, 500px);
+}
+
+.traffic-light-scene__main-road {
+  position: absolute;
+  z-index: 1;
+  right: -9%;
+  bottom: 13%;
+  left: -9%;
+  height: 37%;
+  border-top: 8px solid #fff5d4;
+  border-bottom: 8px solid rgb(255 245 212 / 72%);
+  border-radius: 34px;
+  background: linear-gradient(180deg, #87928d 0%, #74837d 100%);
+  box-shadow: 0 8px 0 rgb(55 84 69 / 13%);
+}
+
+.traffic-light-scene__side-road {
+  position: absolute;
+  z-index: 1;
+  top: 35%;
+  bottom: 17%;
+  left: 62%;
+  width: 25%;
+  border-right: 8px solid #fff5d4;
+  border-left: 8px solid #fff5d4;
+  border-radius: 42px;
+  background: linear-gradient(90deg, #7b8983 0%, #89938d 48%, #73817b 100%);
+}
+
+.traffic-light-scene__lane-mark {
+  position: absolute;
+  top: 51%;
+  left: 12%;
+  width: 11%;
+  height: 5px;
+  border-radius: 999px;
+  background: #fff0b1;
+  opacity: .88;
+}
+
+.traffic-light-scene__lane-mark:nth-child(2) {
+  left: 30%;
+}
+
+.traffic-light-scene__lane-mark:nth-child(3) {
+  left: 48%;
+}
+
+.traffic-light-scene__crosswalk {
+  position: absolute;
+  z-index: 2;
+  right: 27%;
+  bottom: 20%;
+  display: flex;
+  gap: 6px;
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
+
+.traffic-light-scene__crosswalk span {
+  width: clamp(8px, 1.4vw, 13px);
+  height: clamp(40px, 8vh, 58px);
+  border-radius: 3px;
+  background: #fff8df;
+  box-shadow: 0 2px 0 rgb(66 77 69 / 10%);
+}
+
+.traffic-light-scene__signal-post {
+  position: absolute;
+  z-index: 3;
+  top: 35%;
+  left: calc(74.5% - 7.5px);
+  width: 15px;
+  bottom: 25%;
+  height: auto;
+  border: 4px solid #755d43;
+  border-radius: 999px;
+  background: #e5a95d;
+  box-shadow: 3px 4px 0 rgb(68 82 64 / 15%);
+}
+
+.traffic-light-scene__signal-foot {
+  position: absolute;
+  z-index: 3;
+  bottom: 21%;
+  left: calc(74.5% - 28.5px);
+  width: 57px;
+  height: 17px;
+  border: 4px solid #755d43;
+  border-radius: 999px;
+  background: #d98e56;
+}
+
+.gentle-tap-target.traffic-light-scene__signal-target {
+  position: absolute;
+  z-index: 6;
+  top: 12%;
+  left: calc(74.5% - 56px);
+  width: 112px;
+  height: 194px;
+  padding: 12px;
+  border-radius: 34px;
+}
+
+.traffic-light-scene__signal-housing {
+  width: 76px;
+  height: 162px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 0;
+  border: 6px solid #755d43;
+  border-radius: 28px;
+  background: #566a62;
+  box-shadow: 0 8px 0 #45574f, 0 12px 20px rgb(50 69 60 / 18%);
+  transition: filter 250ms ease, box-shadow 250ms ease;
+}
+
+.traffic-light-scene__lamp {
+  width: 36px;
+  height: 36px;
+  border: 4px solid rgb(58 71 64 / 72%);
+  border-radius: 50%;
+  background: #4d5a54;
+  box-shadow: inset 0 3px 5px rgb(20 29 24 / 24%);
+  transition: background-color 260ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.traffic-light-scene__lamp--red {
+  background: #b95c53;
+}
+
+.traffic-light-scene__lamp--yellow {
+  background: #c49a4c;
+}
+
+.traffic-light-scene__lamp--green {
+  background: #4c8a68;
+}
+
+.traffic-light-scene__signal-housing[data-signal-state='red'] .traffic-light-scene__lamp--red {
+  background: #fa7162;
+  box-shadow: 0 0 0 4px rgb(255 112 96 / 20%), 0 0 20px rgb(255 101 85 / 58%);
+  transform: scale(1.04);
+}
+
+.traffic-light-scene__signal-housing[data-signal-state='green'] .traffic-light-scene__lamp--red {
+  background: #a95750;
+  box-shadow: inset 0 3px 5px rgb(20 29 24 / 24%);
+  transform: scale(.94);
+}
+
+.traffic-light-scene__signal-housing[data-signal-state='green'] .traffic-light-scene__lamp--green {
+  background: #79df8b;
+  box-shadow: 0 0 0 4px rgb(122 224 136 / 20%), 0 0 24px rgb(122 224 136 / 70%);
+  transform: scale(1.08);
+}
+
+.traffic-light-scene__car {
+  position: absolute;
+  z-index: 4;
+  bottom: 6%;
+  left: 2%;
+  width: clamp(160px, 31vw, 250px);
+  animation: traffic-car-bob 3s ease-in-out infinite;
+}
+
+.traffic-light-scene--passing .traffic-light-scene__car {
+  animation: traffic-car-pass 1.35s cubic-bezier(.2, .78, .25, 1) both;
+}
+
+.traffic-light-scene__celebration {
+  position: absolute;
+  z-index: 7;
+  top: 51%;
+  right: 11%;
+  color: #ffe49a;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  text-shadow: 0 3px 0 rgb(153 119 65 / 20%);
+  animation: traffic-celebrate 900ms ease-out both;
+  pointer-events: none;
+}
+
+.traffic-light-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.traffic-light-scene--hint .traffic-light-scene__signal-housing {
+  animation: traffic-signal-hint 1.55s ease-in-out infinite;
+}
+
+@keyframes traffic-car-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes traffic-car-pass {
+  from { left: 2%; }
+  to { left: max(0px, calc(92% - clamp(160px, 31vw, 250px))); }
+}
+
+@keyframes traffic-signal-hint {
+  0%, 100% { box-shadow: 0 8px 0 #45574f, 0 12px 20px rgb(50 69 60 / 18%); }
+  50% { box-shadow: 0 8px 0 #45574f, 0 0 0 9px rgb(255 230 151 / 35%), 0 0 28px rgb(255 226 144 / 86%); }
+}
+
+@keyframes traffic-celebrate {
+  from { opacity: 0; transform: translateY(10px) scale(.7); }
+  45% { opacity: 1; transform: translateY(-5px) scale(1.08); }
+  to { opacity: .92; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 600px) {
+  .traffic-light-scene {
+    min-height: clamp(370px, 54svh, 475px);
+  }
+
+  .traffic-light-scene__main-road {
+    right: -25%;
+    left: -25%;
+    bottom: 14%;
+    height: 36%;
+  }
+
+  .traffic-light-scene__side-road {
+    top: 36%;
+    bottom: 18%;
+    left: 59%;
+    width: 32%;
+  }
+
+  .traffic-light-scene__crosswalk {
+    right: 22%;
+    bottom: 20%;
+    gap: 4px;
+  }
+
+  .traffic-light-scene__signal-post {
+    top: 36%;
+    left: calc(75% - 6.5px);
+    width: 13px;
+    bottom: 25%;
+    height: auto;
+  }
+
+  .traffic-light-scene__signal-foot {
+    left: calc(75% - 27px);
+    bottom: 21%;
+    width: 54px;
+  }
+
+  .gentle-tap-target.traffic-light-scene__signal-target {
+    top: 12%;
+    left: calc(75% - 52px);
+    width: 104px;
+    height: 174px;
+    padding: 8px;
+  }
+
+  .traffic-light-scene__signal-housing {
+    width: 68px;
+    height: 148px;
+    border-radius: 25px;
+  }
+
+  .traffic-light-scene__lamp {
+    width: 32px;
+    height: 32px;
+  }
+
+  .traffic-light-scene__car {
+    bottom: 7%;
+    width: clamp(156px, 48vw, 218px);
+  }
+
+  .traffic-light-scene--passing .traffic-light-scene__car {
+    animation-name: traffic-car-pass-mobile;
+  }
+
+  @keyframes traffic-car-pass-mobile {
+    from { left: 1%; }
+    to { left: max(0px, calc(92% - clamp(156px, 48vw, 218px))); }
+  }
+
+  .traffic-light-scene__celebration {
+    right: 5%;
+    top: 49%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .traffic-light-scene__car,
+  .traffic-light-scene__signal-housing,
+  .traffic-light-scene__celebration {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+
+  .traffic-light-scene__lamp {
+    transition: none;
+  }
+}
