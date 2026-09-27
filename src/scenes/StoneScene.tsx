@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type AnimationEvent } from 'react'
+import { useRef, useState, type AnimationEvent } from 'react'
 import { CarIllustration, SceneBackdrop } from '../components/SceneArt'
 import { TapTarget } from '../game/interaction/TapTarget'
 import type { SceneProps } from '../game/sceneTypes'
@@ -16,14 +16,6 @@ export function StoneScene({
 }: SceneProps) {
   const [phase, setPhase] = useState<StoneScenePhase>('ready')
   const phaseRef = useRef<StoneScenePhase>('ready')
-  const entryHintSentRef = useRef(false)
-
-  useEffect(() => {
-    if (entryHintSentRef.current) return
-
-    entryHintSentRef.current = true
-    onFeedback({ cue: 'scene-hint', sceneId })
-  }, [onFeedback, sceneId])
 
   function beginClearing() {
     if (phaseRef.current !== 'ready') return

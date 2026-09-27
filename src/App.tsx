@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useReducer, useRef, useState, type MouseEvent } from 'react'
 import './App.css'
 import { gameFlowReducer, getSceneNumber, INITIAL_GAME_FLOW, SCENE_DETAILS, SCENE_ORDER } from './game/flow'
-import type { SceneId } from './game/sceneTypes'
+import { StoneScene } from './scenes/StoneScene'
+import { BridgeScene } from './scenes/BridgeScene'
+import { TrafficLightScene } from './scenes/TrafficLightScene'
+import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
 
@@ -64,13 +67,6 @@ function App() {
 
   function handleMainAction() {
     setParentPanelOpen(false)
-
-    if (flow.screen === 'scene') {
-      onInteractionActivity('activity')
-      handleSceneComplete(flow.sceneId)
-      return
-    }
-
     completedSceneRef.current = null
     handleFeedback({ cue: 'journey-start' })
     dispatch({ type: 'start' })
@@ -83,15 +79,7 @@ function App() {
     dispatch({ type: 'go-home' })
   }
 
-  const screen = flow.screen === 'scene' ? 'journey' : flow.screen
-  const content = flow.screen === 'scene'
-    ? {
-        eyebrow: '第 ' + getSceneNumber(flow.sceneId) + ' 段 · 流程预览',
-        title: SCENE_DETAILS[flow.sceneId].title,
-        description: SCENE_DETAILS[flow.sceneId].previewDescription,
-        action: flow.sceneId === 'traffic-light' ? '到达终点' : '继续前进',
-      }
-    : staticScreenContent[flow.screen]
+  const content = flow.screen === 'scene' ? null : staticScreenContent[flow.screen]
 
   return (
     <div className="app-shell">
@@ -161,52 +149,79 @@ function App() {
         </div>
       </header>
 
-      <main id="top" className="main-content">
-        <section className={'journey-card journey-card--' + screen} aria-labelledby="screen-title">
-          <div className={'scene-art scene-art--' + screen} aria-hidden="true">
-            <span className="sun" />
-            <span className="cloud cloud--one" />
-            <span className="cloud cloud--two" />
-            <span className="hill hill--back" />
-            <span className="hill hill--front" />
-            <div className="road">
-              <span className="road-dashes" />
+      <main id="top" className={'main-content' + (flow.screen === 'scene' ? ' main-content--scene' : '')}>
+        {flow.screen === 'scene' ? (
+          <section
+            className="scene-stage"
+            aria-label={`第 ${getSceneNumber(flow.sceneId)} 段：${SCENE_DETAILS[flow.sceneId].title}`}
+          >
+            <GameScene
+              sceneId={flow.sceneId}
+              onComplete={() => handleSceneComplete(flow.sceneId)}
+              onFeedback={handleFeedback}
+              onInteractionActivity={onInteractionActivity}
+              hintVisible={hintVisible}
+            />
+          </section>
+        ) : (
+          <section className={'journey-card journey-card--' + flow.screen} aria-labelledby="screen-title">
+            <div className={'scene-art scene-art--' + flow.screen} aria-hidden="true">
+              <span className="sun" />
+              <span className="cloud cloud--one" />
+              <span className="cloud cloud--two" />
+              <span className="hill hill--back" />
+              <span className="hill hill--front" />
+              <div className="road">
+                <span className="road-dashes" />
+              </div>
+              <CarIllustration />
+              {flow.screen === 'complete' && <span className="celebration-dots" />}
             </div>
-            <CarIllustration />
-            {flow.screen === 'complete' && <span className="celebration-dots" />}
-          </div>
 
-          <div className="screen-copy" aria-live="polite">
-            <span className="eyebrow">
-              <SparkleIcon />
-              {content.eyebrow}
-            </span>
-            <h1 id="screen-title">{content.title}</h1>
-            <p>{content.description}</p>
-          </div>
-
-          <div className="journey-action">
-            <button
-              className={'primary-action' + (hintVisible ? ' primary-action--hint' : '')}
-              type="button"
-              onClick={handleMainAction}
-              data-scene-id={sceneId ?? undefined}
-            >
-              <span>{content.action}</span>
-              <span className="action-icon" aria-hidden="true">
-                {flow.screen === 'complete' ? <ReplayIcon /> : <ArrowIcon />}
+            <div className="screen-copy" aria-live="polite">
+              <span className="eyebrow">
+                <SparkleIcon />
+                {content?.eyebrow}
               </span>
-            </button>
-          </div>
-        </section>
+              <h1 id="screen-title">{content?.title}</h1>
+              <p>{content?.description}</p>
+            </div>
 
-        <p className="gentle-note">
-          <span className="heart-mark" aria-hidden="true">♥</span>
-          每一次帮忙，都是一次开心的出发
-        </p>
+            <div className="journey-action">
+              <button
+                className="primary-action"
+                type="button"
+                onClick={handleMainAction}
+              >
+                <span>{content?.action}</span>
+                <span className="action-icon" aria-hidden="true">
+                  {flow.screen === 'complete' ? <ReplayIcon /> : <ArrowIcon />}
+                </span>
+              </button>
+            </div>
+          </section>
+        )}
+
+        {flow.screen !== 'scene' && (
+          <p className="gentle-note">
+            <span className="heart-mark" aria-hidden="true">♥</span>
+            每一次帮忙，都是一次开心的出发
+          </p>
+        )}
       </main>
     </div>
   )
+}
+
+function GameScene({ sceneId, ...sceneProps }: SceneProps) {
+  switch (sceneId) {
+    case 'stone':
+      return <StoneScene {...sceneProps} sceneId="stone" />
+    case 'bridge':
+      return <BridgeScene {...sceneProps} sceneId="bridge" />
+    case 'traffic-light':
+      return <TrafficLightScene {...sceneProps} sceneId="traffic-light" />
+  }
 }
 
 function CarIllustration() {
