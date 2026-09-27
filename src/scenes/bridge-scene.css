@@ -1,0 +1,228 @@
+.bridge-scene {
+  min-height: clamp(360px, 51vh, 500px);
+  background: linear-gradient(180deg, #c7edf0 0%, #dff1db 69%, #a9dca8 100%);
+}
+
+.bridge-scene__waterway {
+  position: absolute;
+  z-index: 1;
+  bottom: 7%;
+  left: 39%;
+  width: clamp(94px, 18%, 174px);
+  height: 69%;
+  filter: drop-shadow(0 6px 0 rgb(64 142 157 / 12%));
+  pointer-events: none;
+}
+
+.bridge-scene__waterway svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.bridge-scene__water-glint {
+  position: absolute;
+  z-index: 1;
+  width: 17px;
+  height: 8px;
+  border: 3px solid #dcffff;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  opacity: .85;
+  animation: bridge-glint 2.8s ease-in-out infinite;
+}
+
+.bridge-scene__water-glint--one {
+  top: 59%;
+  left: 35%;
+}
+
+.bridge-scene__water-glint--two {
+  top: 73%;
+  right: 25%;
+  animation-delay: 700ms;
+}
+
+.bridge-scene__drop-target {
+  position: absolute;
+  z-index: 3;
+  bottom: 20%;
+  left: 50%;
+  width: clamp(184px, 34vw, 238px);
+  height: 100px;
+  border-radius: 24px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bridge-scene__drop-target::before {
+  position: absolute;
+  inset: 13px 8px;
+  content: '';
+  border: 4px dashed rgb(140 99 61 / 72%);
+  border-radius: 18px;
+  background: rgb(246 194 122 / 32%);
+  box-shadow: inset 0 3px 9px rgb(78 67 49 / 10%);
+  transition: background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.bridge-scene__drop-target--hint::before {
+  border-color: #fff8d8;
+  background: rgb(255 231 153 / 48%);
+  box-shadow: 0 0 0 8px rgb(255 234 163 / 32%), 0 0 28px rgb(255 248 216 / 92%);
+  animation: bridge-target-pulse 1.65s ease-in-out infinite;
+}
+
+.bridge-scene__drop-target--placed::before {
+  border: 3px solid rgb(86 132 91 / 32%);
+  background: rgb(110 179 124 / 12%);
+  box-shadow: inset 0 2px 7px rgb(56 105 69 / 8%);
+}
+
+.bridge-scene__car {
+  position: absolute;
+  z-index: 5;
+  bottom: 5%;
+  left: 3%;
+  width: clamp(160px, 31vw, 250px);
+  animation: bridge-car-bob 3.2s ease-in-out infinite;
+}
+
+.bridge-scene--crossing .bridge-scene__car {
+  animation: bridge-car-cross 1.35s cubic-bezier(.2, .78, .25, 1) both;
+}
+
+.bridge-scene__plank-drag {
+  position: absolute;
+  z-index: 6;
+  top: 30%;
+  right: 6%;
+}
+
+.bridge-scene__plank-visual {
+  display: block;
+  width: clamp(152px, 25vw, 190px);
+  height: auto;
+  overflow: visible;
+}
+
+.bridge-scene--hint .bridge-scene__plank-drag:not([data-drag-state='placed']):not([data-drag-state='dragging']):not([data-drag-state='returning']) {
+  animation: bridge-plank-bob 1.7s ease-in-out infinite;
+}
+
+.bridge-scene__hint-spark {
+  position: absolute;
+  z-index: 7;
+  right: 11%;
+  top: 27%;
+  color: #fff3a6;
+  font-size: 2rem;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(.7);
+  pointer-events: none;
+}
+
+.bridge-scene--hint .bridge-scene__hint-spark {
+  opacity: 1;
+  animation: bridge-hint-pop 1.5s ease-in-out infinite;
+}
+
+.bridge-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes bridge-car-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes bridge-car-cross {
+  from { left: 3%; }
+  to { left: max(0px, calc(92% - clamp(160px, 31vw, 250px))); }
+}
+
+@keyframes bridge-plank-bob {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -6px; }
+}
+
+@keyframes bridge-target-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+
+@keyframes bridge-glint {
+  0%, 100% { opacity: .45; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(8px); }
+}
+
+@keyframes bridge-hint-pop {
+  0%, 100% { transform: translateY(3px) scale(.82); }
+  50% { transform: translateY(-3px) scale(1); }
+}
+
+@media (max-width: 600px) {
+  .bridge-scene {
+    min-height: clamp(370px, 54svh, 475px);
+  }
+
+  .bridge-scene__waterway {
+    left: 37%;
+    width: clamp(96px, 28%, 145px);
+    height: 64%;
+    bottom: 9%;
+  }
+
+  .bridge-scene__drop-target {
+    bottom: 18%;
+    width: clamp(176px, 56vw, 226px);
+    height: 92px;
+  }
+
+  .bridge-scene__car {
+    bottom: 7%;
+    width: clamp(160px, 48vw, 218px);
+  }
+
+  .bridge-scene__plank-drag {
+    top: 31%;
+    right: 1%;
+  }
+
+  .bridge-scene__plank-visual {
+    width: clamp(148px, 47vw, 180px);
+  }
+
+  .bridge-scene--crossing .bridge-scene__car {
+    animation-name: bridge-car-cross-mobile;
+  }
+
+  @keyframes bridge-car-cross-mobile {
+    from { left: 1%; }
+    to { left: max(0px, calc(92% - clamp(160px, 48vw, 218px))); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bridge-scene__water-glint,
+  .bridge-scene__car,
+  .bridge-scene__plank-drag,
+  .bridge-scene__hint-spark {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+
+  .bridge-scene__drop-target::before {
+    animation-duration: 1ms;
+    transition: none;
+  }
+}
