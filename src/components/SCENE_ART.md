@@ -2,11 +2,11 @@
 
 `SceneArt.tsx` 导出后续首页、场景和完成页可共用的展示模块：
 
-- `SceneBackdrop`：天空、云朵、草地、起伏绿地和弯曲道路，背景装饰默认对辅助技术隐藏。
-- `CarIllustration`：本地 SVG 小汽车。默认作为装饰隐藏；传入 `label` 时会作为有名称的图片供辅助技术读取。
+- `SceneBackdrop`：生成的草地背景和游戏道路，背景装饰默认对辅助技术隐藏。
+- `CarIllustration`：游戏内置的 PNG 小汽车。默认作为装饰隐藏；传入 `label` 时会作为有名称的图片供辅助技术读取。
 - `SceneButton`：大尺寸、圆角和按压反馈一致的按钮。可传入正常的 `<button>` 属性，`variant="warm"` 使用暖珊瑚色。
 
-组件会自动导入 `scene-art.css`，不需要外部图片或额外依赖。最小用法：
+组件会自动导入 `scene-art.css`，图片保存在 `public/images`，不依赖外部图片服务。最小用法：
 
 ```tsx
 import { CarIllustration, SceneBackdrop, SceneButton } from './components/SceneArt'
@@ -40,6 +40,6 @@ import { CarIllustration, SceneBackdrop, SceneButton } from './components/SceneA
 ## 画风约定
 
 - 色彩变量集中在 `scene-art.css` 的 `:root`：天空 `#c7edf0`、草地 `#7fc798`、道路 `#eaa66d`、汽车 `#ffbd59`、暖棕描边 `#8c633d`、主按钮绿 `#378f69`。新素材优先沿用这些变量。
-- 插画描边保持圆角端点和接角；汽车主体描边为 SVG 的 7 单位，次要边线约 4–6 单位。
+- 新增形象素材使用图片生成工具生成透明 PNG，并沿用柔和的绘本笔触、暖棕色描边和圆润轮廓。
 - 卡片使用 `--scene-radius-card`（32px），按钮使用 `--scene-radius-control`（22px）；按钮最小高度约 62px，阴影使用柔和的绿色灰调。
 - 背景最小高度和按钮触控尺寸已包含窄屏规则。新增场景元素请使用自己的 `className` 定位，避免改动共用组件内部结构。

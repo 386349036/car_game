@@ -168,6 +168,23 @@
   animation: traffic-car-bob 3s ease-in-out infinite;
 }
 
+.traffic-light-scene__signal-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.traffic-light-scene--hint .traffic-light-scene__signal-image {
+  animation: traffic-image-hint 1.55s ease-in-out infinite;
+}
+
+@keyframes traffic-image-hint {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 0 15px #ffe290); }
+}
+
 .traffic-light-scene--passing .traffic-light-scene__car {
   animation: traffic-car-pass 1.35s cubic-bezier(.2, .78, .25, 1) both;
 }
@@ -299,7 +316,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .traffic-light-scene__car,
-  .traffic-light-scene__signal-housing,
+  .traffic-light-scene__signal-image,
   .traffic-light-scene__celebration {
     animation-duration: 1ms;
     animation-iteration-count: 1;

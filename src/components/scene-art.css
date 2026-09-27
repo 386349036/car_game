@@ -22,7 +22,7 @@
   min-height: clamp(280px, 44vh, 440px);
   overflow: hidden;
   border-radius: var(--scene-radius-card);
-  background: var(--scene-color-sky);
+  background: var(--scene-color-sky) url('/images/meadow.png') center / cover no-repeat;
 }
 
 .scene-backdrop__sky,

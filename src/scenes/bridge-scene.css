@@ -1,6 +1,6 @@
 .bridge-scene {
   min-height: clamp(360px, 51vh, 500px);
-  background: linear-gradient(180deg, #c7edf0 0%, #dff1db 69%, #a9dca8 100%);
+  background: #c7edf0 url('/images/meadow.png') center / cover no-repeat;
 }
 
 .bridge-scene__waterway {
@@ -12,6 +12,8 @@
   height: 69%;
   filter: drop-shadow(0 6px 0 rgb(64 142 157 / 12%));
   pointer-events: none;
+  border-radius: 44% 56% 46% 54% / 9% 8% 12% 10%;
+  background: linear-gradient(90deg, #74cbd4, #a5e8e8 40%, #72cbd4 82%);
 }
 
 .bridge-scene__waterway svg {

@@ -57,23 +57,6 @@ export function BridgeScene({
   return (
     <SceneBackdrop className={sceneClassName}>
       <div className="bridge-scene__waterway" aria-hidden="true">
-        <svg viewBox="0 0 140 340" preserveAspectRatio="none">
-          <path
-            d="M79-12C18 36 118 82 65 127S17 213 78 251 108 308 48 352"
-            fill="none"
-            stroke="#72cbd4"
-            strokeWidth="50"
-            strokeLinecap="round"
-          />
-          <path
-            d="M79-12C18 36 118 82 65 127S17 213 78 251 108 308 48 352"
-            fill="none"
-            stroke="#a5e8e8"
-            strokeWidth="7"
-            strokeLinecap="round"
-            strokeDasharray="2 24"
-          />
-        </svg>
         <span className="bridge-scene__water-glint bridge-scene__water-glint--one" />
         <span className="bridge-scene__water-glint bridge-scene__water-glint--two" />
       </div>
@@ -122,26 +105,12 @@ export function BridgeScene({
 
 function WoodenPlank() {
   return (
-    <svg
+    <img
       className="bridge-scene__plank-visual"
-      viewBox="0 0 208 78"
-      focusable="false"
+      src="/images/plank.png"
+      alt=""
       aria-hidden="true"
-    >
-      <ellipse cx="104" cy="67" rx="86" ry="7" fill="#5e533e" opacity=".18" />
-      <path
-        d="M19 17Q19 10 27 10h154q8 0 8 8v40q0 8-8 8H27q-8 0-8-8V17Z"
-        fill="#d89252"
-        stroke="#8c633d"
-        strokeWidth="7"
-        strokeLinejoin="round"
-      />
-      <path d="M32 24h143M32 39h143M32 54h143" stroke="#b76e3e" strokeWidth="3.5" strokeLinecap="round" opacity=".78" />
-      <path d="M43 17v42M165 17v42" stroke="#f3bd76" strokeWidth="3" strokeLinecap="round" opacity=".85" />
-      <circle cx="27" cy="22" r="2.5" fill="#f4d8a2" />
-      <circle cx="181" cy="22" r="2.5" fill="#f4d8a2" />
-      <circle cx="27" cy="54" r="2.5" fill="#f4d8a2" />
-      <circle cx="181" cy="54" r="2.5" fill="#f4d8a2" />
-    </svg>
+      draggable={false}
+    />
   )
 }

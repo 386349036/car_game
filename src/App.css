@@ -43,6 +43,12 @@
   height: 23px;
 }
 
+.brand-mark img {
+  width: 37px;
+  height: 31px;
+  object-fit: contain;
+}
+
 .brand-name {
   font-size: 1.08rem;
   font-weight: 850;
@@ -88,6 +94,13 @@
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.parent-entry span[aria-hidden],
+.eyebrow span[aria-hidden],
+.action-icon span[aria-hidden] {
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
 .parent-note {
@@ -153,7 +166,7 @@
   isolation: isolate;
   min-height: clamp(360px, 51vh, 500px);
   overflow: hidden;
-  background: linear-gradient(180deg, #c7edf0 0%, #e2f4da 72%, #d3eccb 100%);
+  background: #c7edf0 url('/images/meadow.png') center / cover no-repeat;
 }
 
 .sun {

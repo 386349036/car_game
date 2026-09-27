@@ -67,9 +67,6 @@ export function TrafficLightScene({
         <span />
       </div>
 
-      <span className="traffic-light-scene__signal-post" aria-hidden="true" />
-      <span className="traffic-light-scene__signal-foot" aria-hidden="true" />
-
       <CarIllustration className="traffic-light-scene__car" />
 
       <TapTarget
@@ -81,15 +78,13 @@ export function TrafficLightScene({
         onInteractionActivity={onInteractionActivity}
         disabled={isGreen}
       >
-        <span
-          className="traffic-light-scene__signal-housing"
-          data-signal-state={isGreen ? 'green' : 'red'}
+        <img
+          className="traffic-light-scene__signal-image"
+          src={isGreen ? '/images/traffic-green.png' : '/images/traffic-red.png'}
+          alt=""
           aria-hidden="true"
-        >
-          <span className="traffic-light-scene__lamp traffic-light-scene__lamp--red" />
-          <span className="traffic-light-scene__lamp traffic-light-scene__lamp--yellow" />
-          <span className="traffic-light-scene__lamp traffic-light-scene__lamp--green" />
-        </span>
+          draggable={false}
+        />
       </TapTarget>
 
       {carPassing && (

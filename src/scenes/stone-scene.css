@@ -133,6 +133,10 @@
   pointer-events: none;
 }
 
+.stone-scene--clearing .stone-scene__excavator-art {
+  animation: stone-excavator-scoop 940ms cubic-bezier(.35, .05, .65, 1) both;
+}
+
 .stone-scene__excavator-arm {
   transform-box: view-box;
   transform-origin: 141px 101px;
@@ -269,7 +273,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .stone-scene--clearing .stone-scene__stone-art,
-  .stone-scene--clearing .stone-scene__excavator-arm,
+  .stone-scene--clearing .stone-scene__excavator-art,
   .stone-scene--driving .stone-scene__car,
   .stone-scene__excavator-target--hinted,
   .stone-scene .gentle-tap-target--nudge {
