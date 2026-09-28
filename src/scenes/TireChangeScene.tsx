@@ -59,26 +59,28 @@ export function TireChangeScene({
         <p>{phase === 'waiting' ? '把备用轮胎拖到车轮上。' : '小车又可以继续开啦。'}</p>
       </div>
 
-      <CarIllustration
-        className="tire-change-scene__car"
-        label="停在路边的小汽车"
-      />
-
-      <div
-        ref={wheelTargetRef}
-        className={[
-          'tire-change-scene__wheel-target',
-          hintVisible && !tirePlaced ? 'tire-change-scene__wheel-target--hint' : '',
-          tirePlaced ? 'tire-change-scene__wheel-target--repaired' : '',
-        ].filter(Boolean).join(' ')}
-        aria-hidden="true"
-      >
-        <img
-          className={tirePlaced ? 'tire-change-scene__fitted-tire' : 'tire-change-scene__flat-tire'}
-          src="/images/tire.png"
-          alt=""
-          draggable={false}
+      <div className="tire-change-scene__vehicle">
+        <CarIllustration
+          className="tire-change-scene__car"
+          label="停在路边的小汽车"
         />
+
+        <div
+          ref={wheelTargetRef}
+          className={[
+            'tire-change-scene__wheel-target',
+            hintVisible && !tirePlaced ? 'tire-change-scene__wheel-target--hint' : '',
+            tirePlaced ? 'tire-change-scene__wheel-target--repaired' : '',
+          ].filter(Boolean).join(' ')}
+          aria-hidden="true"
+        >
+          <img
+            className={tirePlaced ? 'tire-change-scene__fitted-tire' : 'tire-change-scene__flat-tire'}
+            src="/images/tire.png"
+            alt=""
+            draggable={false}
+          />
+        </div>
       </div>
 
       {!tirePlaced && (
