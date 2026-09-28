@@ -1,0 +1,121 @@
+.scene-backdrop.night-lights-scene {
+  min-height: clamp(410px, 54svh, 510px);
+  background-color: #183b54;
+  background-image: url('/images/night-lights-background.png');
+  background-position: center center;
+  background-size: cover;
+}
+
+.night-lights-scene .scene-backdrop__road { display: none; }
+
+.night-lights-scene__prompt {
+  position: absolute;
+  z-index: 6;
+  top: clamp(20px, 5%, 42px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: #fff5da;
+  text-align: center;
+  text-shadow: 0 2px 8px rgb(18 43 64 / 40%);
+  pointer-events: none;
+}
+
+.night-lights-scene__prompt h2,
+.night-lights-scene__prompt p { margin: 0; text-wrap: balance; }
+.night-lights-scene__prompt h2 { font-size: clamp(1.65rem, 4vw, 2.35rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.12; }
+.night-lights-scene__prompt p { margin: 9px auto 0; color: #e1f0d9; font-size: clamp(.92rem, 2vw, 1.08rem); font-weight: 750; line-height: 1.45; }
+
+.night-lights-scene__twinkle {
+  position: absolute;
+  z-index: 2;
+  color: #ffe99a;
+  font-size: clamp(18px, 3vw, 30px);
+  line-height: 1;
+  opacity: .58;
+  pointer-events: none;
+}
+
+.night-lights-scene__twinkle--one { top: 26%; left: 18%; }
+.night-lights-scene__twinkle--two { top: 19%; left: 61%; font-size: clamp(15px, 2.2vw, 24px); }
+.night-lights-scene__twinkle--three { top: 38%; right: 12%; font-size: clamp(14px, 2vw, 22px); }
+
+.night-lights-scene--lighting .night-lights-scene__twinkle,
+.night-lights-scene--driving .night-lights-scene__twinkle {
+  animation: night-lights-star-twinkle 1.25s ease-in-out infinite alternate;
+}
+
+.night-lights-scene__beams {
+  position: absolute;
+  z-index: 3;
+  left: 34%;
+  bottom: 14%;
+  width: 57%;
+  height: 37%;
+  clip-path: polygon(0 43%, 100% 0, 100% 100%, 0 58%);
+  background: linear-gradient(90deg, rgb(255 229 143 / 56%), rgb(255 223 128 / 18%) 50%, transparent);
+  filter: blur(3px);
+  opacity: 0;
+  transform: scaleX(.28);
+  transform-origin: left center;
+  transition: opacity 650ms ease, transform 800ms cubic-bezier(.2, .74, .28, 1);
+  pointer-events: none;
+}
+
+.night-lights-scene--lighting .night-lights-scene__beams,
+.night-lights-scene--driving .night-lights-scene__beams { opacity: 1; transform: scaleX(1); }
+
+.night-lights-scene__vehicle { position: absolute; z-index: 4; left: 4%; bottom: 6%; width: clamp(220px, 34%, 330px); }
+.night-lights-scene__car.scene-car { width: 100%; max-width: none; height: auto; }
+
+.gentle-tap-target.night-lights-scene__headlight-target {
+  position: absolute;
+  right: -5%;
+  bottom: 14%;
+  width: clamp(108px, 13vw, 126px);
+  height: clamp(108px, 13vw, 126px);
+  min-width: 104px;
+  min-height: 104px;
+  padding: 0;
+  border-radius: 50%;
+  transform: none;
+}
+
+.night-lights-scene__lamp-halo { width: 36px; height: 36px; border: 4px solid rgb(122 83 51 / 72%); border-radius: 50%; background: #fff4b8; box-shadow: 0 0 0 6px rgb(255 225 133 / 26%), 0 0 16px rgb(255 231 151 / 55%); opacity: .82; }
+.night-lights-scene__headlight-target--hinted { filter: drop-shadow(0 0 14px rgb(255 223 138 / 90%)); animation: night-lights-target-pulse 1.6s ease-in-out infinite; }
+.night-lights-scene--driving .night-lights-scene__car { animation: night-lights-car-drive 1.55s cubic-bezier(.2, .7, .24, 1) both; }
+
+.night-lights-scene__announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
+@keyframes night-lights-star-twinkle {
+  from { opacity: .34; transform: scale(.82) rotate(-8deg); }
+  to { opacity: 1; transform: scale(1.18) rotate(8deg); }
+}
+@keyframes night-lights-target-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(255 225 133 / 0%); }
+  50% { box-shadow: 0 0 0 9px rgb(255 225 133 / 38%); }
+}
+@keyframes night-lights-car-drive {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 120%)); }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.night-lights-scene { min-height: clamp(410px, 57svh, 490px); background-position: 52% center; }
+  .night-lights-scene__prompt { top: 22px; left: 13px; width: calc(100% - 26px); }
+  .night-lights-scene__prompt h2 { font-size: clamp(1.65rem, 7.5vw, 2.15rem); }
+  .night-lights-scene__prompt p { max-width: 300px; margin-top: 8px; font-size: .9rem; }
+  .night-lights-scene__twinkle--one { top: 35%; left: 15%; }
+  .night-lights-scene__twinkle--two { top: 29%; left: 63%; }
+  .night-lights-scene__twinkle--three { top: 43%; right: 9%; }
+  .night-lights-scene__beams { left: 43%; bottom: 16%; width: 52%; height: 32%; }
+  .night-lights-scene__vehicle { left: -3%; bottom: 8%; width: clamp(190px, 60%, 235px); }
+  .gentle-tap-target.night-lights-scene__headlight-target { right: -6%; bottom: 14%; width: 108px; height: 108px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-lights-scene--lighting .night-lights-scene__twinkle,
+  .night-lights-scene--driving .night-lights-scene__twinkle,
+  .night-lights-scene__headlight-target--hinted,
+  .night-lights-scene--driving .night-lights-scene__car { animation-duration: 1ms; animation-iteration-count: 1; }
+  .night-lights-scene__beams { transition-duration: 1ms; }
+}
