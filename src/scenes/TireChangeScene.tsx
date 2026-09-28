@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type AnimationEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CarIllustration, SceneBackdrop } from '../components/SceneArt'
 import { ForgivingDrag } from '../game/interaction/ForgivingDrag'
 import type { SceneProps } from '../game/sceneTypes'
@@ -6,6 +6,9 @@ import './tire-change-scene.css'
 
 type TireChangeSceneProps = Omit<SceneProps, 'sceneId'> & { sceneId: 'tire-change' }
 type TirePhase = 'waiting' | 'repaired' | 'driving'
+
+const TIRE_SETTLE_MS = 420
+const CAR_DRIVE_MS = 1_450
 
 /** Replace the visible flat wheel by dropping one large spare tire onto it. */
 export function TireChangeScene({
@@ -18,12 +21,13 @@ export function TireChangeScene({
   const wheelTargetRef = useRef<HTMLDivElement>(null)
   const completedRef = useRef(false)
   const driveTimerRef = useRef<number | null>(null)
+  const completionTimerRef = useRef<number | null>(null)
   const [phase, setPhase] = useState<TirePhase>('waiting')
   const [tirePlaced, setTirePlaced] = useState(false)
 
   useEffect(() => () => {
-    completedRef.current = true
     if (driveTimerRef.current !== null) window.clearTimeout(driveTimerRef.current)
+    if (completionTimerRef.current !== null) window.clearTimeout(completionTimerRef.current)
   }, [])
 
   function handleTireDrop() {
@@ -34,18 +38,14 @@ export function TireChangeScene({
     driveTimerRef.current = window.setTimeout(() => {
       driveTimerRef.current = null
       setPhase('driving')
-    }, 420)
-  }
+      completionTimerRef.current = window.setTimeout(() => {
+        completionTimerRef.current = null
+        if (completedRef.current) return
 
-  function handleCarAnimationEnd(event: AnimationEvent<HTMLImageElement>) {
-    if (
-      event.target !== event.currentTarget ||
-      event.animationName !== 'tire-change-car-drive' ||
-      completedRef.current
-    ) return
-
-    completedRef.current = true
-    onComplete()
+        completedRef.current = true
+        onComplete()
+      }, CAR_DRIVE_MS)
+    }, TIRE_SETTLE_MS)
   }
 
   return (
@@ -62,7 +62,6 @@ export function TireChangeScene({
       <CarIllustration
         className="tire-change-scene__car"
         label="停在路边的小汽车"
-        onAnimationEnd={handleCarAnimationEnd}
       />
 
       <div
