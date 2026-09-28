@@ -1,0 +1,186 @@
+.tire-change-scene {
+  min-height: clamp(360px, 51vh, 500px);
+}
+
+.tire-change-scene__prompt {
+  position: absolute;
+  z-index: 7;
+  top: clamp(20px, 5%, 38px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: var(--scene-color-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.tire-change-scene__prompt h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+}
+
+.tire-change-scene__prompt p {
+  margin: 8px auto 0;
+  color: #55746a;
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+}
+
+.tire-change-scene__car {
+  position: absolute;
+  z-index: 3;
+  bottom: 8%;
+  left: 9%;
+  width: clamp(230px, 42%, 360px);
+  max-width: none;
+  pointer-events: none;
+}
+
+.tire-change-scene__wheel-target {
+  position: absolute;
+  z-index: 5;
+  left: 59%;
+  bottom: 15%;
+  display: grid;
+  width: clamp(82px, 12vw, 112px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 3px dashed rgb(255 248 220 / 84%);
+  border-radius: 50%;
+  background: rgb(255 246 215 / 26%);
+  transition: border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+  pointer-events: none;
+}
+
+.tire-change-scene__wheel-target img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  opacity: .82;
+}
+
+.tire-change-scene__flat-tire {
+  transform: scaleY(.76) rotate(-5deg);
+  opacity: .76;
+  filter: saturate(.75);
+}
+
+.tire-change-scene__wheel-target--hint {
+  border-color: #fff;
+  box-shadow: 0 0 0 8px rgb(255 229 144 / 38%), 0 0 24px rgb(255 236 167 / 88%);
+  animation: tire-target-pulse 1.7s ease-in-out infinite;
+}
+
+.tire-change-scene__wheel-target--repaired {
+  border: 0;
+  background: transparent;
+}
+
+.tire-change-scene__wheel-target--repaired img {
+  opacity: 1;
+  animation: tire-fit-pop 420ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.tire-change-scene__wheel-target--repaired .tire-change-scene__fitted-tire {
+  filter: none;
+}
+
+.tire-change-scene__spare-drag {
+  position: absolute;
+  z-index: 6;
+  top: 35%;
+  right: 10%;
+}
+
+.tire-change-scene__spare {
+  display: block;
+  width: clamp(100px, 17vw, 144px);
+  height: auto;
+  pointer-events: none;
+}
+
+.tire-change-scene--waiting .tire-change-scene__spare-drag:not([data-drag-state='dragging']):not([data-drag-state='placed']):not([data-drag-state='returning']) .tire-change-scene__spare {
+  animation: tire-spare-bob 1.8s ease-in-out infinite;
+}
+
+.tire-change-scene__hint {
+  position: absolute;
+  z-index: 7;
+  right: 15%;
+  top: 30%;
+  color: #fff3a6;
+  font-size: 2rem;
+  pointer-events: none;
+}
+
+.tire-change-scene--driving .tire-change-scene__car {
+  animation: tire-change-car-drive 1.45s cubic-bezier(.4, 0, .72, .44) both;
+}
+
+@keyframes tire-target-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes tire-fit-pop {
+  from { transform: scale(.66) rotate(-18deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes tire-spare-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes tire-change-car-drive {
+  0% { transform: translateX(0); }
+  12% { transform: translateX(8px); }
+  100% { transform: translateX(calc(100vw + 120%)); }
+}
+
+@media (max-width: 600px) {
+  .tire-change-scene {
+    min-height: clamp(370px, 54svh, 475px);
+  }
+
+  .tire-change-scene__prompt h2 {
+    font-size: clamp(1.7rem, 8vw, 2.25rem);
+  }
+
+  .tire-change-scene__prompt p {
+    font-size: .9rem;
+  }
+
+  .tire-change-scene__car {
+    bottom: 8%;
+    left: -2%;
+    width: clamp(215px, 70%, 285px);
+  }
+
+  .tire-change-scene__wheel-target {
+    left: 57%;
+    bottom: 15%;
+    width: clamp(82px, 25vw, 100px);
+  }
+
+  .tire-change-scene__spare-drag {
+    top: 39%;
+    right: 2%;
+  }
+
+  .tire-change-scene__spare {
+    width: clamp(98px, 29vw, 126px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tire-change-scene__spare,
+  .tire-change-scene__wheel-target,
+  .tire-change-scene__wheel-target img,
+  .tire-change-scene--driving .tire-change-scene__car {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

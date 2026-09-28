@@ -1,4 +1,11 @@
-export const SCENE_IDS = ['stone', 'bridge', 'traffic-light'] as const
+export const SCENE_IDS = [
+  'stone',
+  'bridge',
+  'traffic-light',
+  'animal-crossing',
+  'tire-change',
+  'rainy-drive',
+] as const
 
 export type SceneId = (typeof SCENE_IDS)[number]
 export type InteractionPhase = 'start' | 'activity' | 'end'

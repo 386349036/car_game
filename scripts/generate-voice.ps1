@@ -15,6 +15,9 @@ $prompts = [ordered]@{
   'stone-hint.wav' = '石头挡路啦，请挖掘机来帮忙。'
   'bridge-hint.wav' = '把木板放到小桥上吧。'
   'traffic-light-hint.wav' = '点一点红绿灯，小车就能走啦。'
+  'animal-crossing-hint.wav' = '小鸭子想过马路，点一点来帮忙。'
+  'tire-change-hint.wav' = '把新轮胎放上去吧。'
+  'rainy-drive-hint.wav' = '下雨啦，点一下雨刷，帮小车看清前面。'
   'scene-complete.wav' = '真棒，小车继续前进！'
   'journey-complete.wav' = '小车到家啦，真棒！'
 }

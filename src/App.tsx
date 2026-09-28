@@ -4,6 +4,9 @@ import { gameFlowReducer, getSceneNumber, INITIAL_GAME_FLOW, SCENE_DETAILS, SCEN
 import { StoneScene } from './scenes/StoneScene'
 import { BridgeScene } from './scenes/BridgeScene'
 import { TrafficLightScene } from './scenes/TrafficLightScene'
+import { AnimalCrossingScene } from './scenes/AnimalCrossingScene'
+import { TireChangeScene } from './scenes/TireChangeScene'
+import { RainyDriveScene } from './scenes/RainyDriveScene'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
@@ -18,7 +21,7 @@ const staticScreenContent = {
   complete: {
     eyebrow: '旅程完成',
     title: '小车到家啦',
-    description: '谢谢你一路陪着小车，明天还可以再来玩。',
+    description: '谢谢你一路陪着小车走过六个小场景。',
     action: '再玩一次',
   },
 }
@@ -216,6 +219,12 @@ function GameScene({ sceneId, ...sceneProps }: SceneProps) {
       return <BridgeScene {...sceneProps} sceneId="bridge" />
     case 'traffic-light':
       return <TrafficLightScene {...sceneProps} sceneId="traffic-light" />
+    case 'animal-crossing':
+      return <AnimalCrossingScene {...sceneProps} sceneId="animal-crossing" />
+    case 'tire-change':
+      return <TireChangeScene {...sceneProps} sceneId="tire-change" />
+    case 'rainy-drive':
+      return <RainyDriveScene {...sceneProps} sceneId="rainy-drive" />
   }
 }
 

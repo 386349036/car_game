@@ -25,6 +25,9 @@ const VOICE_FILES = {
   stone: 'stone-hint.wav',
   bridge: 'bridge-hint.wav',
   'traffic-light': 'traffic-light-hint.wav',
+  'animal-crossing': 'animal-crossing-hint.wav',
+  'tire-change': 'tire-change-hint.wav',
+  'rainy-drive': 'rainy-drive-hint.wav',
   praise: 'scene-complete.wav',
   finish: 'journey-complete.wav',
 } as const

@@ -12,6 +12,15 @@ export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
   'traffic-light': {
     title: '红绿灯放行',
   },
+  'animal-crossing': {
+    title: '小鸭子过马路',
+  },
+  'tire-change': {
+    title: '换上新轮胎',
+  },
+  'rainy-drive': {
+    title: '雨天开雨刷',
+  },
 }
 
 export type GameFlowState =
