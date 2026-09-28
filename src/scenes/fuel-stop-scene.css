@@ -1,0 +1,59 @@
+.scene-backdrop.fuel-stop-scene {
+  min-height: clamp(410px, 54svh, 510px);
+  background-color: #9bd9ae;
+  background-image: url('/images/fuel-stop-background.png');
+  background-position: center center;
+  background-size: cover;
+}
+
+.fuel-stop-scene .scene-backdrop__road { display: none; }
+
+.fuel-stop-scene__prompt { position: absolute; z-index: 6; top: clamp(20px, 5%, 42px); left: 16px; width: calc(100% - 32px); color: var(--scene-color-ink); text-align: center; pointer-events: none; }
+.fuel-stop-scene__prompt h2 { margin: 0; font-size: clamp(1.65rem, 4vw, 2.35rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.12; text-wrap: balance; }
+.fuel-stop-scene__prompt p { margin: 9px auto 0; color: #456c67; font-size: clamp(.92rem, 2vw, 1.08rem); font-weight: 750; line-height: 1.45; text-wrap: balance; }
+
+.fuel-stop-scene__car.scene-car { position: absolute; z-index: 4; left: 1%; bottom: 13%; width: clamp(180px, 30%, 270px); max-width: none; height: auto; }
+
+.gentle-tap-target.fuel-stop-scene__pump-target {
+  position: absolute;
+  z-index: 5;
+  top: 13%;
+  right: 4%;
+  width: clamp(224px, 34%, 350px);
+  height: 72%;
+  padding: 0;
+  border-radius: 36px;
+  transform: none;
+}
+
+.fuel-stop-scene__pump-target--hinted { animation: fuel-stop-pump-hint 1.7s ease-in-out infinite; }
+.fuel-stop-scene__gauge { position: absolute; top: 40%; left: 37%; width: clamp(68px, 8vw, 88px); height: 19px; overflow: hidden; border: 3px solid #fff6de; border-radius: 999px; background: rgb(86 70 56 / 84%); box-shadow: 0 2px 7px rgb(61 50 42 / 35%); opacity: .94; }
+.fuel-stop-scene__gauge-fill { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #f1a754, #ffdd7c); transform: scaleX(.16); transform-origin: left center; transition: transform 1.15s cubic-bezier(.2, .76, .26, 1); }
+.fuel-stop-scene--filling .fuel-stop-scene__gauge-fill { transform: scaleX(1); }
+.fuel-stop-scene--driving .fuel-stop-scene__car { animation: fuel-stop-car-drive 1.55s cubic-bezier(.2, .7, .24, 1) both; }
+.fuel-stop-scene__announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
+@keyframes fuel-stop-pump-hint {
+  0%, 100% { filter: drop-shadow(0 0 0 rgb(255 223 138 / 0%)); }
+  50% { filter: drop-shadow(0 0 15px rgb(255 191 76 / 80%)); }
+}
+@keyframes fuel-stop-car-drive {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 120%)); }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.fuel-stop-scene { min-height: clamp(410px, 57svh, 490px); background-position: 70% center; }
+  .fuel-stop-scene__prompt { top: 22px; left: 13px; width: calc(100% - 26px); }
+  .fuel-stop-scene__prompt h2 { font-size: clamp(1.65rem, 7.5vw, 2.15rem); }
+  .fuel-stop-scene__prompt p { max-width: 300px; margin-top: 8px; font-size: .9rem; }
+  .fuel-stop-scene__car.scene-car { left: -8%; bottom: 14%; width: clamp(178px, 55%, 225px); }
+  .gentle-tap-target.fuel-stop-scene__pump-target { top: 19%; right: 0; width: 50%; height: 63%; }
+  .fuel-stop-scene__gauge { top: 39%; left: 37%; width: 62px; height: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fuel-stop-scene__pump-target--hinted,
+  .fuel-stop-scene--driving .fuel-stop-scene__car { animation-duration: 1ms; animation-iteration-count: 1; }
+  .fuel-stop-scene__gauge-fill { transition-duration: 1ms; }
+}
