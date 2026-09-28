@@ -5,6 +5,12 @@ export const SCENE_IDS = [
   'animal-crossing',
   'tire-change',
   'rainy-drive',
+  'night-lights',
+  'fuel-stop',
+  'car-wash',
+  'rabbit-feeding',
+  'flower-watering',
+  'home-garage',
 ] as const
 
 export type SceneId = (typeof SCENE_IDS)[number]

@@ -109,6 +109,17 @@ function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
     case 'journey-start':
       return 'start'
     case 'scene-hint':
+      if (
+        event.sceneId === 'night-lights' ||
+        event.sceneId === 'fuel-stop' ||
+        event.sceneId === 'car-wash' ||
+        event.sceneId === 'rabbit-feeding' ||
+        event.sceneId === 'flower-watering' ||
+        event.sceneId === 'home-garage'
+      ) {
+        // Use the bundled positive start phrase until the V3-specific voice files are generated.
+        return 'start'
+      }
       return event.sceneId ?? null
     case 'scene-complete':
       return 'praise'

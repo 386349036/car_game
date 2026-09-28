@@ -7,6 +7,12 @@ import { TrafficLightScene } from './scenes/TrafficLightScene'
 import { AnimalCrossingScene } from './scenes/AnimalCrossingScene'
 import { TireChangeScene } from './scenes/TireChangeScene'
 import { RainyDriveScene } from './scenes/RainyDriveScene'
+import { NightLightsScene } from './scenes/NightLightsScene'
+import { FuelStopScene } from './scenes/FuelStopScene'
+import { CarWashScene } from './scenes/CarWashScene'
+import { RabbitFeedingScene } from './scenes/RabbitFeedingScene'
+import { FlowerWateringScene } from './scenes/FlowerWateringScene'
+import { HomeGarageScene } from './scenes/HomeGarageScene'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
@@ -21,7 +27,7 @@ const staticScreenContent = {
   complete: {
     eyebrow: '旅程完成',
     title: '小车到家啦',
-    description: '谢谢你一路陪着小车走过六个小场景。',
+    description: '谢谢你一路陪着小车走过十二个小场景。',
     action: '再玩一次',
   },
 }
@@ -225,6 +231,18 @@ function GameScene({ sceneId, ...sceneProps }: SceneProps) {
       return <TireChangeScene {...sceneProps} sceneId="tire-change" />
     case 'rainy-drive':
       return <RainyDriveScene {...sceneProps} sceneId="rainy-drive" />
+    case 'night-lights':
+      return <NightLightsScene {...sceneProps} sceneId="night-lights" />
+    case 'fuel-stop':
+      return <FuelStopScene {...sceneProps} sceneId="fuel-stop" />
+    case 'car-wash':
+      return <CarWashScene {...sceneProps} sceneId="car-wash" />
+    case 'rabbit-feeding':
+      return <RabbitFeedingScene {...sceneProps} sceneId="rabbit-feeding" />
+    case 'flower-watering':
+      return <FlowerWateringScene {...sceneProps} sceneId="flower-watering" />
+    case 'home-garage':
+      return <HomeGarageScene {...sceneProps} sceneId="home-garage" />
   }
 }
 

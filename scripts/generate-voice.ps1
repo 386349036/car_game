@@ -18,6 +18,12 @@ $prompts = [ordered]@{
   'animal-crossing-hint.wav' = '小鸭子想过马路，点一点来帮忙。'
   'tire-change-hint.wav' = '把新轮胎放上去吧。'
   'rainy-drive-hint.wav' = '下雨啦，点一下雨刷，帮小车看清前面。'
+  'night-lights-hint.wav' = '天黑啦，点一下车灯，照亮前面的路。'
+  'fuel-stop-hint.wav' = '小车要加油啦，点一下加油机。'
+  'car-wash-hint.wav' = '小车身上有点脏，点一点泡泡，洗干净吧。'
+  'rabbit-feeding-hint.wav' = '小兔子饿啦，点一下胡萝卜，送给小兔子。'
+  'flower-watering-hint.wav' = '小花渴啦，点一下水壶，给它浇浇水。'
+  'home-garage-hint.wav' = '到家啦，点一下车库门，小车回家休息。'
   'scene-complete.wav' = '真棒，小车继续前进！'
   'journey-complete.wav' = '小车到家啦，真棒！'
 }

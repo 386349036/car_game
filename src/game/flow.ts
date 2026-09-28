@@ -21,6 +21,24 @@ export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
   'rainy-drive': {
     title: '雨天开雨刷',
   },
+  'night-lights': {
+    title: '夜间开车灯',
+  },
+  'fuel-stop': {
+    title: '给小车加油',
+  },
+  'car-wash': {
+    title: '泡泡洗车',
+  },
+  'rabbit-feeding': {
+    title: '给兔子送胡萝卜',
+  },
+  'flower-watering': {
+    title: '给花浇水',
+  },
+  'home-garage': {
+    title: '回家停车',
+  },
 }
 
 export type GameFlowState =

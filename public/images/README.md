@@ -21,3 +21,16 @@
 | `ducklings.png` | 一列向前行走的可爱小鸭子，透明背景，以小车图像作风格参考 | 小鸭子过马路关 |
 
 模式：使用内置图片生成工具直接生成；草地为不透明全幅插画，其他物件为透明背景 PNG。道路、触控区域和反馈动画由 CSS 呈现，方便适配不同手机尺寸。
+
+## V3 新增场景
+
+下列 PNG 均由 Codex 内置 `image_gen.imagegen` 生成，运行时从本地加载。每关的构图和提示词见对应的 `src/scenes/*_ASSET.md`。
+
+| 文件 | 用途 |
+| --- | --- |
+| `night-lights-background.png` | 夜间乡间道路背景；小车复用 `car.png` |
+| `fuel-stop-background.png` | 加油站背景；小车复用 `car.png` |
+| `home-garage-closed.png`、`home-garage-open.png` | 黄昏车库关闭和打开状态 |
+| `car-wash.png`、`wash-sponge.png` | 洗车房背景和海绵点击目标 |
+| `rabbit-feeding.png`、`feeding-carrot.png` | 菜园兔子背景和胡萝卜点击目标 |
+| `flower-watering.png`、`watering-can.png`、`flower-open.png` | 花园背景、浇水壶点击目标和开花反馈 |
