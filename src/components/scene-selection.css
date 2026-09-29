@@ -1,0 +1,430 @@
+.main-content--selection {
+  justify-content: center;
+}
+
+.scene-selection {
+  width: min(100%, 960px);
+  margin: auto;
+  animation: selection-in 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.scene-selection__heading {
+  margin: 0 0 clamp(15px, 2.5vh, 24px);
+  text-align: center;
+}
+
+.scene-selection__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  color: #6a8d72;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.scene-selection__eyebrow span {
+  color: #e8a544;
+  font-size: 1.1rem;
+}
+
+.scene-selection__heading h1 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.scene-selection__heading p {
+  margin: 7px 0 0;
+  color: #678078;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  font-weight: 650;
+}
+
+.scene-selection__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+}
+
+.scene-choice {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: clamp(174px, 22vh, 218px);
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  color: var(--ink);
+  text-align: left;
+  background: #fffdf4;
+  border: 2px solid rgb(69 106 85 / 9%);
+  border-radius: clamp(22px, 3vw, 32px);
+  box-shadow: 0 12px 28px rgb(54 95 75 / 8%);
+}
+
+button.scene-choice {
+  width: 100%;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.scene-choice--active {
+  border-color: #b6d996;
+  box-shadow: 0 14px 30px rgb(74 130 83 / 15%), inset 0 0 0 2px rgb(255 255 255 / 60%);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.scene-choice--active:hover {
+  box-shadow: 0 17px 34px rgb(74 130 83 / 21%), inset 0 0 0 2px rgb(255 255 255 / 60%);
+  transform: translateY(-3px);
+}
+
+.scene-choice--active:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.scene-choice:focus-visible {
+  outline: 4px solid #f0a533;
+  outline-offset: 4px;
+}
+
+.scene-choice__art {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scene-choice__art--car {
+  background: linear-gradient(90deg, #fff2cd 0%, #fff0c4 37%, rgb(255 240 196 / 0%) 74%);
+}
+
+.scene-choice__meadow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+  opacity: 0.64;
+  mask-image: linear-gradient(90deg, transparent 7%, #000 42%);
+}
+
+.scene-choice__road {
+  position: absolute;
+  right: -9%;
+  bottom: -24%;
+  width: 86%;
+  height: 52%;
+  border-top: 6px solid rgb(255 252 223 / 90%);
+  border-radius: 55% 0 0 0 / 45% 0 0 0;
+  background: #eaa66d;
+  transform: rotate(-5deg);
+}
+
+.scene-choice__image {
+  position: absolute;
+  display: block;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.scene-choice__image--car {
+  right: 0;
+  bottom: 4%;
+  width: min(63%, 255px);
+  filter: drop-shadow(0 9px 5px rgb(66 93 60 / 17%));
+  animation: selection-car-bob 3s ease-in-out infinite;
+}
+
+.scene-choice__copy {
+  position: relative;
+  z-index: 1;
+  width: min(67%, 275px);
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 17px 0 17px clamp(18px, 2.8vw, 29px);
+}
+
+.scene-choice__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  margin-bottom: 7px;
+  padding: 0 11px;
+  color: #648172;
+  font-size: 0.73rem;
+  font-weight: 850;
+  background: rgb(255 255 255 / 81%);
+  border: 1px solid rgb(255 255 255 / 95%);
+  border-radius: 999px;
+}
+
+.scene-choice__badge--active {
+  color: #52783d;
+  background: #f9ffde;
+}
+
+.scene-choice__title {
+  display: block;
+  max-width: 100%;
+  color: var(--ink);
+  font-size: clamp(1.12rem, 2.2vw, 1.58rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
+.scene-choice__description {
+  display: block;
+  margin-top: 6px;
+  color: #577267;
+  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+  font-weight: 700;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.scene-choice__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  margin-top: 11px;
+  padding: 0 12px;
+  color: #fffef7;
+  font-size: 0.82rem;
+  font-weight: 900;
+  background: var(--green);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--green-dark);
+}
+
+.scene-choice__action span {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.scene-choice--animals {
+  background: #dff3e9;
+}
+
+.scene-choice__art--animals {
+  background: radial-gradient(ellipse at 84% 78%, #f6e9bf 0 28%, transparent 29%);
+}
+
+.scene-choice__image--puppy {
+  right: -1%;
+  bottom: -14%;
+  width: 57%;
+  max-height: 108%;
+}
+
+.scene-choice__image--ducklings {
+  right: 35%;
+  bottom: -10%;
+  width: 27%;
+  max-height: 55%;
+}
+
+.scene-choice--farm {
+  background: #fff0cf;
+}
+
+.scene-choice__art--farm {
+  background: radial-gradient(ellipse at 80% 89%, #d0e89f 0 34%, transparent 35%);
+}
+
+.scene-choice__image--rabbit {
+  right: 0;
+  bottom: -13%;
+  width: 51%;
+  max-height: 102%;
+}
+
+.scene-choice__image--chicks {
+  right: 38%;
+  bottom: -8%;
+  width: 29%;
+  max-height: 58%;
+}
+
+.scene-choice--garden {
+  background: #dff2f5;
+}
+
+.scene-choice__art--garden {
+  background: radial-gradient(ellipse at 80% 94%, #d8eca9 0 33%, transparent 34%);
+}
+
+.scene-choice__image--flower {
+  right: 0;
+  bottom: -15%;
+  width: 53%;
+  max-height: 102%;
+}
+
+.scene-choice__image--kite {
+  top: -8%;
+  right: 29%;
+  width: 26%;
+  max-height: 53%;
+  transform: rotate(-9deg);
+}
+
+@keyframes selection-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes selection-car-bob {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(-1deg); }
+}
+
+@media (max-width: 600px) {
+  .scene-selection__heading {
+    margin-bottom: 14px;
+  }
+
+  .scene-selection__eyebrow {
+    margin-bottom: 5px;
+    font-size: 0.77rem;
+  }
+
+  .scene-selection__heading h1 {
+    font-size: clamp(1.58rem, 7vw, 2rem);
+  }
+
+  .scene-selection__heading p {
+    margin-top: 5px;
+    font-size: 0.8rem;
+  }
+
+  .scene-selection__grid {
+    gap: 12px;
+  }
+
+  .scene-choice {
+    min-height: clamp(157px, 20svh, 188px);
+    border-radius: 22px;
+  }
+
+  .scene-choice__copy {
+    width: 73%;
+    padding: 12px 0 12px 14px;
+  }
+
+  .scene-choice__badge {
+    min-height: 23px;
+    margin-bottom: 6px;
+    padding: 0 8px;
+    font-size: 0.65rem;
+  }
+
+  .scene-choice__title {
+    font-size: clamp(0.98rem, 4.6vw, 1.22rem);
+  }
+
+  .scene-choice__description {
+    margin-top: 5px;
+    font-size: clamp(0.63rem, 2.8vw, 0.76rem);
+  }
+
+  .scene-choice__action {
+    min-height: 29px;
+    margin-top: 8px;
+    padding: 0 10px;
+    font-size: 0.71rem;
+  }
+
+  .scene-choice__image--car {
+    right: -12%;
+    bottom: 5%;
+    width: 70%;
+  }
+
+  .scene-choice__image--puppy,
+  .scene-choice__image--rabbit,
+  .scene-choice__image--flower {
+    right: -12%;
+    width: 62%;
+  }
+
+  .scene-choice__image--ducklings {
+    right: 32%;
+    width: 31%;
+  }
+
+  .scene-choice__image--chicks {
+    right: 36%;
+    width: 32%;
+  }
+
+  .scene-choice__image--kite {
+    right: 24%;
+    width: 28%;
+  }
+}
+
+@media (max-width: 360px) {
+  .scene-selection__grid {
+    gap: 9px;
+  }
+
+  .scene-choice {
+    min-height: 151px;
+    border-radius: 19px;
+  }
+
+  .scene-choice__copy {
+    width: 77%;
+    padding-left: 11px;
+  }
+
+  .scene-choice__title {
+    font-size: 0.91rem;
+  }
+
+  .scene-choice__description {
+    max-width: 90px;
+    font-size: 0.61rem;
+  }
+
+  .scene-choice__action {
+    gap: 5px;
+    min-height: 26px;
+    padding-inline: 8px;
+    font-size: 0.66rem;
+  }
+}
+
+@media (max-height: 720px) and (min-width: 601px) {
+  .scene-choice {
+    min-height: 166px;
+  }
+
+  .scene-selection__heading {
+    margin-bottom: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-selection,
+  .scene-choice__image--car {
+    animation: none;
+  }
+}

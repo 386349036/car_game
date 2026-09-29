@@ -22,6 +22,7 @@ const DEFAULT_SETTINGS: AudioSettings = {
 
 const VOICE_FILES = {
   start: 'journey-start.mp3',
+  'animal-start': 'animal-journey-start.mp3',
   stone: 'stone-hint.mp3',
   bridge: 'bridge-hint.mp3',
   'traffic-light': 'traffic-light-hint.mp3',
@@ -40,11 +41,31 @@ const VOICE_FILES = {
   'toy-cleanup': 'toy-cleanup-hint.mp3',
   'fish-pond': 'fish-pond-hint.mp3',
   'home-garage': 'home-garage-hint.mp3',
+  'kitten-reunion': 'kitten-reunion-hint.mp3',
+  'bird-nest': 'bird-nest-hint.mp3',
+  'turtle-beach': 'turtle-beach-hint.mp3',
+  'lamb-meadow': 'lamb-meadow-hint.mp3',
+  'elephant-bath': 'elephant-bath-hint.mp3',
   praise: 'scene-complete.mp3',
+  'animal-praise': 'animal-scene-complete.mp3',
   finish: 'journey-complete.mp3',
+  'animal-finish': 'animal-journey-complete.mp3',
 } as const
 
 type VoiceClip = keyof typeof VOICE_FILES
+
+const ANIMAL_SCENE_IDS = new Set([
+  'animal-crossing',
+  'rabbit-feeding',
+  'feed-chicks',
+  'puppy-frisbee',
+  'fish-pond',
+  'kitten-reunion',
+  'bird-nest',
+  'turtle-beach',
+  'lamb-meadow',
+  'elephant-bath',
+])
 
 const MUSIC_NOTES = [523.25, 659.25, 587.33, 523.25, 440, 523.25, 659.25, 587.33]
 
@@ -119,15 +140,17 @@ function getTonePattern(cue: GameFeedbackCue): {
 function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
   switch (event.cue) {
     case 'journey-start':
-      return 'start'
+      return event.sceneId === 'puppy-frisbee' ? 'animal-start' : 'start'
     case 'scene-hint':
       return event.sceneId && Object.prototype.hasOwnProperty.call(VOICE_FILES, event.sceneId)
         ? event.sceneId as VoiceClip
         : null
     case 'scene-complete':
-      return 'praise'
+      return event.sceneId && ANIMAL_SCENE_IDS.has(event.sceneId)
+        ? 'animal-praise'
+        : 'praise'
     case 'journey-complete':
-      return 'finish'
+      return event.sceneId === 'elephant-bath' ? 'animal-finish' : 'finish'
     default:
       return null
   }

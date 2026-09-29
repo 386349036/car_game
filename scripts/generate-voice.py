@@ -11,6 +11,7 @@ import edge_tts
 
 PROMPTS = {
     "journey-start.mp3": "小车出发啦！",
+    "animal-journey-start.mp3": "小动物朋友，我们出发啦！",
     "stone-hint.mp3": "石头挡路啦，请挖掘机来帮忙。",
     "bridge-hint.mp3": "把木板放到小桥上吧。",
     "traffic-light-hint.mp3": "点一点红绿灯，小车就能走啦。",
@@ -29,15 +30,29 @@ PROMPTS = {
     "toy-cleanup-hint.mp3": "把积木放进玩具箱，玩具回家啦。",
     "fish-pond-hint.mp3": "小鱼想回池塘，点一点池塘来帮忙。",
     "home-garage-hint.mp3": "到家啦，点一下大大的车库门，送小车回家。",
+    "kitten-reunion-hint.mp3": "小猫在找妈妈，点一点小猫，陪它们团聚吧。",
+    "bird-nest-hint.mp3": "小鸟想回鸟窝，点一点小鸟，陪它回家吧。",
+    "turtle-beach-hint.mp3": "小海龟想回海边，点一点它来帮忙。",
+    "lamb-meadow-hint.mp3": "小绵羊肚子饿了，点一点小绵羊，陪它吃青草吧。",
+    "elephant-bath-hint.mp3": "小象要洗澡啦，点一下小象，陪它开心地玩水吧。",
     "scene-complete.mp3": "真棒，小车继续前进！",
+    "animal-scene-complete.mp3": "真棒，小动物很开心，我们继续玩吧！",
     "journey-complete.mp3": "小车到家啦，真棒！",
+    "animal-journey-complete.mp3": "小动物朋友都玩得真开心，太棒啦！",
 }
 
 
-async def generate(output_directory: Path, voice: str, rate: str) -> None:
+async def generate(
+    output_directory: Path,
+    voice: str,
+    rate: str,
+    only: set[str] | None = None,
+) -> None:
     output_directory.mkdir(parents=True, exist_ok=True)
 
     for filename, text in PROMPTS.items():
+        if only is not None and filename not in only:
+            continue
         output_path = output_directory / filename
         temporary_path = output_path.with_suffix(".mp3.tmp")
         try:
@@ -65,8 +80,15 @@ def main() -> None:
         type=Path,
         default=Path(__file__).resolve().parents[1] / "public" / "audio" / "voice",
     )
+    parser.add_argument(
+        "--only",
+        nargs="*",
+        choices=tuple(PROMPTS),
+        help="Generate only these prompt files instead of refreshing the full voice pack.",
+    )
     args = parser.parse_args()
-    asyncio.run(generate(args.output_directory, args.voice, args.rate))
+    selected_prompts = set(args.only) if args.only is not None else None
+    asyncio.run(generate(args.output_directory, args.voice, args.rate, selected_prompts))
 
 
 if __name__ == "__main__":

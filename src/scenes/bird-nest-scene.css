@@ -1,0 +1,251 @@
+.scene-backdrop.bird-nest-scene {
+  --bird-size: clamp(128px, 21vw, 164px);
+
+  min-height: clamp(430px, 57svh, 550px);
+  background-image: url('/images/kite-flying-background.png');
+  background-position: center 52%;
+  background-size: cover;
+}
+
+.bird-nest-scene__prompt {
+  position: absolute;
+  z-index: 7;
+  top: clamp(18px, 4%, 32px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: var(--scene-color-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.bird-nest-scene__prompt h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.bird-nest-scene__prompt p {
+  margin: 8px auto 0;
+  color: #55746a;
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.bird-nest-scene__car.scene-car {
+  position: absolute;
+  z-index: 3;
+  bottom: 2%;
+  left: 3%;
+  width: clamp(178px, 28%, 255px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.bird-nest-scene__branch {
+  position: absolute;
+  z-index: 3;
+  top: 43%;
+  right: 1%;
+  width: 35%;
+  height: 18px;
+  border: 5px solid #835b39;
+  border-top: 0;
+  border-left: 0;
+  border-radius: 0 0 60% 45%;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+.bird-nest-scene__branch::before,
+.bird-nest-scene__branch::after {
+  position: absolute;
+  content: '';
+  border-top: 5px solid #835b39;
+  border-radius: 50%;
+}
+
+.bird-nest-scene__branch::before {
+  top: -17px;
+  left: 18%;
+  width: 34px;
+  height: 19px;
+  transform: rotate(-22deg);
+}
+
+.bird-nest-scene__branch::after {
+  top: -12px;
+  right: 17%;
+  width: 29px;
+  height: 16px;
+  transform: rotate(20deg);
+}
+
+.bird-nest-scene__nest {
+  position: absolute;
+  z-index: 4;
+  top: 31%;
+  right: 6%;
+  width: var(--bird-size);
+  height: calc(var(--bird-size) * .66);
+  pointer-events: none;
+}
+
+.bird-nest-scene__nest-bowl {
+  position: absolute;
+  inset: 25% 3% 3%;
+  border: 4px solid #805638;
+  border-top: 0;
+  border-radius: 12% 12% 48% 48% / 12% 12% 66% 66%;
+  background: repeating-linear-gradient(165deg, #b8804d 0 9px, #99633e 10px 13px);
+  box-shadow: 0 7px 9px rgb(69 71 49 / 18%);
+}
+
+.bird-nest-scene__nest-rim {
+  position: absolute;
+  top: 22%;
+  left: 0;
+  width: 100%;
+  height: 27%;
+  border: 5px solid #815638;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #d19a60 0%, #b77a48 72%, #98643f 100%);
+  box-shadow: inset 0 4px 0 rgb(255 226 175 / 56%), 0 3px 5px rgb(72 66 48 / 14%);
+}
+
+.bird-nest-scene__nest-weave {
+  position: absolute;
+  z-index: 1;
+  left: 13%;
+  width: 74%;
+  height: 11px;
+  border: 3px solid #805638;
+  border-top: 0;
+  border-radius: 0 0 50% 50%;
+  pointer-events: none;
+}
+
+.bird-nest-scene__nest-weave--one { top: 54%; }
+.bird-nest-scene__nest-weave--two { top: 69%; left: 20%; width: 60%; }
+
+.gentle-tap-target.bird-nest-scene__target {
+  position: absolute;
+  z-index: 5;
+  top: 49%;
+  left: 8%;
+  width: var(--bird-size);
+  height: var(--bird-size);
+  padding: 0;
+  border-radius: 50%;
+}
+
+.bird-nest-scene__bird {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bird-nest-scene__target--hinted .bird-nest-scene__bird {
+  animation: bird-nest-hint 1.7s ease-in-out infinite;
+}
+
+.bird-nest-scene--returning .bird-nest-scene__target {
+  animation: bird-nest-return 1.52s cubic-bezier(.32, .1, .25, 1) both;
+}
+
+.bird-nest-scene--returning .bird-nest-scene__bird {
+  animation: bird-nest-flap 260ms ease-in-out infinite alternate;
+}
+
+.bird-nest-scene--settled .bird-nest-scene__target {
+  top: 28%;
+  left: calc(94% - var(--bird-size));
+  transform: scale(.94);
+}
+
+@keyframes bird-nest-return {
+  0% { top: 49%; left: 8%; transform: rotate(-5deg) scale(1); }
+  20% { top: 42%; left: 22%; transform: rotate(5deg) scale(1.02); }
+  48% { top: 32%; left: 45%; transform: rotate(-4deg) scale(1.04); }
+  78% { top: 26%; left: 68%; transform: rotate(4deg) scale(1); }
+  100% { top: 28%; left: calc(94% - var(--bird-size)); transform: rotate(0) scale(.94); }
+}
+
+@keyframes bird-nest-flap {
+  from { transform: translateY(0) rotate(-2deg) scaleY(.98); }
+  to { transform: translateY(-5px) rotate(2deg) scaleY(1.02); }
+}
+
+@keyframes bird-nest-hint {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgb(255 223 138 / 0%)); }
+  50% { transform: scale(1.045); filter: drop-shadow(0 0 15px rgb(255 193 91 / 78%)); }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.bird-nest-scene {
+    --bird-size: clamp(128px, 34vw, 148px);
+
+    min-height: clamp(430px, 59svh, 500px);
+    background-position: center;
+  }
+
+  .bird-nest-scene__prompt {
+    top: 20px;
+    left: 13px;
+    width: calc(100% - 26px);
+  }
+
+  .bird-nest-scene__prompt h2 {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .bird-nest-scene__prompt p {
+    max-width: 290px;
+    font-size: .9rem;
+  }
+
+  .bird-nest-scene__car.scene-car {
+    bottom: 2%;
+    left: -3%;
+    width: clamp(174px, 54%, 225px);
+  }
+
+  .bird-nest-scene__branch {
+    top: 43%;
+    right: -4%;
+    width: 42%;
+  }
+
+  .bird-nest-scene__nest {
+    top: 31%;
+    right: 6%;
+  }
+
+  .gentle-tap-target.bird-nest-scene__target {
+    top: 49%;
+    left: 7%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird-nest-scene__target--hinted .bird-nest-scene__bird,
+  .bird-nest-scene--returning .bird-nest-scene__target,
+  .bird-nest-scene--returning .bird-nest-scene__bird {
+    animation: none;
+  }
+
+  .bird-nest-scene--returning .bird-nest-scene__target,
+  .bird-nest-scene--settled .bird-nest-scene__target {
+    top: 28%;
+    left: calc(94% - var(--bird-size));
+    transform: scale(.94);
+  }
+}

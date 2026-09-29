@@ -15,6 +15,16 @@ python scripts/generate-voice.py
 python scripts/generate-voice.py --voice zh-CN-XiaoxiaoNeural --rate=-8%
 ```
 
-提示文字在 `scripts/generate-voice.py` 中维护；文件名须与 `src/game/audio/useGameAudio.ts` 中的映射一致。每次运行会重新生成全部提示。
+提示文字在 `scripts/generate-voice.py` 中维护；文件名须与 `src/game/audio/useGameAudio.ts` 中的映射一致。默认运行会重新生成全部提示。
 
-本次新增的六个场景 MP3（送信、喂小鸡、放风筝、陪小狗玩飞盘、收玩具、鱼塘）按同一脚本中的提示文字通过 Google 翻译在线语音端点合成。游戏运行时仍只读取随项目发布的本地 MP3；以后运行上面的 Edge TTS 命令会将全部提示统一重新生成为小晓声线。
+需要只更新新动物主题的语音时，可通过 `--only` 指定提示文件名，避免重写其余语音：
+
+```powershell
+python scripts/generate-voice.py --only kitten-reunion-hint.mp3 bird-nest-hint.mp3 turtle-beach-hint.mp3 lamb-meadow-hint.mp3 elephant-bath-hint.mp3 animal-journey-complete.mp3
+```
+
+动物主题有单独的开场、场景提示、互动夸奖和完成语音，均以本地 MP3 播放。可按需只重生成动物主题新增音频：
+
+```powershell
+python scripts/generate-voice.py --only animal-journey-start.mp3 animal-scene-complete.mp3 kitten-reunion-hint.mp3 bird-nest-hint.mp3 turtle-beach-hint.mp3 lamb-meadow-hint.mp3 elephant-bath-hint.mp3 animal-journey-complete.mp3
+```

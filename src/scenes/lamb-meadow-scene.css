@@ -1,0 +1,251 @@
+.scene-backdrop.lamb-meadow-scene {
+  min-height: clamp(390px, 54svh, 520px);
+  background-color: #a7d995;
+  background-image: url('/images/feed-chicks-background.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.lamb-meadow-scene .scene-backdrop__road {
+  display: none;
+}
+
+.lamb-meadow-scene__prompt {
+  position: absolute;
+  z-index: 7;
+  top: clamp(18px, 4%, 32px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: var(--scene-color-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.lamb-meadow-scene__prompt h2,
+.lamb-meadow-scene__prompt p {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.lamb-meadow-scene__prompt h2 {
+  font-size: clamp(1.65rem, 4vw, 2.3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+}
+
+.lamb-meadow-scene__prompt p {
+  margin: 8px auto 0;
+  color: #55746a;
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.lamb-meadow-scene__car.scene-car {
+  position: absolute;
+  z-index: 3;
+  bottom: 2%;
+  left: 2%;
+  width: clamp(190px, 24%, 270px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.gentle-tap-target.lamb-meadow-scene__lamb-target {
+  position: absolute;
+  z-index: 6;
+  bottom: 10%;
+  left: 30%;
+  width: clamp(230px, 32vw, 350px);
+  aspect-ratio: 3 / 2;
+  display: block;
+  padding: 0;
+  border-radius: 0;
+  transform-origin: 35% 57%;
+}
+
+.lamb-meadow-scene__lamb-target img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lamb-meadow-scene__lamb-target--hinted {
+  animation: lamb-meadow-hint 1.7s ease-in-out infinite;
+}
+
+.lamb-meadow-scene--eating .lamb-meadow-scene__lamb-target {
+  animation: lamb-meadow-chew 1.4s ease-in-out both;
+}
+
+.lamb-meadow-scene--happy .lamb-meadow-scene__lamb-target,
+.lamb-meadow-scene--finished .lamb-meadow-scene__lamb-target {
+  filter: drop-shadow(0 0 16px rgb(255 214 115 / 78%));
+}
+
+.lamb-meadow-scene__happy-glow {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ffdd7f;
+  box-shadow: 0 0 14px 4px rgb(255 221 127 / 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lamb-meadow-scene__happy-glow--one { top: 17%; left: 29%; }
+.lamb-meadow-scene__happy-glow--two { top: 9%; left: 46%; width: 9px; height: 9px; }
+.lamb-meadow-scene__happy-glow--three { top: 32%; left: 14%; width: 8px; height: 8px; }
+
+.lamb-meadow-scene--happy .lamb-meadow-scene__happy-glow,
+.lamb-meadow-scene--finished .lamb-meadow-scene__happy-glow {
+  animation: lamb-meadow-glow 850ms ease-out both;
+}
+
+.lamb-meadow-scene__grass {
+  position: absolute;
+  z-index: 2;
+  top: 44%;
+  left: calc(38% - 9%);
+  width: 18%;
+  aspect-ratio: 1.2;
+  transform: scale(.72);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.lamb-meadow-scene__grass-blade {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  width: 15px;
+  height: 34px;
+  border-radius: 100% 0 100% 0;
+  background: linear-gradient(155deg, #a6d96f, #479651 76%);
+  transform-origin: 50% 100%;
+}
+
+.lamb-meadow-scene__grass-blade--one { transform: translateX(-18px) rotate(-36deg); }
+.lamb-meadow-scene__grass-blade--two { height: 41px; transform: translateX(-7px) rotate(-14deg); }
+.lamb-meadow-scene__grass-blade--three { height: 38px; transform: translateX(2px) rotate(12deg) scaleX(-1); }
+.lamb-meadow-scene__grass-blade--four { height: 30px; transform: translateX(12px) rotate(34deg) scaleX(-1); }
+
+.lamb-meadow-scene--eating .lamb-meadow-scene__grass {
+  animation: lamb-meadow-grass-bite 1.4s cubic-bezier(.35, .05, .58, .94) both;
+}
+
+.lamb-meadow-scene--happy .lamb-meadow-scene__grass,
+.lamb-meadow-scene--finished .lamb-meadow-scene__grass {
+  opacity: 0;
+  transform: translate3d(0, 4px, 0) scale(.24);
+}
+
+.lamb-meadow-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes lamb-meadow-hint {
+  0%, 100% { filter: drop-shadow(0 0 0 rgb(255 223 138 / 0%)); }
+  50% { filter: drop-shadow(0 0 18px rgb(255 193 91 / 88%)); }
+}
+
+@keyframes lamb-meadow-chew {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  20% { transform: translateY(-5px) rotate(-1deg); }
+  42% { transform: translateY(1px) rotate(1deg); }
+  64% { transform: translateY(-4px) rotate(-1deg); }
+  82% { transform: translateY(1px) rotate(.5deg); }
+}
+
+@keyframes lamb-meadow-grass-bite {
+  0% { opacity: 1; transform: translate3d(0, 0, 0) scale(.72); }
+  30% { transform: translate3d(0, 2px, 0) scale(.62); opacity: 1; }
+  72% { transform: translate3d(0, 4px, 0) scale(.36); opacity: 1; }
+  100% { transform: translate3d(0, 4px, 0) scale(.24); opacity: 0; }
+}
+
+@keyframes lamb-meadow-glow {
+  0% { transform: scale(.6); opacity: 0; }
+  35% { transform: scale(1.2); opacity: .95; }
+  100% { transform: scale(.8); opacity: .2; }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.lamb-meadow-scene {
+    min-height: clamp(390px, 55svh, 470px);
+    background-position: center;
+  }
+
+  .lamb-meadow-scene__prompt {
+    top: 18px;
+    left: 13px;
+    width: calc(100% - 26px);
+  }
+
+  .lamb-meadow-scene__prompt h2 {
+    font-size: clamp(1.7rem, 8vw, 2.2rem);
+  }
+
+  .lamb-meadow-scene__prompt p {
+    max-width: 300px;
+    font-size: .9rem;
+  }
+
+  .lamb-meadow-scene__car.scene-car {
+    bottom: 2%;
+    left: -3%;
+    width: clamp(170px, 50vw, 210px);
+  }
+
+  .gentle-tap-target.lamb-meadow-scene__lamb-target {
+    bottom: 14%;
+    left: 20%;
+    width: min(76vw, 285px);
+  }
+
+  .lamb-meadow-scene--eating .lamb-meadow-scene__lamb-target {
+    animation-duration: 1.4s;
+  }
+
+  .lamb-meadow-scene--eating .lamb-meadow-scene__grass {
+    animation-name: lamb-meadow-grass-bite-mobile;
+  }
+
+  .lamb-meadow-scene--happy .lamb-meadow-scene__grass,
+  .lamb-meadow-scene--finished .lamb-meadow-scene__grass {
+    transform: translate3d(0, 4px, 0) scale(.24);
+  }
+
+  @keyframes lamb-meadow-grass-bite-mobile {
+    0% { opacity: 1; transform: translate3d(0, 0, 0) scale(.72); }
+    30% { transform: translate3d(0, 2px, 0) scale(.62); opacity: 1; }
+    72% { transform: translate3d(0, 4px, 0) scale(.36); opacity: 1; }
+    100% { transform: translate3d(0, 4px, 0) scale(.24); opacity: 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamb-meadow-scene__lamb-target--hinted {
+    animation: none;
+  }
+
+  .lamb-meadow-scene--eating .lamb-meadow-scene__lamb-target,
+  .lamb-meadow-scene--eating .lamb-meadow-scene__grass,
+  .lamb-meadow-scene--happy .lamb-meadow-scene__happy-glow,
+  .lamb-meadow-scene--finished .lamb-meadow-scene__happy-glow {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

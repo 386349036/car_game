@@ -1,6 +1,13 @@
 import { useCallback, useEffect, useReducer, useRef, useState, type MouseEvent } from 'react'
 import './App.css'
-import { gameFlowReducer, getSceneNumber, INITIAL_GAME_FLOW, SCENE_DETAILS, SCENE_ORDER } from './game/flow'
+import {
+  gameFlowReducer,
+  getJourneySceneOrder,
+  getSceneNumber,
+  INITIAL_GAME_FLOW,
+  SCENE_DETAILS,
+  type JourneyId,
+} from './game/flow'
 import { StoneScene } from './scenes/StoneScene'
 import { BridgeScene } from './scenes/BridgeScene'
 import { TrafficLightScene } from './scenes/TrafficLightScene'
@@ -19,24 +26,35 @@ import { PuppyFrisbeeScene } from './scenes/PuppyFrisbeeScene'
 import { ToyCleanupScene } from './scenes/ToyCleanupScene'
 import { FishPondScene } from './scenes/FishPondScene'
 import { HomeGarageScene } from './scenes/HomeGarageScene'
+import { ElephantBathScene } from './scenes/ElephantBathScene'
+import { KittenReunionScene } from './scenes/KittenReunionScene'
+import { BirdNestScene } from './scenes/BirdNestScene'
+import { TurtleBeachScene } from './scenes/TurtleBeachScene'
+import { LambMeadowScene } from './scenes/LambMeadowScene'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
+import { SceneSelection } from './components/SceneSelection'
 
 const staticScreenContent = {
-  home: {
-    eyebrow: '一段轻松的小旅程',
-    title: '小汽车修路',
-    description: '陪小车一起出发，路上会有小小的惊喜。',
-    action: '开始出发',
-  },
-  complete: {
+  car: {
     eyebrow: '旅程完成',
     title: '小车到家啦',
     description: '谢谢你一路陪着小车走过十八个小场景。',
     action: '再玩一次',
   },
-}
+  animals: {
+    eyebrow: '动物朋友，旅程完成',
+    title: '大家玩得真开心',
+    description: '谢谢你陪十位动物朋友度过开心的小场景。',
+    action: '再玩一次',
+  },
+} satisfies Record<JourneyId, {
+  eyebrow: string
+  title: string
+  description: string
+  action: string
+}>
 
 function App() {
   const [flow, dispatch] = useReducer(gameFlowReducer, INITIAL_GAME_FLOW)
@@ -72,7 +90,8 @@ function App() {
     }
 
     completedSceneRef.current = expectedSceneId
-    const isFinalScene = expectedSceneId === SCENE_ORDER[SCENE_ORDER.length - 1]
+    const sceneOrder = getJourneySceneOrder(flow.journeyId)
+    const isFinalScene = expectedSceneId === sceneOrder[sceneOrder.length - 1]
     handleFeedback({
       cue: isFinalScene ? 'journey-complete' : 'scene-complete',
       sceneId: expectedSceneId,
@@ -80,11 +99,11 @@ function App() {
     dispatch({ type: 'complete-scene', sceneId: expectedSceneId })
   }, [flow, handleFeedback])
 
-  function handleMainAction() {
+  function handleMainAction(journeyId: JourneyId = 'car') {
     setParentPanelOpen(false)
     completedSceneRef.current = null
-    handleFeedback({ cue: 'journey-start' })
-    dispatch({ type: 'start' })
+    handleFeedback({ cue: 'journey-start', sceneId: getJourneySceneOrder(journeyId)[0] })
+    dispatch({ type: 'start', journeyId })
   }
 
   function goHome(event: MouseEvent<HTMLAnchorElement>) {
@@ -94,7 +113,7 @@ function App() {
     dispatch({ type: 'go-home' })
   }
 
-  const content = flow.screen === 'scene' ? null : staticScreenContent[flow.screen]
+  const content = flow.screen === 'complete' ? staticScreenContent[flow.journeyId] : null
 
   return (
     <div className="app-shell">
@@ -164,11 +183,23 @@ function App() {
         </div>
       </header>
 
-      <main id="top" className={'main-content' + (flow.screen === 'scene' ? ' main-content--scene' : '')}>
-        {flow.screen === 'scene' ? (
+      <main
+        id="top"
+        className={
+          'main-content' +
+          (flow.screen === 'scene' ? ' main-content--scene' : '') +
+          (flow.screen === 'home' ? ' main-content--selection' : '')
+        }
+      >
+        {flow.screen === 'home' ? (
+          <SceneSelection
+            onStartCar={() => handleMainAction('car')}
+            onStartAnimals={() => handleMainAction('animals')}
+          />
+        ) : flow.screen === 'scene' ? (
           <section
             className="scene-stage"
-            aria-label={`第 ${getSceneNumber(flow.sceneId)} 段：${SCENE_DETAILS[flow.sceneId].title}`}
+            aria-label={`第 ${getSceneNumber(flow.sceneId, flow.journeyId)} 段：${SCENE_DETAILS[flow.sceneId].title}`}
           >
             <GameScene
               sceneId={flow.sceneId}
@@ -179,12 +210,37 @@ function App() {
             />
           </section>
         ) : (
-          <section className={'journey-card journey-card--' + flow.screen} aria-labelledby="screen-title">
-            <div className={'scene-art scene-art--' + flow.screen} aria-hidden="true">
-              <div className="road">
-                <span className="road-dashes" />
-              </div>
-              <img className="car-illustration" src="/images/car.png" alt="" draggable={false} />
+          <section className="journey-card journey-card--complete" aria-labelledby="screen-title">
+            <div className="scene-art scene-art--complete" aria-hidden="true">
+              {flow.screen === 'complete' && flow.journeyId === 'animals' ? (
+                <div className="animal-celebration">
+                  <img
+                    className="animal-celebration__friend animal-celebration__friend--puppy"
+                    src="/images/scenes/puppy.png"
+                    alt=""
+                    draggable={false}
+                  />
+                  <img
+                    className="animal-celebration__friend animal-celebration__friend--elephant"
+                    src="/images/scenes/elephant-bath.png"
+                    alt=""
+                    draggable={false}
+                  />
+                  <img
+                    className="animal-celebration__friend animal-celebration__friend--ducklings"
+                    src="/images/ducklings.png"
+                    alt=""
+                    draggable={false}
+                  />
+                </div>
+              ) : (
+                <>
+                  <div className="road">
+                    <span className="road-dashes" />
+                  </div>
+                  <img className="car-illustration" src="/images/car.png" alt="" draggable={false} />
+                </>
+              )}
               {flow.screen === 'complete' && <span className="celebration-dots" />}
             </div>
 
@@ -201,7 +257,7 @@ function App() {
               <button
                 className="primary-action"
                 type="button"
-                onClick={handleMainAction}
+                onClick={() => handleMainAction(flow.screen === 'complete' ? flow.journeyId : 'car')}
               >
                 <span>{content?.action}</span>
                 <span className="action-icon" aria-hidden="true">
@@ -261,6 +317,16 @@ function GameScene({ sceneId, ...sceneProps }: SceneProps) {
       return <FishPondScene {...sceneProps} sceneId="fish-pond" />
     case 'home-garage':
       return <HomeGarageScene {...sceneProps} sceneId="home-garage" />
+    case 'elephant-bath':
+      return <ElephantBathScene {...sceneProps} sceneId="elephant-bath" />
+    case 'kitten-reunion':
+      return <KittenReunionScene {...sceneProps} sceneId="kitten-reunion" />
+    case 'bird-nest':
+      return <BirdNestScene {...sceneProps} sceneId="bird-nest" />
+    case 'turtle-beach':
+      return <TurtleBeachScene {...sceneProps} sceneId="turtle-beach" />
+    case 'lamb-meadow':
+      return <LambMeadowScene {...sceneProps} sceneId="lamb-meadow" />
   }
 }
 

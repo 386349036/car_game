@@ -49,3 +49,17 @@
 | `scenes/fish-pond-background.png`、`scenes/fish.png` | 池塘背景和游回池塘的小鱼 |
 
 后三组场景的生成提示词与用途说明见对应的 `src/scenes/*_ASSET.md` 文件。
+
+## V5 小动物朋友主题
+
+五个新角色由 Codex 内置图片生成工具制作为透明 PNG；小猫、小鸟、小海龟和小绵羊素材由分支工作 2 号、3 号生成，小象素材由主工作区生成。场景复用已有本地背景，不从外部地址加载图片。
+
+| 文件 | 用途 |
+| --- | --- |
+| `scenes/kitten-reunion.png` | 小猫与猫妈妈团聚角色 |
+| `scenes/bird-nest.png` | 回到鸟窝的小鸟角色 |
+| `scenes/turtle-beach.png` | 爬向海边的小海龟 |
+| `scenes/lamb-meadow.png` | 吃青草的小绵羊 |
+| `scenes/elephant-bath.png` | 在水边洗澡的小象 |
+
+每关复用的环境背景、PNG 透明通道和最终提示词记录在相应的 `src/scenes/*_ASSET.md` 文件中。

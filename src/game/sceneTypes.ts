@@ -17,6 +17,11 @@ export const SCENE_IDS = [
   'toy-cleanup',
   'fish-pond',
   'home-garage',
+  'kitten-reunion',
+  'bird-nest',
+  'turtle-beach',
+  'lamb-meadow',
+  'elephant-bath',
 ] as const
 
 export type SceneId = (typeof SCENE_IDS)[number]
