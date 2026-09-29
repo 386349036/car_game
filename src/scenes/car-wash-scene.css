@@ -77,6 +77,10 @@
   animation: car-wash-sponge-scrub 1.22s ease-in-out both;
 }
 
+.car-wash-scene {
+  --car-wash-sweep-x: clamp(-380px, -39vw, -140px);
+}
+
 .car-wash-scene--washing .car-wash-scene__car {
   animation: car-wash-car-suds 1.22s ease-in-out both;
 }
@@ -102,10 +106,12 @@
 
 @keyframes car-wash-sponge-scrub {
   0% { transform: translate(0, 0) rotate(0) scale(1); }
-  28% { transform: translate(clamp(-210px, -23vw, -82px), 8px) rotate(-12deg) scale(.96); }
-  55% { transform: translate(clamp(-210px, -23vw, -82px), -22px) rotate(12deg) scale(.92); }
-  82% { transform: translate(clamp(-210px, -23vw, -82px), -42px) rotate(-6deg) scale(.9); }
-  100% { transform: translate(clamp(-210px, -23vw, -82px), -48px) rotate(0) scale(.88); opacity: .18; }
+  18% { transform: translate(var(--car-wash-sweep-x), 44px) rotate(-10deg) scale(.98); }
+  36% { transform: translate(calc(var(--car-wash-sweep-x) + 42px), 72px) rotate(9deg) scale(.94); }
+  54% { transform: translate(calc(var(--car-wash-sweep-x) - 8px), 70px) rotate(-9deg) scale(.93); }
+  72% { transform: translate(calc(var(--car-wash-sweep-x) + 48px), 59px) rotate(9deg) scale(.92); }
+  90% { transform: translate(calc(var(--car-wash-sweep-x) + 26px), 39px) rotate(-6deg) scale(.92); }
+  100% { transform: translate(calc(var(--car-wash-sweep-x) + 12px), 32px) rotate(0) scale(.88); opacity: .28; }
 }
 
 @keyframes car-wash-car-suds {

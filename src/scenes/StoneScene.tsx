@@ -74,10 +74,9 @@ export function StoneScene({
 
       <TapTarget
         sceneId={sceneId}
-        ariaLabel="路中间的大石头"
-        isCorrect={false}
+        ariaLabel="点一下大石头或挖掘机，帮小车清开道路"
         disabled={targetDisabled}
-        onActivate={() => undefined}
+        onActivate={beginClearing}
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
         className="stone-scene__tap-target stone-scene__rock-target"

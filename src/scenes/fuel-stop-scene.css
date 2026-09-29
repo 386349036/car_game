@@ -49,7 +49,9 @@
   .fuel-stop-scene__prompt p { max-width: 300px; margin-top: 8px; font-size: .9rem; }
   .fuel-stop-scene__car.scene-car { left: -8%; bottom: 14%; width: clamp(178px, 55%, 225px); }
   .gentle-tap-target.fuel-stop-scene__pump-target { top: 19%; right: 0; width: 50%; height: 63%; }
-  .fuel-stop-scene__gauge { top: 39%; left: 37%; width: 62px; height: 17px; }
+  /* At portrait size the background is cropped from the right; the pump's dial
+     sits near the right edge of this broad tap target, not at its center. */
+  .fuel-stop-scene__gauge { top: 39%; left: 59%; width: 62px; height: 17px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

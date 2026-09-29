@@ -1,5 +1,6 @@
 .scene-backdrop.stone-scene {
   --stone-rock-shift: clamp(34px, 8vw, 86px);
+  --stone-rock-lift: -10%;
 
   min-height: clamp(390px, 53svh, 510px);
 }
@@ -78,6 +79,11 @@
   animation: stone-rock-to-verge 940ms cubic-bezier(.2, .72, .25, 1) both;
 }
 
+.stone-scene--driving .stone-scene__stone-art,
+.stone-scene--finished .stone-scene__stone-art {
+  transform: translate(var(--stone-rock-shift), var(--stone-rock-lift)) rotate(2deg) scale(.68);
+}
+
 .stone-scene__car.scene-car {
   position: absolute;
   z-index: 3;
@@ -94,7 +100,8 @@
 }
 
 .stone-scene__excavator-target.scene-button {
-  z-index: 3;
+  /* Prioritize the intended control where its forgiving hit area overlaps the rock. */
+  z-index: 5;
   left: 64%;
   bottom: 17%;
   width: clamp(190px, 25vw, 250px);
@@ -135,15 +142,7 @@
 
 .stone-scene--clearing .stone-scene__excavator-art {
   animation: stone-excavator-scoop 940ms cubic-bezier(.35, .05, .65, 1) both;
-}
-
-.stone-scene__excavator-arm {
-  transform-box: view-box;
-  transform-origin: 141px 101px;
-}
-
-.stone-scene--clearing .stone-scene__excavator-arm {
-  animation: stone-excavator-scoop 940ms cubic-bezier(.35, .05, .65, 1) both;
+  transform-origin: 67% 78%;
 }
 
 .stone-scene .gentle-tap-target--nudge {
@@ -155,30 +154,42 @@
     transform: translate(0, 0) rotate(0) scale(1);
   }
 
-  58% {
-    transform: translate(12%, -56%) rotate(-7deg) scale(.86);
+  28% {
+    transform: translate(2%, 16%) rotate(-4deg) scale(.96);
+  }
+
+  52% {
+    transform: translate(9%, 32%) rotate(-8deg) scale(.84);
+  }
+
+  72% {
+    transform: translate(36%, -4%) rotate(-4deg) scale(.78);
   }
 
   100% {
-    transform: translate(var(--stone-rock-shift), -62%) rotate(0) scale(.62);
+    transform: translate(var(--stone-rock-shift), var(--stone-rock-lift)) rotate(2deg) scale(.68);
   }
 }
 
 @keyframes stone-excavator-scoop {
   0% {
-    transform: rotate(0);
+    transform: translate(0, 0) rotate(0);
   }
 
-  45% {
-    transform: rotate(-9deg) translateY(-5px);
+  30% {
+    transform: translate(-2px, 2px) rotate(-3deg);
   }
 
-  75% {
-    transform: rotate(4deg) translateY(-10px);
+  58% {
+    transform: translate(-3px, 9px) rotate(-8deg);
+  }
+
+  78% {
+    transform: translate(-1px, 4px) rotate(-4deg);
   }
 
   100% {
-    transform: rotate(0) translateY(0);
+    transform: translate(0, 0) rotate(0);
   }
 }
 
@@ -224,7 +235,8 @@
 
 @media (max-width: 600px) {
   .scene-backdrop.stone-scene {
-    --stone-rock-shift: 34px;
+    --stone-rock-shift: clamp(78px, 22vw, 90px);
+    --stone-rock-lift: -18%;
 
     min-height: clamp(390px, 55svh, 470px);
   }
@@ -259,15 +271,24 @@
   }
 
   .stone-scene__excavator-target.scene-button {
-    left: 69%;
+    z-index: 3;
+    left: 74%;
     bottom: 16%;
-    width: clamp(176px, 52vw, 202px);
-    height: clamp(132px, 42vw, 154px);
+    width: clamp(160px, 46vw, 180px);
+    height: clamp(122px, 39vw, 146px);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
     border-radius: 32px;
   }
 
   .stone-scene__excavator-art {
-    width: min(100%, 190px);
+    width: min(100%, 176px);
+  }
+
+  .stone-scene__excavator-target.scene-button:active:not(:disabled) {
+    border-bottom-width: 0;
+    box-shadow: none;
   }
 }
 

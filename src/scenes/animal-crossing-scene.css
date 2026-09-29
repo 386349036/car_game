@@ -1,4 +1,6 @@
 .scene-backdrop.animal-crossing-scene {
+  --duck-cross-distance: clamp(100px, calc(18svh - 10px), 145px);
+
   min-height: clamp(410px, 53svh, 510px);
 }
 
@@ -67,23 +69,54 @@
 .gentle-tap-target.animal-crossing-scene__duck-target {
   position: absolute;
   z-index: 5;
-  top: 18%;
+  top: 22%;
   left: 50%;
   width: clamp(208px, 29vw, 250px);
-  height: clamp(164px, 23vw, 198px);
+  height: clamp(200px, 17vw, 220px);
   padding: 8px;
   border-radius: 40px;
   transform: translateX(-50%);
 }
 
 .animal-crossing-scene__ducklings {
-  display: block;
-  width: min(100%, 245px);
-  height: auto;
-  transform: rotate(90deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   user-select: none;
 }
+
+.animal-crossing-scene__duckling {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  overflow: hidden;
+  width: clamp(40px, 4.4vw, 44px);
+  aspect-ratio: .74;
+  transform: rotate(90deg);
+  transform-origin: center;
+  filter: drop-shadow(0 2px 1px rgb(105 91 48 / 14%));
+}
+
+.animal-crossing-scene__duckling img {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 300%;
+  max-width: none;
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.animal-crossing-scene__duckling--second img { left: -100%; }
+.animal-crossing-scene__duckling--third img { left: -200%; }
 
 .animal-crossing-scene__duck-target--hinted {
   animation: animal-crossing-duck-hint 1.8s ease-in-out infinite;
@@ -91,6 +124,18 @@
 
 .animal-crossing-scene--crossing .animal-crossing-scene__duck-target {
   animation: animal-crossing-ducklings-walk 2.8s cubic-bezier(.36, .05, .58, .95) both;
+}
+
+.animal-crossing-scene--crossing .animal-crossing-scene__duckling {
+  animation: animal-crossing-duck-waddle 260ms ease-in-out infinite alternate;
+}
+
+.animal-crossing-scene--crossing .animal-crossing-scene__duckling--second {
+  animation-delay: 70ms;
+}
+
+.animal-crossing-scene--crossing .animal-crossing-scene__duckling--third {
+  animation-delay: 140ms;
 }
 
 .animal-crossing-scene__announcement {
@@ -105,7 +150,12 @@
 
 @keyframes animal-crossing-ducklings-walk {
   from { transform: translateX(-50%); }
-  to { transform: translate(-50%, clamp(230px, 43svh, 320px)); }
+  to { transform: translate(-50%, var(--duck-cross-distance)); }
+}
+
+@keyframes animal-crossing-duck-waddle {
+  from { translate: 0 0; }
+  to { translate: 0 -2px; }
 }
 
 @keyframes animal-crossing-duck-hint {
@@ -115,6 +165,8 @@
 
 @media (max-width: 600px) {
   .scene-backdrop.animal-crossing-scene {
+    --duck-cross-distance: clamp(108px, calc(22svh - 35px), 158px);
+
     min-height: clamp(410px, 56svh, 490px);
   }
 
@@ -135,7 +187,7 @@
   }
 
   .animal-crossing-scene__crosswalk {
-    left: 50%;
+    left: 58%;
     bottom: 5%;
     width: 72px;
     height: 39%;
@@ -149,24 +201,24 @@
 
   .gentle-tap-target.animal-crossing-scene__duck-target {
     top: 21%;
-    left: 50%;
+    left: 58%;
     width: clamp(190px, 61vw, 224px);
-    height: clamp(154px, 49vw, 180px);
+    height: clamp(188px, 56vw, 218px);
   }
 
   .animal-crossing-scene__ducklings {
     width: 100%;
   }
 
-  @keyframes animal-crossing-ducklings-walk {
-    from { transform: translateX(-50%); }
-    to { transform: translate(-50%, clamp(225px, 43svh, 290px)); }
+  .animal-crossing-scene__duckling {
+    width: min(44px, 11vw);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .animal-crossing-scene--crossing .animal-crossing-scene__duck-target,
-  .animal-crossing-scene__duck-target--hinted {
+  .animal-crossing-scene__duck-target--hinted,
+  .animal-crossing-scene__duckling {
     animation-duration: 1ms;
     animation-iteration-count: 1;
   }

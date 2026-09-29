@@ -8,7 +8,7 @@ type HomeGaragePhase = 'waiting' | 'opening' | 'driving' | 'finished'
 type HomeGarageSceneProps = Omit<SceneProps, 'sceneId'> & { sceneId: string }
 
 const GARAGE_OPEN_MS = 850
-const DRIVE_COMPLETION_FALLBACK_MS = 1_900
+const DRIVE_COMPLETION_FALLBACK_MS = 2_400
 
 /** Tap the broad garage door to open it and drive the car into its garage. */
 export function HomeGarageScene({

@@ -50,7 +50,8 @@
 .bridge-scene__drop-target {
   position: absolute;
   z-index: 3;
-  bottom: 20%;
+  top: 67%;
+  bottom: auto;
   left: 50%;
   width: clamp(184px, 34vw, 238px);
   height: 100px;
@@ -85,7 +86,7 @@
 
 .bridge-scene__car {
   position: absolute;
-  z-index: 5;
+  z-index: 6;
   bottom: 5%;
   left: 3%;
   width: clamp(160px, 31vw, 250px);
@@ -101,6 +102,10 @@
   z-index: 6;
   top: 30%;
   right: 6%;
+}
+
+.bridge-scene .bridge-scene__plank-drag[data-drag-state='placed'] {
+  z-index: 4;
 }
 
 .bridge-scene__plank-visual {
@@ -185,7 +190,8 @@
   }
 
   .bridge-scene__drop-target {
-    bottom: 18%;
+    /* Align the deck with the wheel line at the road edge on portrait screens. */
+    top: 67%;
     width: clamp(176px, 56vw, 226px);
     height: 92px;
   }

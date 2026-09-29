@@ -52,7 +52,7 @@
 .flower-watering-scene__bloom {
   position: absolute;
   z-index: 5;
-  top: 29%;
+  top: 20%;
   left: calc(78% - clamp(66px, 8vw, 84px));
   width: clamp(132px, 17vw, 168px);
   height: auto;
@@ -63,17 +63,22 @@
   user-select: none;
 }
 
-.flower-watering-scene--blooming .flower-watering-scene__bloom,
-.flower-watering-scene--driving .flower-watering-scene__bloom {
+.flower-watering-scene--blooming .flower-watering-scene__bloom {
   visibility: visible;
   animation: flower-watering-bloom-in 760ms cubic-bezier(.18, .86, .32, 1.18) both;
+}
+
+.flower-watering-scene--driving .flower-watering-scene__bloom {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
 }
 
 .gentle-tap-target.flower-watering-scene__water-target {
   position: absolute;
   z-index: 6;
   top: 47%;
-  left: 51%;
+  left: 61%;
   width: clamp(152px, 19vw, 194px);
   height: clamp(148px, 18vw, 184px);
   padding: 2px;
@@ -93,16 +98,17 @@
 .flower-watering-scene__water-drops {
   position: absolute;
   z-index: 1;
-  top: 42%;
-  right: -11%;
-  width: 37%;
-  height: 36%;
+  top: 26%;
+  left: 55%;
+  width: 40%;
+  height: 48%;
   opacity: 0;
   border-radius: 50%;
   background:
-    radial-gradient(ellipse at 18% 34%, #b8edff 0 5px, transparent 6px),
-    radial-gradient(ellipse at 48% 62%, #c9f2ff 0 4px, transparent 5px),
-    radial-gradient(ellipse at 79% 27%, #b8edff 0 4px, transparent 5px);
+    radial-gradient(circle at 82% 8%, #48bde9 0 6px, #dff8ff 7px 9px, transparent 11px),
+    radial-gradient(circle at 51% 35%, #48bde9 0 5px, #dff8ff 6px 8px, transparent 10px),
+    radial-gradient(circle at 18% 64%, #48bde9 0 6px, #dff8ff 7px 9px, transparent 11px);
+  filter: drop-shadow(0 2px 3px rgb(39 128 160 / 55%));
   transform: rotate(14deg);
   pointer-events: none;
 }
@@ -145,9 +151,10 @@
 }
 
 @keyframes flower-watering-drops {
-  12% { opacity: 0; transform: translate(0, -7px) rotate(14deg); }
-  34%, 74% { opacity: 1; transform: translate(18px, 12px) rotate(14deg); }
-  100% { opacity: 0; transform: translate(28px, 28px) rotate(14deg); }
+  0% { opacity: 0; transform: translate(-3px, -8px) rotate(14deg) scale(.72); }
+  18% { opacity: 1; transform: translate(0, 0) rotate(14deg) scale(1.08); }
+  72% { opacity: 1; transform: translate(-16px, -20px) rotate(14deg) scale(1); }
+  100% { opacity: 0; transform: translate(-31px, -39px) rotate(14deg) scale(.82); }
 }
 
 @keyframes flower-watering-target-glow {
@@ -189,14 +196,14 @@
   }
 
   .flower-watering-scene__bloom {
-    top: 28%;
-    left: calc(68% - 70px);
+    top: 26%;
+    left: calc(60% - 70px);
     width: 140px;
   }
 
   .gentle-tap-target.flower-watering-scene__water-target {
     top: 49%;
-    left: 35%;
+    left: 26%;
     width: 148px;
     height: 142px;
   }
