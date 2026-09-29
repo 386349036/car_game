@@ -16,6 +16,6 @@
 
 ## 中文语音提示
 
-建议文件名：flower-watering-hint.wav
+建议文件名：flower-watering-hint.mp3
 
 提示句：**点一下浇水壶，给花朵浇浇水。**

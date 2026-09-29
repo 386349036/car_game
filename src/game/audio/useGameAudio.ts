@@ -21,15 +21,21 @@ const DEFAULT_SETTINGS: AudioSettings = {
 }
 
 const VOICE_FILES = {
-  start: 'journey-start.wav',
-  stone: 'stone-hint.wav',
-  bridge: 'bridge-hint.wav',
-  'traffic-light': 'traffic-light-hint.wav',
-  'animal-crossing': 'animal-crossing-hint.wav',
-  'tire-change': 'tire-change-hint.wav',
-  'rainy-drive': 'rainy-drive-hint.wav',
-  praise: 'scene-complete.wav',
-  finish: 'journey-complete.wav',
+  start: 'journey-start.mp3',
+  stone: 'stone-hint.mp3',
+  bridge: 'bridge-hint.mp3',
+  'traffic-light': 'traffic-light-hint.mp3',
+  'animal-crossing': 'animal-crossing-hint.mp3',
+  'tire-change': 'tire-change-hint.mp3',
+  'rainy-drive': 'rainy-drive-hint.mp3',
+  'night-lights': 'night-lights-hint.mp3',
+  'fuel-stop': 'fuel-stop-hint.mp3',
+  'car-wash': 'car-wash-hint.mp3',
+  'rabbit-feeding': 'rabbit-feeding-hint.mp3',
+  'flower-watering': 'flower-watering-hint.mp3',
+  'home-garage': 'home-garage-hint.mp3',
+  praise: 'scene-complete.mp3',
+  finish: 'journey-complete.mp3',
 } as const
 
 type VoiceClip = keyof typeof VOICE_FILES
@@ -109,17 +115,6 @@ function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
     case 'journey-start':
       return 'start'
     case 'scene-hint':
-      if (
-        event.sceneId === 'night-lights' ||
-        event.sceneId === 'fuel-stop' ||
-        event.sceneId === 'car-wash' ||
-        event.sceneId === 'rabbit-feeding' ||
-        event.sceneId === 'flower-watering' ||
-        event.sceneId === 'home-garage'
-      ) {
-        // Use the bundled positive start phrase until the V3-specific voice files are generated.
-        return 'start'
-      }
       return event.sceneId ?? null
     case 'scene-complete':
       return 'praise'

@@ -14,6 +14,6 @@
 
 ## 中文语音提示
 
-建议文件名：rabbit-feeding-hint.wav
+建议文件名：rabbit-feeding-hint.mp3
 
 提示句：**点一下胡萝卜，送给小兔子吃。**
