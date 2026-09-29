@@ -12,6 +12,12 @@ import { FuelStopScene } from './scenes/FuelStopScene'
 import { CarWashScene } from './scenes/CarWashScene'
 import { RabbitFeedingScene } from './scenes/RabbitFeedingScene'
 import { FlowerWateringScene } from './scenes/FlowerWateringScene'
+import { MailDeliveryScene } from './scenes/MailDeliveryScene'
+import { FeedChicksScene } from './scenes/FeedChicksScene'
+import { KiteFlyingScene } from './scenes/KiteFlyingScene'
+import { PuppyFrisbeeScene } from './scenes/PuppyFrisbeeScene'
+import { ToyCleanupScene } from './scenes/ToyCleanupScene'
+import { FishPondScene } from './scenes/FishPondScene'
 import { HomeGarageScene } from './scenes/HomeGarageScene'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
@@ -27,7 +33,7 @@ const staticScreenContent = {
   complete: {
     eyebrow: '旅程完成',
     title: '小车到家啦',
-    description: '谢谢你一路陪着小车走过十二个小场景。',
+    description: '谢谢你一路陪着小车走过十八个小场景。',
     action: '再玩一次',
   },
 }
@@ -241,6 +247,18 @@ function GameScene({ sceneId, ...sceneProps }: SceneProps) {
       return <RabbitFeedingScene {...sceneProps} sceneId="rabbit-feeding" />
     case 'flower-watering':
       return <FlowerWateringScene {...sceneProps} sceneId="flower-watering" />
+    case 'mail-delivery':
+      return <MailDeliveryScene {...sceneProps} sceneId="mail-delivery" />
+    case 'feed-chicks':
+      return <FeedChicksScene {...sceneProps} sceneId="feed-chicks" />
+    case 'kite-flying':
+      return <KiteFlyingScene {...sceneProps} sceneId="kite-flying" />
+    case 'puppy-frisbee':
+      return <PuppyFrisbeeScene {...sceneProps} sceneId="puppy-frisbee" />
+    case 'toy-cleanup':
+      return <ToyCleanupScene {...sceneProps} sceneId="toy-cleanup" />
+    case 'fish-pond':
+      return <FishPondScene {...sceneProps} sceneId="fish-pond" />
     case 'home-garage':
       return <HomeGarageScene {...sceneProps} sceneId="home-garage" />
   }

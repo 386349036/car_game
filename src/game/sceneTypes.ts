@@ -10,6 +10,12 @@ export const SCENE_IDS = [
   'car-wash',
   'rabbit-feeding',
   'flower-watering',
+  'mail-delivery',
+  'feed-chicks',
+  'kite-flying',
+  'puppy-frisbee',
+  'toy-cleanup',
+  'fish-pond',
   'home-garage',
 ] as const
 

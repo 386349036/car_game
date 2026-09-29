@@ -33,6 +33,12 @@ const VOICE_FILES = {
   'car-wash': 'car-wash-hint.mp3',
   'rabbit-feeding': 'rabbit-feeding-hint.mp3',
   'flower-watering': 'flower-watering-hint.mp3',
+  'mail-delivery': 'mail-delivery-hint.mp3',
+  'feed-chicks': 'feed-chicks-hint.mp3',
+  'kite-flying': 'kite-flying-hint.mp3',
+  'puppy-frisbee': 'puppy-frisbee-hint.mp3',
+  'toy-cleanup': 'toy-cleanup-hint.mp3',
+  'fish-pond': 'fish-pond-hint.mp3',
   'home-garage': 'home-garage-hint.mp3',
   praise: 'scene-complete.mp3',
   finish: 'journey-complete.mp3',
@@ -115,7 +121,9 @@ function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
     case 'journey-start':
       return 'start'
     case 'scene-hint':
-      return event.sceneId ?? null
+      return event.sceneId && Object.prototype.hasOwnProperty.call(VOICE_FILES, event.sceneId)
+        ? event.sceneId as VoiceClip
+        : null
     case 'scene-complete':
       return 'praise'
     case 'journey-complete':
@@ -275,7 +283,7 @@ export function useGameAudio(journeyActive: boolean) {
     // Let the first scene prompt follow the start phrase, and the next scene
     // prompt follow the praise. Keep only the newest pending prompt.
     if (
-      (clip === 'stone' || clip === 'bridge' || clip === 'traffic-light') &&
+      clip !== 'start' && clip !== 'praise' && clip !== 'finish' &&
       (activeVoiceRef.current === 'start' || activeVoiceRef.current === 'praise')
     ) {
       pendingHintRef.current = clip

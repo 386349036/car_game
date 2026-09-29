@@ -34,3 +34,18 @@
 | `car-wash.png`、`wash-sponge.png` | 洗车房背景和海绵点击目标 |
 | `rabbit-feeding.png`、`feeding-carrot.png` | 菜园兔子背景和胡萝卜点击目标 |
 | `flower-watering.png`、`watering-can.png`、`flower-open.png` | 花园背景、浇水壶点击目标和开花反馈 |
+
+## V4 新增场景
+
+前三组素材由 Codex 内置图片生成工具生成。每张背景使用全幅绘本场景构图，互动人物和物件为独立透明 PNG，场景提示词记录在相应的 `src/scenes/*_ASSET.md` 中。
+
+| 文件 | 用途 |
+| --- | --- |
+| `mail-delivery-background.png`、`mailbox.png`、`envelope.png`、`mailbox-flag.png` | 乡间送信背景、邮箱、可拖动信封和邮箱旗子 |
+| `feed-chicks-background.png`、`feeding-chicks.png`、`grain-bowl.png` | 农场背景、小鸡组和可点击谷粒碗 |
+| `kite-flying-background.png`、`kite.png`、`kite-spool.png` | 草坡蓝天背景、风筝和按住线轴 |
+| `scenes/puppy-frisbee-background.png`、`scenes/puppy.png`、`scenes/frisbee.png` | 草地背景、小狗和可点击飞盘 |
+| `scenes/toy-cleanup-background.png`、`scenes/toy-box.png`、`scenes/blocks.png` | 空玩具房背景、敞开的收纳箱和可拖动积木 |
+| `scenes/fish-pond-background.png`、`scenes/fish.png` | 池塘背景和游回池塘的小鱼 |
+
+后三组场景的生成提示词与用途说明见对应的 `src/scenes/*_ASSET.md` 文件。

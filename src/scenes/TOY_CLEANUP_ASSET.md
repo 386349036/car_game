@@ -3,7 +3,7 @@
 ## 文件与用途
 
 - `public/images/scenes/toy-cleanup-background.png`：1536×1024 全幅玩具房背景；上方墙面可放提示，下方木地板留给动画物件。
-- `public/images/scenes/toy-box.png`：透明底、敞开的玩具箱；可作为收纳目标并单独播放开合动画。
+- `public/images/scenes/toy-box.png`：透明底、敞开的玩具箱；作为积木的收纳目标，接收积木时会发光反馈。
 - `public/images/scenes/blocks.png`：透明底的红、蓝、黄三块积木组合；可整体拖动到玩具箱。
 
 ## 生成说明

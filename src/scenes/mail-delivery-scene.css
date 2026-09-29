@@ -1,0 +1,185 @@
+.scene-backdrop.mail-delivery-scene {
+  min-height: clamp(410px, 55svh, 530px);
+  background-image: url('/images/mail-delivery-background.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.mail-delivery-scene .scene-backdrop__road { display: none; }
+
+.mail-delivery-scene__prompt {
+  position: absolute;
+  z-index: 8;
+  top: clamp(18px, 4%, 32px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: var(--scene-color-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.mail-delivery-scene__prompt h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.mail-delivery-scene__prompt p {
+  margin: 8px auto 0;
+  color: #55746a;
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.mail-delivery-scene__car.scene-car {
+  position: absolute;
+  z-index: 3;
+  left: 1%;
+  bottom: 5%;
+  width: clamp(185px, 29%, 260px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.mail-delivery-scene__mailbox {
+  position: absolute;
+  z-index: 4;
+  right: 11%;
+  bottom: 18%;
+  width: clamp(112px, 16%, 164px);
+  height: clamp(130px, 27%, 182px);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  transform-origin: bottom center;
+}
+
+.mail-delivery-scene__mailbox img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.mail-delivery-scene__flag {
+  position: absolute;
+  top: 15%;
+  right: -4%;
+  width: 35%;
+  height: 48%;
+  object-fit: contain;
+  opacity: 0;
+  transform: rotate(-34deg);
+  transform-origin: bottom left;
+}
+
+.mail-delivery-scene--delivering .mail-delivery-scene__mailbox {
+  animation: mail-delivery-mailbox-wiggle 520ms ease-in-out 2;
+}
+
+.mail-delivery-scene--delivering .mail-delivery-scene__flag {
+  animation: mail-delivery-flag-raise 420ms ease-out 180ms forwards;
+}
+
+.gentle-drag-item.mail-delivery-scene__envelope {
+  position: absolute;
+  z-index: 7;
+  left: 37%;
+  bottom: 17%;
+  width: clamp(105px, 14%, 142px);
+  height: clamp(84px, 14%, 116px);
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border-radius: 25px;
+  touch-action: none;
+  cursor: grab;
+}
+
+.mail-delivery-scene__envelope img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.mail-delivery-scene__envelope--hinted img {
+  animation: mail-delivery-envelope-hint 1.6s ease-in-out infinite;
+}
+
+.mail-delivery-scene--delivering .mail-delivery-scene__envelope {
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.mail-delivery-scene--driving .mail-delivery-scene__car {
+  animation: mail-delivery-car-drive 1.3s cubic-bezier(.32, .65, .2, 1) both;
+}
+
+.mail-delivery-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes mail-delivery-envelope-hint {
+  0%, 100% { filter: drop-shadow(0 0 0 rgb(255 217 112 / 0%)); }
+  50% { filter: drop-shadow(0 0 16px rgb(255 183 54 / 85%)); }
+}
+
+@keyframes mail-delivery-flag-raise {
+  from { opacity: 0; transform: rotate(24deg); }
+  to { opacity: 1; transform: rotate(-34deg); }
+}
+
+@keyframes mail-delivery-mailbox-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(-3deg); }
+  70% { transform: rotate(3deg); }
+}
+
+@keyframes mail-delivery-car-drive {
+  from { transform: translateX(0); }
+  to { transform: translateX(125vw); }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.mail-delivery-scene {
+    min-height: clamp(410px, 57svh, 490px);
+    background-position: 43% center;
+  }
+
+  .mail-delivery-scene__prompt { top: 20px; left: 13px; width: calc(100% - 26px); }
+  .mail-delivery-scene__prompt h2 { font-size: clamp(1.7rem, 8vw, 2.2rem); }
+  .mail-delivery-scene__prompt p { max-width: 292px; font-size: .9rem; }
+  .mail-delivery-scene__car.scene-car { left: -7%; bottom: 4%; width: clamp(180px, 56%, 226px); }
+  .mail-delivery-scene__mailbox { right: 5%; bottom: 19%; width: 118px; height: 148px; }
+  .gentle-drag-item.mail-delivery-scene__envelope { left: 34%; bottom: 18%; width: 100px; height: 84px; }
+
+  @keyframes mail-delivery-car-drive {
+    from { transform: translateX(0); }
+    to { transform: translateX(110vw); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mail-delivery-scene__envelope--hinted img,
+  .mail-delivery-scene--delivering .mail-delivery-scene__mailbox,
+  .mail-delivery-scene--delivering .mail-delivery-scene__flag,
+  .mail-delivery-scene--driving .mail-delivery-scene__car {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

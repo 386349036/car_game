@@ -36,6 +36,24 @@ export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
   'flower-watering': {
     title: '给花浇水',
   },
+  'mail-delivery': {
+    title: '帮忙送信',
+  },
+  'feed-chicks': {
+    title: '喂小鸡吃谷粒',
+  },
+  'kite-flying': {
+    title: '放飞小风筝',
+  },
+  'puppy-frisbee': {
+    title: '陪小狗玩飞盘',
+  },
+  'toy-cleanup': {
+    title: '收好玩具',
+  },
+  'fish-pond': {
+    title: '帮助小鱼回池塘',
+  },
   'home-garage': {
     title: '回家停车',
   },

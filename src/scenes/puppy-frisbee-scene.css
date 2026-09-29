@@ -1,0 +1,179 @@
+.scene-backdrop.puppy-frisbee-scene {
+  min-height: clamp(410px, 55svh, 530px);
+  background-image: url('/images/scenes/puppy-frisbee-background.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.puppy-frisbee-scene .scene-backdrop__road { display: none; }
+
+.puppy-frisbee-scene__prompt {
+  position: absolute;
+  z-index: 8;
+  top: clamp(18px, 4%, 32px);
+  left: 16px;
+  width: calc(100% - 32px);
+  color: var(--scene-color-ink);
+  text-align: center;
+  pointer-events: none;
+}
+
+.puppy-frisbee-scene__prompt h2 {
+  margin: 0;
+  font-size: clamp(1.65rem, 4vw, 2.3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.puppy-frisbee-scene__prompt p {
+  margin: 8px auto 0;
+  color: #55746a;
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  font-weight: 700;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.puppy-frisbee-scene__car.scene-car {
+  position: absolute;
+  z-index: 3;
+  left: 1%;
+  bottom: 4%;
+  width: clamp(185px, 28%, 254px);
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+}
+
+.puppy-frisbee-scene__puppy {
+  position: absolute;
+  z-index: 4;
+  right: 12%;
+  bottom: 7%;
+  width: clamp(166px, 22%, 222px);
+  height: clamp(180px, 29%, 248px);
+  object-fit: contain;
+  transform-origin: bottom center;
+  pointer-events: none;
+}
+
+.gentle-tap-target.puppy-frisbee-scene__target {
+  position: absolute;
+  z-index: 6;
+  left: 48%;
+  bottom: 15%;
+  width: clamp(116px, 15%, 150px);
+  height: clamp(106px, 18%, 146px);
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.puppy-frisbee-scene__target img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.puppy-frisbee-scene__target--hinted {
+  animation: puppy-frisbee-hint 1.65s ease-in-out infinite;
+}
+
+.puppy-frisbee-scene--fetching .puppy-frisbee-scene__target {
+  animation: puppy-frisbee-throw 1.15s cubic-bezier(.3, .08, .62, .98) both;
+}
+
+.puppy-frisbee-scene--fetching .puppy-frisbee-scene__puppy {
+  animation: puppy-frisbee-run 1.15s ease-in-out both;
+}
+
+.puppy-frisbee-scene--returning .puppy-frisbee-scene__puppy {
+  animation: puppy-frisbee-wag 450ms ease-in-out 2;
+}
+
+.puppy-frisbee-scene--returning .puppy-frisbee-scene__target {
+  animation: puppy-frisbee-return 760ms cubic-bezier(.3, .68, .3, 1) both;
+}
+
+.puppy-frisbee-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes puppy-frisbee-hint {
+  0%, 100% { filter: drop-shadow(0 0 0 rgb(255 218 112 / 0%)); }
+  50% { filter: drop-shadow(0 0 16px rgb(255 196 78 / 82%)); }
+}
+
+@keyframes puppy-frisbee-throw {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+  72% { transform: translate(24vw, -72px) rotate(420deg) scale(.78); opacity: 1; }
+  100% { transform: translate(27vw, -52px) rotate(500deg) scale(.62); opacity: 0; }
+}
+
+@keyframes puppy-frisbee-run {
+  0%, 100% { transform: translateX(0) scale(1); }
+  45% { transform: translateX(-30px) scale(.96, 1.04); }
+  78% { transform: translateX(-14px) scale(1.02, .98); }
+}
+
+@keyframes puppy-frisbee-wag {
+  0%, 100% { transform: rotate(0); }
+  35% { transform: rotate(-3deg); }
+  70% { transform: rotate(3deg); }
+}
+
+@keyframes puppy-frisbee-return {
+  from { transform: translate(27vw, -52px) rotate(500deg) scale(.62); opacity: 0; }
+  to { transform: translate(20vw, -35px) rotate(720deg) scale(.56); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .scene-backdrop.puppy-frisbee-scene {
+    min-height: clamp(410px, 57svh, 490px);
+    background-position: 55% center;
+  }
+
+  .puppy-frisbee-scene__prompt { top: 20px; left: 13px; width: calc(100% - 26px); }
+  .puppy-frisbee-scene__prompt h2 { font-size: clamp(1.65rem, 7.5vw, 2.15rem); }
+  .puppy-frisbee-scene__prompt p { max-width: 292px; font-size: .9rem; }
+  .puppy-frisbee-scene__car.scene-car { left: -7%; bottom: 4%; width: clamp(178px, 53%, 222px); }
+  .puppy-frisbee-scene__puppy { right: 2%; bottom: 8%; width: clamp(158px, 47%, 194px); height: 190px; }
+  .gentle-tap-target.puppy-frisbee-scene__target {
+    left: 39%;
+    bottom: 17%;
+    width: 112px;
+    height: 106px;
+  }
+
+  @keyframes puppy-frisbee-throw {
+    0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+    72% { transform: translate(29vw, -54px) rotate(420deg) scale(.78); opacity: 1; }
+    100% { transform: translate(31vw, -42px) rotate(500deg) scale(.62); opacity: 0; }
+  }
+
+  @keyframes puppy-frisbee-return {
+    from { transform: translate(31vw, -42px) rotate(500deg) scale(.62); opacity: 0; }
+    to { transform: translate(22vw, -30px) rotate(720deg) scale(.56); opacity: 1; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .puppy-frisbee-scene__target--hinted,
+  .puppy-frisbee-scene--fetching .puppy-frisbee-scene__target,
+  .puppy-frisbee-scene--fetching .puppy-frisbee-scene__puppy,
+  .puppy-frisbee-scene--returning .puppy-frisbee-scene__puppy,
+  .puppy-frisbee-scene--returning .puppy-frisbee-scene__target {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

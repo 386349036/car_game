@@ -3,7 +3,7 @@
 ## 文件与用途
 
 - `public/images/scenes/fish-pond-background.png`：1536×1024 全幅池塘背景；右侧和下方是开阔水面，左侧保留干燥岸边作为小鱼起点。
-- `public/images/scenes/fish.png`：透明底、朝右的金橙色小鱼；可独立拖动或播放游动动画进入池塘。
+- `public/images/scenes/fish.png`：透明底、朝右的金橙色小鱼；场景中从左侧浅岸边出发，点击池塘后游向水面中央。
 
 ## 生成说明
 
