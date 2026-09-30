@@ -21,6 +21,8 @@
 
 ## 发布前确认
 
+部署上传前同时阅读 [服务器传输优化记录](docs/game01-transfer-tuning-20260930.md)。该次 TCP 调整和工具准备已完成；后续参考现有配置，不重复执行，也不覆盖原始参数备份。
+
 ### 新增访问统计服务
 
 同日已升级至 IP HTTPS：`https://35.220.184.100/`。管理员可直接访问 `https://35.220.184.100` 加服务器环境变量 `STATS_ADMIN_PATH`，使用原用户名和密码。HTTP 重定向至 HTTPS，ACME 验证路径仍支持 HTTP。证书路径 `/etc/letsencrypt/live/game01-ip/`，由 `/opt/certbot-ip/bin/certbot` 管理；`game01-cert-renew.timer` 每天检查两次续期，成功后检查并重载 Nginx。之前的 SSH 隧道仍可作为维护入口。配置备份为 `/etc/nginx/sites-available/game01.before-public-https`。
