@@ -48,6 +48,18 @@
 | `scenes/toy-cleanup-background.webp`、`scenes/toy-box.webp`、`scenes/blocks.webp` | 空玩具房背景、敞开的收纳箱和可拖动积木 |
 | `scenes/fish-pond-background.webp`、`scenes/fish.webp` | 池塘背景和游回池塘的小鱼 |
 
+## 小动物朋友前五关（背景与互动层）
+
+五张背景由内置图片生成工具分别生成，再转为本地 WebP。背景仅包含远景地形、植被和光线；松果、竹枝、叶枝都作为独立透明素材，由场景代码控制移动，避免背景中出现重复的互动对象。
+
+| 文件 | 用途 |
+| --- | --- |
+| `scenes/animal-squirrel-background.webp`、`scenes/animal-squirrel-empty.webp`、`scenes/animal-pinecone.webp` | 秋日树林；松鼠空手，松果移动到手中 |
+| `scenes/animal-bear-background.webp`、`scenes/animal-bear-body.webp`、`scenes/animal-bear-arm.webp` | 春日草地；独立前臂绕肩膀挥动 |
+| `scenes/animal-fox-background.webp` | 暖色草坡；狐狸原图跳跃 |
+| `scenes/animal-panda-background.webp`、`scenes/animal-bamboo.webp` | 竹林；竹枝移动到熊猫嘴边 |
+| `scenes/animal-giraffe-background.webp`、`scenes/animal-leafy-twig.webp` | 草原；叶枝移动到长颈鹿嘴边 |
+
 后三组场景的生成提示词与用途说明见对应的 `src/scenes/*_ASSET.md` 文件。
 
 ## V5 小动物朋友主题

@@ -133,11 +133,11 @@ function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <a className="brand" href="#top" aria-label="小车小队，回到首页" onClick={goHome}>
+        <a className="brand" href="#top" aria-label="我今年3岁，回到首页" onClick={goHome}>
           <span className="brand-mark" aria-hidden="true">
             <CarBadge />
           </span>
-          <span className="brand-name">小车小队</span>
+          <span className="brand-name">我今年3岁</span>
         </a>
 
         <div className="parent-entry-wrap">

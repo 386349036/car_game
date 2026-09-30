@@ -23,6 +23,11 @@ const DEFAULT_SETTINGS: AudioSettings = {
 const VOICE_FILES = {
   start: 'journey-start.mp3',
   'animal-start': 'animal-journey-start.mp3',
+  'animal-squirrel': 'animal-squirrel-hint.mp3',
+  'animal-bear': 'animal-bear-hint.mp3',
+  'animal-fox': 'animal-fox-hint.mp3',
+  'animal-panda': 'animal-panda-hint.mp3',
+  'animal-giraffe': 'animal-giraffe-hint.mp3',
   'farm-start': 'farm-journey-start.mp3',
   'garden-start': 'garden-journey-start.mp3',
   stone: 'stone-hint.mp3',

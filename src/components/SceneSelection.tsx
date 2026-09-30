@@ -11,7 +11,7 @@ export function SceneSelection({ onStartCar, onStartAnimals, onStartFarm, onStar
   return (
     <section className="scene-selection" aria-labelledby="selection-title">
       <header className="scene-selection__heading">
-        <span className="scene-selection__eyebrow"><span aria-hidden="true">✦</span> 小车小队出发啦</span>
+        <span className="scene-selection__eyebrow"><span aria-hidden="true">✦</span> 三岁的童话世界</span>
         <h1 id="selection-title">今天想去哪里玩？</h1>
         <p>点一点，开始一段开心的小旅程</p>
       </header>
@@ -25,7 +25,7 @@ export function SceneSelection({ onStartCar, onStartAnimals, onStartFarm, onStar
           </span>
           <span className="scene-choice__copy">
             <span className="scene-choice__badge scene-choice__badge--active">现在可以玩</span>
-            <span className="scene-choice__title">小汽车修路</span>
+            <span className="scene-choice__title">小汽车“帮帮号”</span>
             <span className="scene-choice__description">一起帮小车向前开</span>
             <span className="scene-choice__action">开始游戏 <span aria-hidden="true">➜</span></span>
           </span>
