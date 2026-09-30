@@ -86,12 +86,12 @@ export function KittenReunionScene({
       >
         <span className="kitten-reunion-scene__sprite kitten-reunion-scene__sprite--kitten" aria-hidden="true">
           <span className="kitten-reunion-scene__crop">
-            <img src="/images/scenes/kitten-reunion.png" alt="" draggable={false} />
+            <img src="/images/scenes/kitten-reunion.webp" alt="" draggable={false} />
           </span>
         </span>
         <span className="kitten-reunion-scene__sprite kitten-reunion-scene__sprite--mother" aria-hidden="true">
           <span className="kitten-reunion-scene__crop">
-            <img src="/images/scenes/kitten-reunion.png" alt="" draggable={false} />
+            <img src="/images/scenes/kitten-reunion.webp" alt="" draggable={false} />
           </span>
         </span>
       </TapTarget>

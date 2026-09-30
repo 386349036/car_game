@@ -107,7 +107,7 @@ function WoodenPlank() {
   return (
     <img
       className="bridge-scene__plank-visual"
-      src="/images/plank.png"
+      src="/images/plank.webp"
       alt=""
       aria-hidden="true"
       draggable={false}

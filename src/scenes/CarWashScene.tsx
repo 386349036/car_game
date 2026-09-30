@@ -79,7 +79,7 @@ export function CarWashScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img className="car-wash-scene__sponge" src="/images/wash-sponge.png" alt="" aria-hidden="true" draggable={false} />
+        <img className="car-wash-scene__sponge" src="/images/wash-sponge.webp" alt="" aria-hidden="true" draggable={false} />
       </TapTarget>
 
       <p className="car-wash-scene__announcement" aria-live="polite" aria-atomic="true">

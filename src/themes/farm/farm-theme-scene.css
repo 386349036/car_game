@@ -1,0 +1,580 @@
+.farm-theme-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: clamp(390px, 54svh, 530px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: clamp(24px, 3vw, 34px);
+  background: #c8e8bd;
+  box-shadow: 0 12px 28px rgb(49 81 73 / 12%);
+}
+
+.farm-theme-scene__illustration {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.farm-theme-scene__prompt {
+  position: absolute;
+  z-index: 4;
+  top: clamp(17px, 3.5%, 30px);
+  left: 14px;
+  width: calc(100% - 28px);
+  padding: 10px 16px 12px;
+  color: #315149;
+  text-align: center;
+  pointer-events: none;
+  background: rgb(255 253 246 / 88%);
+  border: 1px solid rgb(255 255 255 / 86%);
+  border-radius: 22px;
+  box-shadow: 0 7px 22px rgb(38 69 56 / 12%);
+}
+
+.farm-theme-scene__prompt h2,
+.farm-theme-scene__prompt p {
+  margin: 0;
+  text-wrap: balance;
+}
+
+.farm-theme-scene--farm-barn-goodnight .farm-theme-scene__prompt {
+  color: #315149;
+}
+
+.farm-theme-scene--farm-barn-goodnight .farm-theme-scene__prompt p {
+  color: #46685c;
+}
+
+.farm-theme-scene__prompt h2 {
+  font-size: clamp(1.55rem, 4vw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+}
+
+.farm-theme-scene__prompt p {
+  margin: 7px auto 0;
+  color: #46685c;
+  font-size: clamp(.88rem, 1.9vw, 1.04rem);
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.farm-theme-scene__target-wrap {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}
+
+.gentle-tap-target.farm-theme-scene__target {
+  position: relative;
+  display: block;
+  min-width: 104px;
+  min-height: 104px;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 38%;
+  background: rgb(255 250 224 / 65%);
+  box-shadow: 0 8px 22px rgb(70 87 44 / 18%), inset 0 0 0 3px rgb(255 255 255 / 75%);
+  transform-origin: center;
+}
+
+.farm-theme-scene--farm-barn-goodnight .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-barn-goodnight.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--farm-barn-goodnight.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  opacity: 0;
+  animation: none;
+}
+
+.farm-theme-scene__object {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 6px rgb(72 79 45 / 24%));
+  transition: transform .7s ease, opacity .7s ease;
+}
+
+.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(18%, -19%) rotate(-12deg) scale(1.13);
+}
+
+.farm-theme-scene--farm-apple-picking.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-apple-picking.farm-theme-scene--celebrating .farm-theme-scene__object,
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(8%, 42%) rotate(18deg) scale(.82);
+}
+
+.farm-theme-scene--farm-apple-picking .farm-theme-scene__object {
+  transition-duration: 1.25s;
+  transition-timing-function: cubic-bezier(.2, .72, .32, 1);
+}
+
+.farm-theme-scene--farm-apple-picking.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-apple-picking.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(4%, 170%) rotate(12deg) scale(.6);
+}
+
+.farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__object {
+  animation: farm-pig-scrub 1.55s ease-in-out both;
+}
+
+.farm-theme-scene--farm-pig-bath.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(-65%, 0) rotate(-7deg) scale(.9);
+}
+
+.farm-theme-scene--farm-sheep-brushing .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-sheep-brushing.farm-theme-scene--helping .farm-theme-scene__object {
+  animation: farm-sheep-brush 1.55s ease-in-out both;
+}
+
+.farm-theme-scene--farm-sheep-brushing.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(-45%, 0) rotate(-5deg) scale(.94);
+}
+
+.farm-theme-scene--farm-pumpkin-tractor .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-pumpkin-tractor.farm-theme-scene--helping .farm-theme-scene__object {
+  animation: farm-pumpkin-hop 1.5s ease-in-out both;
+}
+
+.farm-theme-scene--farm-pumpkin-tractor.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(0, -125%) rotate(-4deg) scale(.75);
+}
+
+.farm-theme-scene--farm-pumpkin-tractor .farm-theme-scene__effect {
+  display: none;
+}
+
+.farm-theme-scene--farm-pumpkin-tractor.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--farm-pumpkin-tractor.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  opacity: 0;
+  animation: none;
+}
+
+.farm-theme-scene--farm-pig-bath .farm-theme-scene__effect--bubbles > span {
+  border-color: rgb(255 255 255 / 94%);
+  background: rgb(218 251 255 / 38%);
+  box-shadow: inset -3px -3px 0 rgb(135 211 221 / 24%), 0 2px 9px rgb(78 145 147 / 24%);
+}
+
+.farm-theme-scene--farm-pig-bath .farm-theme-scene__effect--bubbles > span:nth-child(1) { left: -42%; top: 24%; width: 29px; height: 29px; }
+.farm-theme-scene--farm-pig-bath .farm-theme-scene__effect--bubbles > span:nth-child(2) { left: -8%; top: 46%; width: 19px; height: 19px; }
+.farm-theme-scene--farm-pig-bath .farm-theme-scene__effect--bubbles > span:nth-child(3) { left: 10%; top: 17%; width: 14px; height: 14px; }
+
+.farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__effect--bubbles > span {
+  animation: farm-pig-bubbles 1.35s ease-out both;
+}
+
+.farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__effect--bubbles > span:nth-child(2) { animation-delay: .18s; }
+.farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__effect--bubbles > span:nth-child(3) { animation-delay: .38s; }
+
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translateY(82%) scale(.4);
+  opacity: 0;
+}
+
+.farm-theme-scene--farm-seed-planting .farm-theme-scene__object {
+  transition-duration: .75s;
+}
+
+.farm-theme-scene--farm-seed-planting .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  opacity: 0;
+  animation: none;
+}
+
+.farm-theme-scene--farm-seed-planting .farm-theme-scene__effect {
+  display: none;
+}
+
+.farm-theme-scene__soil-cover {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 74%;
+  width: 38%;
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scaleX(.25) scaleY(.8);
+  transform-origin: center 60%;
+}
+
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--helping .farm-theme-scene__soil-cover {
+  animation: farm-soil-cover .65s ease-out .67s both;
+}
+
+.farm-theme-scene--farm-seed-planting.farm-theme-scene--celebrating .farm-theme-scene__soil-cover {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.farm-theme-scene--farm-fill-trough .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--helping .farm-theme-scene__object {
+  animation: farm-bucket-pour 1.25s ease-in-out both;
+}
+
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(-14%, 10%) rotate(-48deg);
+}
+
+.farm-theme-scene--farm-fill-trough .farm-theme-scene__effect {
+  display: none;
+}
+
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  opacity: 0;
+  animation: none;
+}
+
+.farm-theme-scene__water-pour {
+  position: absolute;
+  z-index: 2;
+  left: 44%;
+  top: 29%;
+  width: 34%;
+  height: 40%;
+  opacity: 0;
+  pointer-events: none;
+  transform: scaleY(.05);
+  transform-origin: 80% 6%;
+}
+
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--helping .farm-theme-scene__water-pour {
+  animation: farm-water-pour .85s ease-out .3s both;
+}
+
+.farm-theme-scene--farm-fill-trough.farm-theme-scene--celebrating .farm-theme-scene__water-pour {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.farm-theme-scene--farm-carrot-harvest .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-carrot-harvest .farm-theme-scene__object {
+  clip-path: inset(0 0 64% 0);
+}
+
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--helping .farm-theme-scene__object {
+  animation: farm-carrot-pull 1.55s ease-in-out both;
+}
+
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--celebrating .farm-theme-scene__object {
+  clip-path: inset(0);
+  transform: translate(45%, 38%) rotate(78deg) scale(.82);
+}
+
+.farm-theme-scene--farm-carrot-harvest .farm-theme-scene__effect {
+  display: none;
+}
+
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--farm-carrot-harvest.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  opacity: 0;
+  animation: none;
+}
+
+.farm-theme-scene--farm-egg-basket .gentle-tap-target.farm-theme-scene__target {
+  background: transparent;
+  box-shadow: none;
+}
+
+.farm-theme-scene--farm-egg-basket .farm-theme-scene__object {
+  filter: drop-shadow(0 8px 5px rgb(92 64 36 / 22%));
+}
+
+.farm-theme-scene--farm-egg-basket.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-egg-basket.farm-theme-scene--celebrating .farm-theme-scene__object {
+  transform: translate(60%, 45%) scale(.55);
+}
+
+.farm-theme-scene--farm-barn-goodnight.farm-theme-scene--helping .farm-theme-scene__object,
+.farm-theme-scene--farm-barn-goodnight.farm-theme-scene--celebrating .farm-theme-scene__object {
+  filter: drop-shadow(0 0 28px #ffdd78);
+  transform: scale(1.08);
+}
+
+.farm-theme-scene__target::before {
+  position: absolute;
+  inset: 7%;
+  content: '';
+  border: 4px solid rgb(255 245 195 / 0%);
+  border-radius: 38%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.farm-theme-scene__target--hinted::before {
+  animation: farm-target-hint 1.65s ease-in-out infinite;
+}
+
+.farm-theme-scene--helping .farm-theme-scene__target::before,
+.farm-theme-scene--celebrating .farm-theme-scene__target::before {
+  border-color: rgb(255 232 139 / 82%);
+  box-shadow: 0 0 35px 12px rgb(255 223 112 / 66%);
+  opacity: 1;
+  animation: farm-target-celebrate 1.1s ease-out both;
+}
+
+.farm-theme-scene__effect {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.farm-theme-scene__effect > span {
+  position: absolute;
+  display: block;
+  opacity: 0;
+}
+
+.farm-theme-scene--helping .farm-theme-scene__effect,
+.farm-theme-scene--celebrating .farm-theme-scene__effect {
+  opacity: 1;
+}
+
+.farm-theme-scene__effect--hay > span,
+.farm-theme-scene__effect--eggs > span,
+.farm-theme-scene__effect--apples > span,
+.farm-theme-scene__effect--wool > span,
+.farm-theme-scene__effect--pumpkin > span,
+.farm-theme-scene__effect--carrot > span,
+.farm-theme-scene__effect--stars > span {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff3b8;
+  box-shadow: 0 0 16px 5px rgb(255 235 159 / 78%);
+}
+
+.farm-theme-scene__effect--hay > span:nth-child(1) { left: 24%; top: 19%; }
+.farm-theme-scene__effect--hay > span:nth-child(2) { left: 70%; top: 28%; width: 10px; height: 10px; }
+.farm-theme-scene__effect--hay > span:nth-child(3) { left: 73%; top: 72%; width: 8px; height: 8px; }
+.farm-theme-scene__effect--eggs > span:nth-child(1) { left: 22%; top: 55%; background: #ffe3dd; }
+.farm-theme-scene__effect--eggs > span:nth-child(2) { left: 73%; top: 25%; width: 11px; height: 11px; background: #ffd4be; }
+.farm-theme-scene__effect--eggs > span:nth-child(3) { left: 69%; top: 70%; width: 8px; height: 8px; background: #ffe3dd; }
+.farm-theme-scene__effect--apples > span:nth-child(1) { left: 25%; top: 30%; background: #ffc0a6; }
+.farm-theme-scene__effect--apples > span:nth-child(2) { left: 68%; top: 22%; width: 11px; height: 11px; background: #ffc0a6; }
+.farm-theme-scene__effect--apples > span:nth-child(3) { left: 70%; top: 63%; width: 8px; height: 8px; background: #ffc0a6; }
+.farm-theme-scene__effect--wool > span:nth-child(1) { left: 25%; top: 45%; background: #fff; }
+.farm-theme-scene__effect--wool > span:nth-child(2) { left: 68%; top: 28%; width: 11px; height: 11px; background: #fff; }
+.farm-theme-scene__effect--wool > span:nth-child(3) { left: 70%; top: 70%; width: 8px; height: 8px; background: #fff; }
+.farm-theme-scene__effect--pumpkin > span:nth-child(1) { left: 22%; top: 65%; }
+.farm-theme-scene__effect--pumpkin > span:nth-child(2) { left: 73%; top: 26%; width: 11px; height: 11px; }
+.farm-theme-scene__effect--pumpkin > span:nth-child(3) { left: 70%; top: 70%; width: 8px; height: 8px; }
+.farm-theme-scene__effect--carrot > span:nth-child(1) { left: 22%; top: 27%; background: #ffd8a8; }
+.farm-theme-scene__effect--carrot > span:nth-child(2) { left: 70%; top: 32%; width: 11px; height: 11px; background: #ffd8a8; }
+.farm-theme-scene__effect--carrot > span:nth-child(3) { left: 73%; top: 70%; width: 8px; height: 8px; background: #ffd8a8; }
+.farm-theme-scene__effect--stars > span:nth-child(1) { left: 20%; top: 28%; background: #fff7d6; }
+.farm-theme-scene__effect--stars > span:nth-child(2) { left: 73%; top: 20%; width: 11px; height: 11px; background: #fff7d6; }
+.farm-theme-scene__effect--stars > span:nth-child(3) { left: 70%; top: 68%; width: 8px; height: 8px; background: #fff7d6; }
+
+.farm-theme-scene__effect--bubbles > span,
+.farm-theme-scene__effect--water > span {
+  width: 23px;
+  height: 23px;
+  border: 3px solid rgb(255 255 255 / 88%);
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 0 rgb(135 211 221 / 28%), 0 4px 10px rgb(78 145 147 / 17%);
+}
+
+.farm-theme-scene__effect--bubbles > span:nth-child(1) { left: 24%; bottom: 14%; }
+.farm-theme-scene__effect--bubbles > span:nth-child(2) { left: 68%; bottom: 12%; width: 16px; height: 16px; }
+.farm-theme-scene__effect--bubbles > span:nth-child(3) { left: 75%; bottom: 22%; width: 11px; height: 11px; }
+.farm-theme-scene__effect--water > span:nth-child(1) { left: 16%; top: 40%; }
+.farm-theme-scene__effect--water > span:nth-child(2) { left: 65%; top: 28%; width: 16px; height: 16px; }
+.farm-theme-scene__effect--water > span:nth-child(3) { left: 75%; top: 63%; width: 11px; height: 11px; }
+
+.farm-theme-scene__effect--sprout > span {
+  width: 17px;
+  height: 10px;
+  border-radius: 100% 0 100% 0;
+  background: #78bb60;
+}
+.farm-theme-scene__effect--sprout > span:nth-child(1) { left: 26%; top: 30%; transform: rotate(-20deg); }
+.farm-theme-scene__effect--sprout > span:nth-child(2) { left: 68%; top: 23%; transform: rotate(28deg); }
+.farm-theme-scene__effect--sprout > span:nth-child(3) { left: 72%; top: 66%; width: 12px; height: 8px; transform: rotate(-10deg); }
+
+.farm-theme-scene--helping .farm-theme-scene__effect > span,
+.farm-theme-scene--celebrating .farm-theme-scene__effect > span {
+  animation: farm-effect-pop 1.4s ease-out both;
+}
+
+.farm-theme-scene__announcement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes farm-target-hint {
+  0%, 100% { border-color: rgb(255 245 195 / 0%); box-shadow: 0 0 0 0 rgb(255 223 112 / 0%); opacity: 0; }
+  50% { border-color: rgb(255 245 195 / 88%); box-shadow: 0 0 26px 10px rgb(255 223 112 / 60%); opacity: 1; }
+}
+
+@keyframes farm-target-celebrate {
+  0% { transform: scale(.84); opacity: 0; }
+  45% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: .75; }
+}
+
+@keyframes farm-effect-pop {
+  0% { transform: translateY(8px) scale(.3); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-20px) scale(1.12); opacity: 0; }
+}
+
+@keyframes farm-pig-scrub {
+  0% { transform: translate(0, 0) rotate(0); }
+  23% { transform: translate(-45%, -7%) rotate(-12deg); }
+  47% { transform: translate(-76%, 5%) rotate(10deg); }
+  72% { transform: translate(-42%, -5%) rotate(-9deg); }
+  100% { transform: translate(-65%, 0) rotate(-7deg) scale(.9); }
+}
+
+@keyframes farm-sheep-brush {
+  0% { transform: translate(0, 0) rotate(0); }
+  20% { transform: translate(-32%, -3%) rotate(-10deg); }
+  40% { transform: translate(-67%, 2%) rotate(8deg); }
+  60% { transform: translate(-32%, -3%) rotate(-9deg); }
+  80% { transform: translate(-67%, 2%) rotate(8deg); }
+  100% { transform: translate(-45%, 0) rotate(-5deg) scale(.94); }
+}
+
+@keyframes farm-pumpkin-hop {
+  0% { transform: translate(0, 0) rotate(0) scale(1); }
+  27% { transform: translate(-5%, -78%) rotate(-10deg) scale(.9); }
+  58% { transform: translate(5%, -155%) rotate(8deg) scale(.78); }
+  82% { transform: translate(0, -119%) rotate(-5deg) scale(.76); }
+  100% { transform: translate(0, -125%) rotate(-4deg) scale(.75); }
+}
+
+@keyframes farm-bucket-pour {
+  0% { transform: translate(0, 0) rotate(0); }
+  38% { transform: translate(-8%, 5%) rotate(-28deg); }
+  100% { transform: translate(-14%, 10%) rotate(-48deg); }
+}
+
+@keyframes farm-water-pour {
+  0% { opacity: 0; transform: scaleY(.05); }
+  18% { opacity: 1; }
+  100% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes farm-carrot-pull {
+  0% { clip-path: inset(0 0 64% 0); transform: translate(0, 0) rotate(0) scale(1); }
+  22% { clip-path: inset(0 0 42% 0); transform: translate(0, -18%) rotate(-5deg) scale(1); }
+  45% { clip-path: inset(0); transform: translate(0, -58%) rotate(-10deg) scale(1); }
+  63% { clip-path: inset(0); transform: translate(16%, -68%) rotate(6deg) scale(.94); }
+  85% { clip-path: inset(0); transform: translate(45%, 30%) rotate(72deg) scale(.84); }
+  100% { clip-path: inset(0); transform: translate(45%, 38%) rotate(78deg) scale(.82); }
+}
+
+@keyframes farm-pig-bubbles {
+  0% { transform: translate(15px, 12px) scale(.35); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translate(-22px, -72px) scale(1.18); opacity: 0; }
+}
+
+@keyframes farm-soil-cover {
+  0% { opacity: 0; transform: translate(-50%, -40%) scaleX(.25) scaleY(.8); }
+  30% { opacity: 1; }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@media (max-width: 600px) {
+  .farm-theme-scene {
+    min-height: clamp(410px, 58svh, 500px);
+    aspect-ratio: 1 / 1;
+    border-radius: 25px;
+  }
+
+  .farm-theme-scene__illustration { object-position: center 56%; }
+  .farm-theme-scene__prompt { top: 20px; left: 12px; width: calc(100% - 24px); }
+  .farm-theme-scene__prompt h2 { font-size: clamp(1.65rem, 7.5vw, 2rem); }
+  .farm-theme-scene__prompt p { max-width: 310px; font-size: .9rem; }
+  .farm-theme-scene__target-wrap {
+    left: var(--farm-target-mobile-x);
+    top: var(--farm-target-mobile-y);
+  }
+  .gentle-tap-target.farm-theme-scene__target { min-width: 108px; min-height: 108px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .farm-theme-scene--farm-egg-basket .farm-theme-scene__object,
+  .farm-theme-scene--farm-apple-picking .farm-theme-scene__object,
+  .farm-theme-scene--farm-seed-planting .farm-theme-scene__object {
+    transition-duration: 1ms;
+  }
+
+  .farm-theme-scene--farm-seed-planting.farm-theme-scene--helping .farm-theme-scene__soil-cover {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+
+  .farm-theme-scene--farm-fill-trough.farm-theme-scene--helping .farm-theme-scene__object,
+  .farm-theme-scene--farm-fill-trough.farm-theme-scene--helping .farm-theme-scene__water-pour,
+  .farm-theme-scene--farm-carrot-harvest.farm-theme-scene--helping .farm-theme-scene__object {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+
+  .farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__object,
+  .farm-theme-scene--farm-pig-bath.farm-theme-scene--helping .farm-theme-scene__effect--bubbles > span,
+  .farm-theme-scene--farm-sheep-brushing.farm-theme-scene--helping .farm-theme-scene__object,
+  .farm-theme-scene--farm-pumpkin-tractor.farm-theme-scene--helping .farm-theme-scene__object {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+
+  .farm-theme-scene__target--hinted::before,
+  .farm-theme-scene--helping .farm-theme-scene__target::before,
+  .farm-theme-scene--celebrating .farm-theme-scene__target::before,
+  .farm-theme-scene--helping .farm-theme-scene__effect > span,
+  .farm-theme-scene--celebrating .farm-theme-scene__effect > span {
+    animation-duration: 1ms;
+    animation-iteration-count: 1;
+  }
+}

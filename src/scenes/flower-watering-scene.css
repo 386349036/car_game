@@ -1,6 +1,6 @@
 .scene-backdrop.flower-watering-scene {
   min-height: clamp(390px, 54svh, 520px);
-  background-image: url('/images/flower-watering.png');
+  background-image: url('/images/flower-watering.webp');
   background-position: center;
   background-size: cover;
 }

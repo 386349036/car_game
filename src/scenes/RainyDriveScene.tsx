@@ -70,7 +70,7 @@ export function RainyDriveScene({
         onInteractionActivity={onInteractionActivity}
         disabled={phase !== 'raining'}
       >
-        <img className="rainy-drive-scene__wiper" src="/images/wiper.png" alt="" draggable={false} />
+        <img className="rainy-drive-scene__wiper" src="/images/wiper.webp" alt="" draggable={false} />
       </TapTarget>
 
       <p className="rainy-drive-scene__announcement" aria-live="polite" aria-atomic="true">

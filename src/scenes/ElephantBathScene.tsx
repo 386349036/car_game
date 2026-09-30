@@ -78,7 +78,7 @@ export function ElephantBathScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/scenes/elephant-bath.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/scenes/elephant-bath.webp" alt="" aria-hidden="true" draggable={false} />
         <span className="elephant-bath-scene__splash" aria-hidden="true" />
       </TapTarget>
 

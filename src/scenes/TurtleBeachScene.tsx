@@ -91,7 +91,7 @@ export function TurtleBeachScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/scenes/turtle-beach.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/scenes/turtle-beach.webp" alt="" aria-hidden="true" draggable={false} />
       </TapTarget>
 
       <p className="turtle-beach-scene__announcement" aria-live="polite" aria-atomic="true">

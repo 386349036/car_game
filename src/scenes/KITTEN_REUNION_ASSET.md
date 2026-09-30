@@ -2,8 +2,8 @@
 
 ## 用途与构图
 
-- 角色图：`/images/scenes/kitten-reunion.png`，一张透明 PNG 横向素材图。左半为朝右的小猫，右半为朝左的猫妈妈；角色之间留有透明间隔，场景用 CSS 分别裁切两半并让它们靠近、轻轻蹭脸。
-- 背景复用：`/images/meadow.png`。道路与小汽车继续由共用 `SceneBackdrop`、`CarIllustration` 提供。
+- 角色图：`/images/scenes/kitten-reunion.webp`，一张透明 PNG 横向素材图。左半为朝右的小猫，右半为朝左的猫妈妈；角色之间留有透明间隔，场景用 CSS 分别裁切两半并让它们靠近、轻轻蹭脸。
+- 背景复用：`/images/meadow.webp`。道路与小汽车继续由共用 `SceneBackdrop`、`CarIllustration` 提供。
 - Alpha：生成图为 RGBA 透明背景；主体四周留透明边距，无底色、文字或阴影。场景说明该素材按左右半幅裁切使用。
 
 ## 最终生成提示词

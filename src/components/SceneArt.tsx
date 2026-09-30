@@ -25,7 +25,7 @@ export function CarIllustration({ className, label, ...props }: CarIllustrationP
   return (
     <img
       {...props}
-      src="/images/car.png"
+      src="/images/car.webp"
       className={joinClassNames('scene-car', className)}
       alt={label ?? ''}
       draggable={false}

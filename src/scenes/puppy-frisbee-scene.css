@@ -1,6 +1,6 @@
 .scene-backdrop.puppy-frisbee-scene {
   min-height: clamp(410px, 55svh, 530px);
-  background-image: url('/images/scenes/puppy-frisbee-background.png');
+  background-image: url('/images/scenes/puppy-frisbee-background.webp');
   background-position: center;
   background-size: cover;
 }

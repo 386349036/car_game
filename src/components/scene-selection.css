@@ -245,21 +245,9 @@ button.scene-choice {
 }
 
 .scene-choice__art--farm {
-  background: radial-gradient(ellipse at 80% 89%, #d0e89f 0 34%, transparent 35%);
-}
-
-.scene-choice__image--rabbit {
-  right: 0;
-  bottom: -13%;
-  width: 51%;
-  max-height: 102%;
-}
-
-.scene-choice__image--chicks {
-  right: 38%;
-  bottom: -8%;
-  width: 29%;
-  max-height: 58%;
+  background:
+    linear-gradient(90deg, #fff0cf 0%, rgb(255 240 207 / 93%) 39%, rgb(255 240 207 / 0%) 79%),
+    radial-gradient(ellipse at 80% 89%, #d0e89f 0 34%, transparent 35%);
 }
 
 .scene-choice--garden {
@@ -267,22 +255,20 @@ button.scene-choice {
 }
 
 .scene-choice__art--garden {
-  background: radial-gradient(ellipse at 80% 94%, #d8eca9 0 33%, transparent 34%);
+  background:
+    linear-gradient(90deg, #dff2f5 0%, rgb(223 242 245 / 92%) 39%, rgb(223 242 245 / 0%) 79%),
+    radial-gradient(ellipse at 80% 94%, #d8eca9 0 33%, transparent 34%);
 }
 
-.scene-choice__image--flower {
-  right: 0;
-  bottom: -15%;
-  width: 53%;
-  max-height: 102%;
-}
-
-.scene-choice__image--kite {
-  top: -8%;
-  right: 29%;
-  width: 26%;
-  max-height: 53%;
-  transform: rotate(-9deg);
+.scene-choice__theme-preview {
+  right: -2%;
+  bottom: -3%;
+  width: 68%;
+  height: 106%;
+  object-fit: cover;
+  object-position: center;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 26%);
+  filter: drop-shadow(0 9px 7px rgb(63 87 59 / 12%));
 }
 
 @keyframes selection-in {
@@ -358,10 +344,9 @@ button.scene-choice {
   }
 
   .scene-choice__image--puppy,
-  .scene-choice__image--rabbit,
-  .scene-choice__image--flower {
+  .scene-choice__theme-preview {
     right: -12%;
-    width: 62%;
+    width: 75%;
   }
 
   .scene-choice__image--ducklings {
@@ -369,15 +354,6 @@ button.scene-choice {
     width: 31%;
   }
 
-  .scene-choice__image--chicks {
-    right: 36%;
-    width: 32%;
-  }
-
-  .scene-choice__image--kite {
-    right: 24%;
-    width: 28%;
-  }
 }
 
 @media (max-width: 360px) {

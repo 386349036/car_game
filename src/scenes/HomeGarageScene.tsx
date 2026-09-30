@@ -81,14 +81,14 @@ export function HomeGarageScene({
     >
       <img
         className="home-garage-scene__background home-garage-scene__background--closed"
-        src="/images/home-garage-closed.png"
+        src="/images/home-garage-closed.webp"
         alt=""
         aria-hidden="true"
         draggable={false}
       />
       <img
         className="home-garage-scene__background home-garage-scene__background--open"
-        src="/images/home-garage-open.png"
+        src="/images/home-garage-open.webp"
         alt=""
         aria-hidden="true"
         draggable={false}

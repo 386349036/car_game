@@ -94,7 +94,7 @@ export function BirdNestScene({
       >
         <img
           className="bird-nest-scene__bird"
-          src="/images/scenes/bird-nest.png"
+          src="/images/scenes/bird-nest.webp"
           alt=""
           aria-hidden="true"
           draggable={false}

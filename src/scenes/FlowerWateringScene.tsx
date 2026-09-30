@@ -76,7 +76,7 @@ export function FlowerWateringScene({
 
       <img
         className="flower-watering-scene__bloom"
-        src="/images/flower-open.png"
+        src="/images/flower-open.webp"
         alt=""
         aria-hidden="true"
         draggable={false}
@@ -94,7 +94,7 @@ export function FlowerWateringScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img className="flower-watering-scene__can" src="/images/watering-can.png" alt="" aria-hidden="true" draggable={false} />
+        <img className="flower-watering-scene__can" src="/images/watering-can.webp" alt="" aria-hidden="true" draggable={false} />
         <span className="flower-watering-scene__water-drops" aria-hidden="true" />
       </TapTarget>
 

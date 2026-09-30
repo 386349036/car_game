@@ -61,7 +61,7 @@ export function PuppyFrisbeeScene({
       </div>
 
       <CarIllustration className="puppy-frisbee-scene__car" label="停在草地边的小汽车" />
-      <img className="puppy-frisbee-scene__puppy" src="/images/scenes/puppy.png" alt="" aria-hidden="true" draggable={false} />
+      <img className="puppy-frisbee-scene__puppy" src="/images/scenes/puppy.webp" alt="" aria-hidden="true" draggable={false} />
 
       <TapTarget
         className={[
@@ -75,7 +75,7 @@ export function PuppyFrisbeeScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/scenes/frisbee.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/scenes/frisbee.webp" alt="" aria-hidden="true" draggable={false} />
       </TapTarget>
 
       <p className="puppy-frisbee-scene__announcement" aria-live="polite" aria-atomic="true">

@@ -1,6 +1,6 @@
 .scene-backdrop.kitten-reunion-scene {
   min-height: clamp(430px, 57svh, 550px);
-  background-image: url('/images/meadow.png');
+  background-image: url('/images/meadow.webp');
   background-position: center 48%;
   background-size: cover;
 }

@@ -62,7 +62,7 @@ export function FishPondScene({
 
       <CarIllustration className="fish-pond-scene__car" label="停在池塘边的小汽车" />
 
-      <img className="fish-pond-scene__fish" src="/images/scenes/fish.png" alt="" aria-hidden="true" draggable={false} />
+      <img className="fish-pond-scene__fish" src="/images/scenes/fish.webp" alt="" aria-hidden="true" draggable={false} />
 
       <TapTarget
         className={[

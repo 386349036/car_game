@@ -2,8 +2,8 @@
 
 ## 文件与用途
 
-- `public/images/scenes/elephant-bath.png`：透明背景的小象角色，作为点击目标并在洗澡时轻轻弹跳；内含小水洼和少量水花。
-- `/images/scenes/fish-pond-background.png`：复用已有本地池塘背景，作为小象玩水的环境。
+- `public/images/scenes/elephant-bath.webp`：透明背景的小象角色，作为点击目标并在洗澡时轻轻弹跳；内含小水洼和少量水花。
+- `/images/scenes/fish-pond-background.webp`：复用已有本地池塘背景，作为小象玩水的环境。
 
 ## 生成说明
 

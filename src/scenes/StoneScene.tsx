@@ -120,7 +120,7 @@ function StoneIllustration({ onAnimationEnd }: StoneIllustrationProps) {
   return (
     <img
       className="stone-scene__stone-art"
-      src="/images/stone.png"
+      src="/images/stone.webp"
       alt=""
       aria-hidden="true"
       draggable={false}
@@ -133,7 +133,7 @@ function ExcavatorIllustration() {
   return (
     <img
       className="stone-scene__excavator-art"
-      src="/images/excavator.png"
+      src="/images/excavator.webp"
       alt=""
       aria-hidden="true"
       draggable={false}

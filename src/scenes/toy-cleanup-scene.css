@@ -1,6 +1,6 @@
 .scene-backdrop.toy-cleanup-scene {
   min-height: clamp(410px, 55svh, 530px);
-  background-image: url('/images/scenes/toy-cleanup-background.png');
+  background-image: url('/images/scenes/toy-cleanup-background.webp');
   background-position: center;
   background-size: cover;
 }

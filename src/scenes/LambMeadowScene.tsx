@@ -86,7 +86,7 @@ export function LambMeadowScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/scenes/lamb-meadow.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/scenes/lamb-meadow.webp" alt="" aria-hidden="true" draggable={false} />
         <span className="lamb-meadow-scene__grass" aria-hidden="true">
           <span className="lamb-meadow-scene__grass-blade lamb-meadow-scene__grass-blade--one" />
           <span className="lamb-meadow-scene__grass-blade lamb-meadow-scene__grass-blade--two" />

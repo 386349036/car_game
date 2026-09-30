@@ -1,6 +1,6 @@
 .scene-backdrop.kite-flying-scene {
   min-height: clamp(410px, 55svh, 530px);
-  background-image: url('/images/kite-flying-background.png');
+  background-image: url('/images/kite-flying-background.webp');
   background-position: center;
   background-size: cover;
 }

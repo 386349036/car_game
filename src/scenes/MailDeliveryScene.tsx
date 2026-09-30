@@ -69,8 +69,8 @@ export function MailDeliveryScene({
         role="img"
         aria-label="等着收信的大邮箱"
       >
-        <img src="/images/mailbox.png" alt="" draggable={false} />
-        <img className="mail-delivery-scene__flag" src="/images/mailbox-flag.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/mailbox.webp" alt="" draggable={false} />
+        <img className="mail-delivery-scene__flag" src="/images/mailbox-flag.webp" alt="" aria-hidden="true" draggable={false} />
       </div>
 
       <ForgivingDrag
@@ -87,7 +87,7 @@ export function MailDeliveryScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/envelope.png" alt="" draggable={false} />
+        <img src="/images/envelope.webp" alt="" draggable={false} />
       </ForgivingDrag>
 
       <p className="mail-delivery-scene__announcement" aria-live="polite" aria-atomic="true">

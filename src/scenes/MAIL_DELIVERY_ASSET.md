@@ -1,11 +1,11 @@
 # 帮忙送信素材
 
-素材使用 Codex 内置 `image_gen` 生成，并以 `public/images/car.png` 作为画风参考：暖棕柔和描边、圆润造型、明亮配色和绘本纸纹。
+素材使用 Codex 内置 `image_gen` 生成，并以 `public/images/car.webp` 作为画风参考：暖棕柔和描边、圆润造型、明亮配色和绘本纸纹。
 
-- `mail-delivery-background.png`：宽幅乡间草地、道路、栅栏和远处小屋；为小车与邮箱留白，不含互动物件。
-- `mailbox.png`：透明背景的红色立柱邮箱，开口朝向左侧，作为投信目标。
-- `envelope.png`：透明背景的大号奶油色信封，独立拖动。
-- `mailbox-flag.png`：透明背景的红色邮箱旗组件，独立放置并旋转动画。
+- `mail-delivery-background.webp`：宽幅乡间草地、道路、栅栏和远处小屋；为小车与邮箱留白，不含互动物件。
+- `mailbox.webp`：透明背景的红色立柱邮箱，开口朝向左侧，作为投信目标。
+- `envelope.webp`：透明背景的大号奶油色信封，独立拖动。
+- `mailbox-flag.webp`：透明背景的红色邮箱旗组件，独立放置并旋转动画。
 
 提示词摘要：儿童绘本风的晴天乡间送信背景；透明底、单体完整的红色邮箱、爱心封口信封与可旋转红旗。无文字、标识或水印。
 

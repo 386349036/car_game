@@ -1,12 +1,12 @@
 .rainy-drive-scene {
   min-height: clamp(360px, 51vh, 500px);
-  background-image: url('/images/rainy-meadow.png');
+  background-image: url('/images/rainy-meadow.webp');
   transition: background-image 500ms ease;
 }
 
 .rainy-drive-scene--wiping,
 .rainy-drive-scene--driving {
-  background-image: url('/images/meadow.png');
+  background-image: url('/images/meadow.webp');
 }
 
 .rainy-drive-scene--raining .scene-backdrop__road {

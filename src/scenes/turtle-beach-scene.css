@@ -1,7 +1,7 @@
 .scene-backdrop.turtle-beach-scene {
   min-height: clamp(390px, 54svh, 520px);
   background-color: #a7e4ed;
-  background-image: url('/images/scenes/fish-pond-background.png');
+  background-image: url('/images/scenes/fish-pond-background.webp');
   background-position: 58% center;
   background-size: cover;
 }

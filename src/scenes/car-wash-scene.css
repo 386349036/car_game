@@ -1,6 +1,6 @@
 .scene-backdrop.car-wash-scene {
   min-height: clamp(390px, 54svh, 520px);
-  background-image: url('/images/car-wash.png');
+  background-image: url('/images/car-wash.webp');
   background-position: center;
   background-size: cover;
 }

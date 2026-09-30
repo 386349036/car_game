@@ -1,6 +1,6 @@
 .scene-backdrop.rabbit-feeding-scene {
   min-height: clamp(390px, 54svh, 520px);
-  background-image: url('/images/rabbit-feeding.png');
+  background-image: url('/images/rabbit-feeding.webp');
   background-position: center;
   background-size: cover;
 }

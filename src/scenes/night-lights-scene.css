@@ -1,7 +1,7 @@
 .scene-backdrop.night-lights-scene {
   min-height: clamp(410px, 54svh, 510px);
   background-color: #183b54;
-  background-image: url('/images/night-lights-background.png');
+  background-image: url('/images/night-lights-background.webp');
   background-position: center center;
   background-size: cover;
 }

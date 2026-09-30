@@ -80,7 +80,7 @@ export function TrafficLightScene({
       >
         <img
           className="traffic-light-scene__signal-image"
-          src={isGreen ? '/images/traffic-green.png' : '/images/traffic-red.png'}
+          src={isGreen ? '/images/traffic-green.webp' : '/images/traffic-red.webp'}
           alt=""
           aria-hidden="true"
           draggable={false}

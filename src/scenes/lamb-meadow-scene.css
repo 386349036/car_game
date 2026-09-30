@@ -1,7 +1,7 @@
 .scene-backdrop.lamb-meadow-scene {
   min-height: clamp(390px, 54svh, 520px);
   background-color: #a7d995;
-  background-image: url('/images/feed-chicks-background.png');
+  background-image: url('/images/feed-chicks-background.webp');
   background-position: center;
   background-size: cover;
 }

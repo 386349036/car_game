@@ -82,13 +82,13 @@ export function AnimalCrossingScene({
       >
         <div className="animal-crossing-scene__ducklings" aria-hidden="true">
           <span className="animal-crossing-scene__duckling animal-crossing-scene__duckling--first">
-            <img src="/images/ducklings.png" alt="" draggable={false} />
+            <img src="/images/ducklings.webp" alt="" draggable={false} />
           </span>
           <span className="animal-crossing-scene__duckling animal-crossing-scene__duckling--second">
-            <img src="/images/ducklings.png" alt="" draggable={false} />
+            <img src="/images/ducklings.webp" alt="" draggable={false} />
           </span>
           <span className="animal-crossing-scene__duckling animal-crossing-scene__duckling--third">
-            <img src="/images/ducklings.png" alt="" draggable={false} />
+            <img src="/images/ducklings.webp" alt="" draggable={false} />
           </span>
         </div>
       </TapTarget>

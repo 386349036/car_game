@@ -76,7 +76,7 @@ export function TireChangeScene({
         >
           <img
             className={tirePlaced ? 'tire-change-scene__fitted-tire' : 'tire-change-scene__flat-tire'}
-            src="/images/tire.png"
+            src="/images/tire.webp"
             alt=""
             draggable={false}
           />
@@ -93,7 +93,7 @@ export function TireChangeScene({
           onFeedback={onFeedback}
           onInteractionActivity={onInteractionActivity}
         >
-          <img className="tire-change-scene__spare" src="/images/tire.png" alt="" draggable={false} />
+          <img className="tire-change-scene__spare" src="/images/tire.webp" alt="" draggable={false} />
         </ForgivingDrag>
       )}
 

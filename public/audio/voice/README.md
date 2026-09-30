@@ -28,3 +28,7 @@ python scripts/generate-voice.py --only kitten-reunion-hint.mp3 bird-nest-hint.m
 ```powershell
 python scripts/generate-voice.py --only animal-journey-start.mp3 animal-scene-complete.mp3 kitten-reunion-hint.mp3 bird-nest-hint.mp3 turtle-beach-hint.mp3 lamb-meadow-hint.mp3 elephant-bath-hint.mp3 animal-journey-complete.mp3
 ```
+
+快乐农场与奇妙花园各有十条独立场景提示，也有各自的开场、夸奖和旅程完成语音；所有 MP3 随网站一起本地提供。
+
+七条调整过的关卡提示（谷仓晚安、雏菊浇水、向日葵种植、蝴蝶做客、草莓采摘、铺石路、刺猬进门）已重新生成。两主题的新开场和完成语音使用 `farm-theme-*`、`garden-theme-*` 文件，并已接入播放映射。

@@ -23,6 +23,8 @@ const DEFAULT_SETTINGS: AudioSettings = {
 const VOICE_FILES = {
   start: 'journey-start.mp3',
   'animal-start': 'animal-journey-start.mp3',
+  'farm-start': 'farm-journey-start.mp3',
+  'garden-start': 'garden-journey-start.mp3',
   stone: 'stone-hint.mp3',
   bridge: 'bridge-hint.mp3',
   'traffic-light': 'traffic-light-hint.mp3',
@@ -46,15 +48,44 @@ const VOICE_FILES = {
   'turtle-beach': 'turtle-beach-hint.mp3',
   'lamb-meadow': 'lamb-meadow-hint.mp3',
   'elephant-bath': 'elephant-bath-hint.mp3',
+  'farm-feed-cow': 'farm-feed-cow-hint.mp3',
+  'farm-egg-basket': 'farm-egg-basket-hint.mp3',
+  'farm-pig-bath': 'farm-pig-bath-hint.mp3',
+  'farm-apple-picking': 'farm-apple-picking-hint.mp3',
+  'farm-seed-planting': 'farm-seed-planting-hint.mp3',
+  'farm-sheep-brushing': 'farm-sheep-brushing-hint.mp3',
+  'farm-pumpkin-tractor': 'farm-pumpkin-tractor-hint.mp3',
+  'farm-fill-trough': 'farm-fill-trough-hint.mp3',
+  'farm-carrot-harvest': 'farm-carrot-harvest-hint.mp3',
+  'farm-barn-goodnight': 'farm-barn-goodnight-hint.mp3',
+  'garden-water-daisy': 'garden-water-daisy-hint.mp3',
+  'garden-plant-sunflower': 'garden-plant-sunflower-hint.mp3',
+  'garden-butterfly-flower': 'garden-butterfly-flower-hint.mp3',
+  'garden-pick-strawberry': 'garden-pick-strawberry-hint.mp3',
+  'garden-sweep-leaves': 'garden-sweep-leaves-hint.mp3',
+  'garden-stone-path': 'garden-stone-path-hint.mp3',
+  'garden-gate-hedgehog': 'garden-gate-hedgehog-hint.mp3',
+  'garden-light-lantern': 'garden-light-lantern-hint.mp3',
+  'garden-dandelion-wish': 'garden-dandelion-wish-hint.mp3',
+  'garden-snail-lettuce': 'garden-snail-lettuce-hint.mp3',
   praise: 'scene-complete.mp3',
   'animal-praise': 'animal-scene-complete.mp3',
+  'farm-praise': 'farm-scene-complete.mp3',
+  'garden-praise': 'garden-scene-complete.mp3',
   finish: 'journey-complete.mp3',
   'animal-finish': 'animal-journey-complete.mp3',
+  'farm-finish': 'farm-journey-complete.mp3',
+  'garden-finish': 'garden-journey-complete.mp3',
 } as const
 
 type VoiceClip = keyof typeof VOICE_FILES
 
+function isOpeningOrPraiseClip(clip: VoiceClip | null): boolean {
+  return clip === 'start' || clip === 'praise' || clip?.endsWith('-start') === true || clip?.endsWith('-praise') === true
+}
+
 const ANIMAL_SCENE_IDS = new Set([
+  'animal-squirrel', 'animal-bear', 'animal-fox', 'animal-panda', 'animal-giraffe',
   'animal-crossing',
   'rabbit-feeding',
   'feed-chicks',
@@ -66,6 +97,14 @@ const ANIMAL_SCENE_IDS = new Set([
   'lamb-meadow',
   'elephant-bath',
 ])
+
+const NEW_ANIMAL_HINTS: Record<string, string> = {
+  'animal-squirrel': '点一点小松鼠，一起抱住松果。',
+  'animal-bear': '点一点小熊，和它挥挥手。',
+  'animal-fox': '点一点小狐狸，陪它轻轻跳。',
+  'animal-panda': '点一点熊猫，送它嫩竹叶。',
+  'animal-giraffe': '点一点长颈鹿，帮它够树叶。',
+}
 
 const MUSIC_NOTES = [523.25, 659.25, 587.33, 523.25, 440, 523.25, 659.25, 587.33]
 
@@ -140,17 +179,24 @@ function getTonePattern(cue: GameFeedbackCue): {
 function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
   switch (event.cue) {
     case 'journey-start':
-      return event.sceneId === 'puppy-frisbee' ? 'animal-start' : 'start'
+      if (event.sceneId === 'animal-squirrel') return 'animal-start'
+      if (event.sceneId?.startsWith('farm-')) return 'farm-start'
+      if (event.sceneId?.startsWith('garden-')) return 'garden-start'
+      return 'start'
     case 'scene-hint':
       return event.sceneId && Object.prototype.hasOwnProperty.call(VOICE_FILES, event.sceneId)
         ? event.sceneId as VoiceClip
         : null
     case 'scene-complete':
-      return event.sceneId && ANIMAL_SCENE_IDS.has(event.sceneId)
-        ? 'animal-praise'
-        : 'praise'
+      if (event.sceneId && ANIMAL_SCENE_IDS.has(event.sceneId)) return 'animal-praise'
+      if (event.sceneId?.startsWith('farm-')) return 'farm-praise'
+      if (event.sceneId?.startsWith('garden-')) return 'garden-praise'
+      return 'praise'
     case 'journey-complete':
-      return event.sceneId === 'elephant-bath' ? 'animal-finish' : 'finish'
+      if (event.sceneId === 'elephant-bath') return 'animal-finish'
+      if (event.sceneId === 'farm-barn-goodnight') return 'farm-finish'
+      if (event.sceneId === 'garden-snail-lettuce') return 'garden-finish'
+      return 'finish'
     default:
       return null
   }
@@ -167,6 +213,7 @@ export function useGameAudio(journeyActive: boolean) {
   const musicIndexRef = useRef(0)
 
   const stopVoice = useCallback(() => {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel()
     pendingHintRef.current = null
     const active = activeVoiceRef.current
     activeVoiceRef.current = null
@@ -306,8 +353,8 @@ export function useGameAudio(journeyActive: boolean) {
     // Let the first scene prompt follow the start phrase, and the next scene
     // prompt follow the praise. Keep only the newest pending prompt.
     if (
-      clip !== 'start' && clip !== 'praise' && clip !== 'finish' &&
-      (activeVoiceRef.current === 'start' || activeVoiceRef.current === 'praise')
+      !isOpeningOrPraiseClip(clip) &&
+      isOpeningOrPraiseClip(activeVoiceRef.current)
     ) {
       pendingHintRef.current = clip
       return
@@ -370,6 +417,16 @@ export function useGameAudio(journeyActive: boolean) {
 
     const voiceClip = getVoiceClip(event)
     if (voiceClip) playVoiceClip(voiceClip)
+    else if (event.cue === 'scene-hint' && event.sceneId && settingsRef.current.voiceEnabled) {
+      const hint = NEW_ANIMAL_HINTS[event.sceneId]
+      if (hint && 'speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(hint)
+        utterance.lang = 'zh-CN'
+        utterance.rate = .85
+        window.speechSynthesis.cancel()
+        window.speechSynthesis.speak(utterance)
+      }
+    }
   }, [ensureAudioContext, playNotes, playVoiceClip])
 
   const setAudioSetting = useCallback((key: AudioSettingKey, value: boolean) => {

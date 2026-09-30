@@ -31,6 +31,9 @@ import { KittenReunionScene } from './scenes/KittenReunionScene'
 import { BirdNestScene } from './scenes/BirdNestScene'
 import { TurtleBeachScene } from './scenes/TurtleBeachScene'
 import { LambMeadowScene } from './scenes/LambMeadowScene'
+import { NewAnimalScene } from './scenes/NewAnimalScene'
+import { FarmThemeScene } from './themes/farm/FarmThemeScene'
+import { GardenThemeScene } from './themes/garden/GardenThemeScene'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
@@ -47,6 +50,18 @@ const staticScreenContent = {
     eyebrow: '动物朋友，旅程完成',
     title: '大家玩得真开心',
     description: '谢谢你陪十位动物朋友度过开心的小场景。',
+    action: '再玩一次',
+  },
+  farm: {
+    eyebrow: '快乐农场，旅程完成',
+    title: '农场朋友都开心啦',
+    description: '谢谢你照顾了十位农场朋友。',
+    action: '再玩一次',
+  },
+  garden: {
+    eyebrow: '奇妙花园，旅程完成',
+    title: '花园开满鲜花啦',
+    description: '谢谢你陪花园里的朋友度过十个开心时刻。',
     action: '再玩一次',
   },
 } satisfies Record<JourneyId, {
@@ -195,6 +210,8 @@ function App() {
           <SceneSelection
             onStartCar={() => handleMainAction('car')}
             onStartAnimals={() => handleMainAction('animals')}
+            onStartFarm={() => handleMainAction('farm')}
+            onStartGarden={() => handleMainAction('garden')}
           />
         ) : flow.screen === 'scene' ? (
           <section
@@ -210,35 +227,50 @@ function App() {
             />
           </section>
         ) : (
-          <section className="journey-card journey-card--complete" aria-labelledby="screen-title">
+          <section
+            className={
+              'journey-card journey-card--complete' +
+              (flow.journeyId === 'farm' || flow.journeyId === 'garden' ? ' journey-card--themed-complete' : '')
+            }
+            aria-labelledby="screen-title"
+          >
             <div className="scene-art scene-art--complete" aria-hidden="true">
               {flow.screen === 'complete' && flow.journeyId === 'animals' ? (
                 <div className="animal-celebration">
                   <img
                     className="animal-celebration__friend animal-celebration__friend--puppy"
-                    src="/images/scenes/puppy.png"
+                    src="/images/interactive/animal-fox.webp"
                     alt=""
                     draggable={false}
                   />
                   <img
                     className="animal-celebration__friend animal-celebration__friend--elephant"
-                    src="/images/scenes/elephant-bath.png"
+                    src="/images/scenes/elephant-bath.webp"
                     alt=""
                     draggable={false}
                   />
                   <img
                     className="animal-celebration__friend animal-celebration__friend--ducklings"
-                    src="/images/ducklings.png"
+                    src="/images/interactive/animal-panda.webp"
                     alt=""
                     draggable={false}
                   />
                 </div>
+              ) : flow.screen === 'complete' && (flow.journeyId === 'farm' || flow.journeyId === 'garden') ? (
+                <img
+                  className="theme-complete-illustration"
+                  src={flow.journeyId === 'farm'
+                    ? '/images/themes/farm/farm-barn-goodnight.webp'
+                    : '/images/themes/garden/garden-snail-lettuce.webp'}
+                  alt=""
+                  draggable={false}
+                />
               ) : (
                 <>
                   <div className="road">
                     <span className="road-dashes" />
                   </div>
-                  <img className="car-illustration" src="/images/car.png" alt="" draggable={false} />
+                  <img className="car-illustration" src="/images/car.webp" alt="" draggable={false} />
                 </>
               )}
               {flow.screen === 'complete' && <span className="celebration-dots" />}
@@ -280,6 +312,16 @@ function App() {
 }
 
 function GameScene({ sceneId, ...sceneProps }: SceneProps) {
+  if (sceneId.startsWith('animal-') && sceneId !== 'animal-crossing') {
+    return <NewAnimalScene key={sceneId} sceneId={sceneId} {...sceneProps} />
+  }
+  if (sceneId.startsWith('farm-')) {
+    return <FarmThemeScene key={sceneId} sceneId={sceneId} {...sceneProps} />
+  }
+  if (sceneId.startsWith('garden-')) {
+    return <GardenThemeScene key={sceneId} sceneId={sceneId} {...sceneProps} />
+  }
+
   switch (sceneId) {
     case 'stone':
       return <StoneScene {...sceneProps} sceneId="stone" />
@@ -331,7 +373,7 @@ function GameScene({ sceneId, ...sceneProps }: SceneProps) {
 }
 
 function CarBadge() {
-  return <img src="/images/car.png" alt="" draggable={false} />
+  return <img src="/images/car.webp" alt="" draggable={false} />
 }
 
 function SettingsIcon() {

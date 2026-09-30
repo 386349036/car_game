@@ -79,7 +79,7 @@ export function RabbitFeedingScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img className="rabbit-feeding-scene__carrot" src="/images/feeding-carrot.png" alt="" aria-hidden="true" draggable={false} />
+        <img className="rabbit-feeding-scene__carrot" src="/images/feeding-carrot.webp" alt="" aria-hidden="true" draggable={false} />
       </TapTarget>
 
       <p className="rabbit-feeding-scene__announcement" aria-live="polite" aria-atomic="true">

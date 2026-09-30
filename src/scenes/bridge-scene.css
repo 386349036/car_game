@@ -1,6 +1,6 @@
 .bridge-scene {
   min-height: clamp(360px, 51vh, 500px);
-  background: #c7edf0 url('/images/meadow.png') center / cover no-repeat;
+  background: #c7edf0 url('/images/meadow.webp') center / cover no-repeat;
 }
 
 .bridge-scene__waterway {

@@ -1,7 +1,7 @@
 .scene-backdrop.fuel-stop-scene {
   min-height: clamp(410px, 54svh, 510px);
   background-color: #9bd9ae;
-  background-image: url('/images/fuel-stop-background.png');
+  background-image: url('/images/fuel-stop-background.webp');
   background-position: center center;
   background-size: cover;
 }

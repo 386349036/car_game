@@ -102,7 +102,7 @@ export function KiteFlyingScene({
       </div>
 
       <span className="kite-flying-scene__string" aria-hidden="true" />
-      <img className="kite-flying-scene__kite" src="/images/kite.png" alt="" aria-hidden="true" draggable={false} />
+      <img className="kite-flying-scene__kite" src="/images/kite.webp" alt="" aria-hidden="true" draggable={false} />
       <CarIllustration className="kite-flying-scene__car" label="在草地旁看风筝的小汽车" />
 
       <button
@@ -120,7 +120,7 @@ export function KiteFlyingScene({
         onKeyUp={handleKeyUp}
         onClick={startRising}
       >
-        <img src="/images/kite-spool.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/kite-spool.webp" alt="" aria-hidden="true" draggable={false} />
       </button>
 
       <p className="kite-flying-scene__announcement" aria-live="polite" aria-atomic="true">

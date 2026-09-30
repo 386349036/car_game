@@ -2,7 +2,7 @@
   --bird-size: clamp(128px, 21vw, 164px);
 
   min-height: clamp(430px, 57svh, 550px);
-  background-image: url('/images/kite-flying-background.png');
+  background-image: url('/images/kite-flying-background.webp');
   background-position: center 52%;
   background-size: cover;
 }

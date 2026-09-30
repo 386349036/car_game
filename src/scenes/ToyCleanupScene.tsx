@@ -72,7 +72,7 @@ export function ToyCleanupScene({
         role="img"
         aria-label="打开的玩具箱"
       >
-        <img src="/images/scenes/toy-box.png" alt="" draggable={false} />
+        <img src="/images/scenes/toy-box.webp" alt="" draggable={false} />
       </div>
 
       <ForgivingDrag
@@ -89,7 +89,7 @@ export function ToyCleanupScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/scenes/blocks.png" alt="" draggable={false} />
+        <img src="/images/scenes/blocks.webp" alt="" draggable={false} />
       </ForgivingDrag>
 
       <p className="toy-cleanup-scene__announcement" aria-live="polite" aria-atomic="true">

@@ -1,6 +1,6 @@
 import type { SceneId } from './sceneTypes'
 
-export type JourneyId = 'car' | 'animals'
+export type JourneyId = 'car' | 'animals' | 'farm' | 'garden'
 
 export const CAR_JOURNEY_ORDER: readonly SceneId[] = [
   'stone',
@@ -26,11 +26,11 @@ export const CAR_JOURNEY_ORDER: readonly SceneId[] = [
 export const SCENE_ORDER: readonly SceneId[] = CAR_JOURNEY_ORDER
 
 export const ANIMAL_JOURNEY_ORDER: readonly SceneId[] = [
-  'puppy-frisbee',
-  'animal-crossing',
-  'rabbit-feeding',
-  'feed-chicks',
-  'fish-pond',
+  'animal-squirrel',
+  'animal-bear',
+  'animal-fox',
+  'animal-panda',
+  'animal-giraffe',
   'kitten-reunion',
   'bird-nest',
   'turtle-beach',
@@ -38,8 +38,43 @@ export const ANIMAL_JOURNEY_ORDER: readonly SceneId[] = [
   'elephant-bath',
 ]
 
+export const FARM_JOURNEY_ORDER: readonly SceneId[] = [
+  'farm-feed-cow',
+  'farm-egg-basket',
+  'farm-pig-bath',
+  'farm-apple-picking',
+  'farm-seed-planting',
+  'farm-sheep-brushing',
+  'farm-pumpkin-tractor',
+  'farm-fill-trough',
+  'farm-carrot-harvest',
+  'farm-barn-goodnight',
+]
+
+export const GARDEN_JOURNEY_ORDER: readonly SceneId[] = [
+  'garden-water-daisy',
+  'garden-plant-sunflower',
+  'garden-butterfly-flower',
+  'garden-pick-strawberry',
+  'garden-sweep-leaves',
+  'garden-stone-path',
+  'garden-gate-hedgehog',
+  'garden-light-lantern',
+  'garden-dandelion-wish',
+  'garden-snail-lettuce',
+]
+
 export function getJourneySceneOrder(journeyId: JourneyId): readonly SceneId[] {
-  return journeyId === 'animals' ? ANIMAL_JOURNEY_ORDER : CAR_JOURNEY_ORDER
+  switch (journeyId) {
+    case 'animals':
+      return ANIMAL_JOURNEY_ORDER
+    case 'farm':
+      return FARM_JOURNEY_ORDER
+    case 'garden':
+      return GARDEN_JOURNEY_ORDER
+    case 'car':
+      return CAR_JOURNEY_ORDER
+  }
 }
 
 export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
@@ -112,6 +147,31 @@ export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
   'elephant-bath': {
     title: '小象洗澡啦',
   },
+  'animal-squirrel': { title: '小松鼠抱松果' },
+  'animal-bear': { title: '小熊挥挥手' },
+  'animal-fox': { title: '小狐狸跳一跳' },
+  'animal-panda': { title: '熊猫吃竹叶' },
+  'animal-giraffe': { title: '长颈鹿够树叶' },
+  'farm-feed-cow': { title: '给奶牛喂干草' },
+  'farm-egg-basket': { title: '收鸡蛋啦' },
+  'farm-pig-bath': { title: '给小猪洗澡' },
+  'farm-apple-picking': { title: '摘苹果装篮' },
+  'farm-seed-planting': { title: '种下一粒种子' },
+  'farm-sheep-brushing': { title: '帮绵羊梳梳毛' },
+  'farm-pumpkin-tractor': { title: '南瓜装上拖拉机' },
+  'farm-fill-trough': { title: '给小水槽添水' },
+  'farm-carrot-harvest': { title: '拔出胡萝卜' },
+  'farm-barn-goodnight': { title: '农场朋友晚安' },
+  'garden-water-daisy': { title: '给小雏菊浇水' },
+  'garden-plant-sunflower': { title: '种下向日葵种子' },
+  'garden-butterfly-flower': { title: '蝴蝶来做客' },
+  'garden-pick-strawberry': { title: '摘一颗红草莓' },
+  'garden-sweep-leaves': { title: '把叶子扫成堆' },
+  'garden-stone-path': { title: '铺好花园小路' },
+  'garden-gate-hedgehog': { title: '打开花园小门' },
+  'garden-light-lantern': { title: '点亮花园灯' },
+  'garden-dandelion-wish': { title: '吹散蒲公英' },
+  'garden-snail-lettuce': { title: '小蜗牛吃生菜' },
 }
 
 export type GameFlowState =

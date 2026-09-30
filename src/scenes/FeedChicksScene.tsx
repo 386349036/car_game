@@ -64,7 +64,7 @@ export function FeedChicksScene({
 
       <img
         className="feed-chicks-scene__chicks"
-        src="/images/feeding-chicks.png"
+        src="/images/feeding-chicks.webp"
         alt=""
         aria-hidden="true"
         draggable={false}
@@ -82,7 +82,7 @@ export function FeedChicksScene({
         onFeedback={onFeedback}
         onInteractionActivity={onInteractionActivity}
       >
-        <img src="/images/grain-bowl.png" alt="" aria-hidden="true" draggable={false} />
+        <img src="/images/grain-bowl.webp" alt="" aria-hidden="true" draggable={false} />
       </TapTarget>
 
       <p className="feed-chicks-scene__announcement" aria-live="polite" aria-atomic="true">

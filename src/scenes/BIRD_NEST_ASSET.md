@@ -2,8 +2,8 @@
 
 ## 用途与构图
 
-- 角色图：`/images/scenes/bird-nest.png`，一只完整、朝右、轻轻张开翅膀的小鸟，单独置于透明画布中央；动画由场景 CSS 控制，飞回页面右上方的鸟窝。
-- 背景复用：`/images/kite-flying-background.png`。树枝与鸟窝由本场景的 DOM/CSS 轻量绘制，小汽车与道路由共用 `CarIllustration`、`SceneBackdrop` 提供。
+- 角色图：`/images/scenes/bird-nest.webp`，一只完整、朝右、轻轻张开翅膀的小鸟，单独置于透明画布中央；动画由场景 CSS 控制，飞回页面右上方的鸟窝。
+- 背景复用：`/images/kite-flying-background.webp`。树枝与鸟窝由本场景的 DOM/CSS 轻量绘制，小汽车与道路由共用 `CarIllustration`、`SceneBackdrop` 提供。
 - Alpha：生成图为 RGBA 透明背景，鸟儿四周保留透明留白；无枝条、鸟窝、底色、文字或阴影。
 
 ## 最终生成提示词

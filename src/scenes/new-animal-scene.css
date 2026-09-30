@@ -1,0 +1,97 @@
+.new-animal-scene {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: clamp(390px, 54svh, 530px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 30px;
+  background: linear-gradient(#c9ecfa 0 66%, #9bd57d 66%);
+}
+
+.new-animal-scene__sun {
+  position: absolute;
+  top: 20%;
+  right: 13%;
+  width: 85px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffe89b;
+  box-shadow: 0 0 45px #ffe89b;
+}
+
+.new-animal-scene__hills {
+  position: absolute;
+  inset: 58% -10% -18%;
+  border-radius: 50% 45% 0 0;
+  background: #7bc56c;
+}
+
+.new-animal-scene__prompt {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 50%;
+  width: min(88%, 540px);
+  padding: 10px 16px;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #315149;
+  border-radius: 22px;
+  background: rgb(255 253 246 / 90%);
+}
+
+.new-animal-scene__prompt h2 { margin: 0; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+.new-animal-scene__prompt p { margin: 4px 0 0; font-weight: 700; }
+
+.gentle-tap-target.new-animal-scene__target {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 5%;
+  width: min(42%, 300px);
+  height: 58%;
+  min-width: 150px;
+  min-height: 190px;
+  transform: translateX(-50%);
+  border: 0;
+  border-radius: 45%;
+  background: transparent;
+}
+
+.new-animal-scene__target img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 8px rgb(48 91 57 / 22%));
+  transition: transform .6s ease;
+}
+
+.new-animal-scene__target--hinted img { animation: animal-invite 1.8s ease-in-out infinite; }
+.new-animal-scene--helped .new-animal-scene__target img { transform: translateY(-20px) rotate(-7deg) scale(1.12); }
+.new-animal-scene--animal-bear.new-animal-scene--helped .new-animal-scene__target img { transform: rotate(10deg) scale(1.1); }
+.new-animal-scene--animal-panda.new-animal-scene--helped .new-animal-scene__target img { transform: rotate(-8deg) scale(1.06); }
+
+.new-animal-scene__gift {
+  position: absolute;
+  z-index: 1;
+  left: 64%;
+  bottom: 23%;
+  font-size: clamp(3rem, 8vw, 5rem);
+  transition: transform .6s ease;
+}
+.new-animal-scene--helped .new-animal-scene__gift { transform: translate(-70%, -40%) rotate(-12deg) scale(1.15); }
+.new-animal-scene__announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+@keyframes animal-invite { 50% { transform: translateY(-8px) scale(1.04); } }
+
+@media (max-width: 600px) {
+  .new-animal-scene { min-height: clamp(410px, 58svh, 500px); aspect-ratio: 1; }
+  .gentle-tap-target.new-animal-scene__target { width: 58%; height: 56%; bottom: 4%; }
+  .new-animal-scene__gift { left: 72%; bottom: 18%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .new-animal-scene__target--hinted img { animation: none; }
+  .new-animal-scene__target img, .new-animal-scene__gift { transition-duration: 1ms; }
+}
