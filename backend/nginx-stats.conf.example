@@ -1,0 +1,16 @@
+# Add INSIDE the existing game01 server block. Use the SAME private path as env.
+# Enable HTTPS before using administrator credentials over the public network.
+location = /api/visits {
+    limit_req zone=game01_stats burst=20 nodelay;
+    client_max_body_size 2k;
+    proxy_pass http://127.0.0.1:8787;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+}
+location = /REPLACE_WITH_RANDOM_PRIVATE_PATH {
+    limit_req zone=game01_stats burst=5 nodelay;
+    proxy_pass http://127.0.0.1:8787;
+    proxy_set_header Host $host;
+}
+# Add ONCE to the http block, outside server blocks:
+# limit_req_zone $binary_remote_addr zone=game01_stats:10m rate=10r/s;

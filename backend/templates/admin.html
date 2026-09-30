@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>访问统计</title>
+<style>body{font-family:system-ui;margin:0;background:#f3f6fa;color:#20334b}main{max-width:1100px;margin:40px auto;padding:24px}header,.cards{display:flex;gap:20px;flex-wrap:wrap}.cards article{background:white;padding:24px;border-radius:16px;flex:1;min-width:160px}strong{display:block;font-size:26px;margin-top:12px}.table{overflow:auto;background:white;border-radius:16px;margin-top:24px}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:left;padding:16px;border-bottom:1px solid #e5eaf0}p{color:#52667e;line-height:1.7}a{color:#285eb4}</style></head>
+<body><main><header><h1>访问统计</h1></header><p>最近90天 · 时间为北京时间 · 刷新页面更新数据</p>
+<section class="cards"><article>独立 IP<strong>{{totals[0]}}</strong></article><article>访问次数<strong>{{totals[1]}}</strong></article><article>累计可见时长<strong>{{totals[2]|duration}}</strong></article></section>
+<div class="table"><table><thead><tr><th>IP 地址</th><th>访问次数</th><th>累计时长</th><th>首次访问</th><th>最近访问</th></tr></thead><tbody>{% for row in rows %}<tr><td>{{row.ip}}</td><td>{{row.visits}}</td><td>{{row.seconds|duration}}</td><td>{{row.first|date}}</td><td>{{row.last|date}}</td></tr>{% else %}<tr><td colspan="5">暂无访问记录。请打开游戏页面后再刷新。</td></tr>{% endfor %}</tbody></table></div>
+<p>最多显示最近访问的1000个 IP，顶部汇总包含全部记录。每次打开或刷新计为一次访问，后台页不计入。隐藏标签页不累计时长；异常关闭可能少计最后约15秒。多个用户可能共享一个 IP，多个标签页的时长会相加。</p></main></body></html>

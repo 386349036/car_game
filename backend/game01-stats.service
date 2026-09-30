@@ -1,0 +1,20 @@
+[Unit]
+Description=game01 visit statistics
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/game01-stats
+EnvironmentFile=/etc/game01-stats.env
+ExecStart=/opt/game01-stats/.venv/bin/gunicorn --bind 127.0.0.1:8787 --workers 1 --threads 4 --timeout 30 app:app
+Restart=on-failure
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/game01-stats
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

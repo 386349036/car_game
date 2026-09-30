@@ -21,6 +21,14 @@
 
 ## 发布前确认
 
+### 新增访问统计服务
+
+同日已升级至 IP HTTPS：`https://35.220.184.100/`。管理员可直接访问 `https://35.220.184.100` 加服务器环境变量 `STATS_ADMIN_PATH`，使用原用户名和密码。HTTP 重定向至 HTTPS，ACME 验证路径仍支持 HTTP。证书路径 `/etc/letsencrypt/live/game01-ip/`，由 `/opt/certbot-ip/bin/certbot` 管理；`game01-cert-renew.timer` 每天检查两次续期，成功后检查并重载 Nginx。之前的 SSH 隧道仍可作为维护入口。配置备份为 `/etc/nginx/sites-available/game01.before-public-https`。
+
+2026-09-30 已部署统计服务，并切换前端至 `/var/www/game01/releases/20260930-stats-72b4cc8`，上一个版本为 `/var/www/game01/releases/20260930-183242-b358a85`。本次为用户授权的工作区直接发布。后台由 `game01-stats.service` 管理，监听 `127.0.0.1:8787`，Nginx 公开统计 API 和受密码保护的 HTTPS 管理员路径。管理员也可通过 SSH 隧道访问，本机端口为 `18787`。运行 `backend/open-admin.ps1` 可重建隧道并打开后台；用户名 `admin`。真实密码保存在服务器 `/etc/game01-stats.env`，本次部署的本机私密副本在被 Git 忽略的 `.deploy/admin-credentials.local`。
+
+仓库已添加独立统计后台，安装和 Nginx 代理配置见 [backend/README.md](backend/README.md)。下文纯静态部署说明描述原部署；仅上传新版 `dist/` 不会启用统计。统计服务和 SQLite 数据目录需要单独安装并持久保留，管理员密码必须通过 HTTPS 或 SSH 隧道使用。
+
 在 `T:\codeX\game01` 工作区确认计划发布的提交已合并到 `main`，且工作区干净。确认 GitHub `main` 已包含该提交；不要从未合并的工作树或旧的 `dist/` 上传。先查看 `package.json` 和 `vite.config.ts`，若项目结构改变，应重新确认发布方式。
 
 Windows PowerShell 示例：
