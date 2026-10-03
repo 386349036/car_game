@@ -1,0 +1,214 @@
+[
+  {
+    "id": "ocean-shell-pearl",
+    "theme": "ocean",
+    "asset": "ocean-shell-pearl-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Pearl discovery on shallow underwater sand, scalloped sand ridges, delicate seagrass and pink branching coral along outer edges, sun rays from upper left. Clear central sandy patch.",
+    "final_edit_prompt": "Remove ALL seashells and pearls, especially the lower-left open pearl shell. Replace with natural sand, pebbles and seagrass; preserve turquoise water, lighting, coral and clear central floor. No animals or interactive objects."
+  },
+  {
+    "id": "ocean-crab-home",
+    "theme": "ocean",
+    "asset": "ocean-crab-home-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Crab beach at low tide: foreground pale dry sand fills bottom 65%, distant turquoise sea horizon at upper quarter. Curved tide pools at far edges, dune grass, scattered tiny pebble textures. Reserve left lower middle for crab and right lower middle for separate sand burrow. No baked burrow."
+  },
+  {
+    "id": "ocean-hermit-shell",
+    "theme": "ocean",
+    "asset": "ocean-hermit-shell-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. A sheltered shallow-water rock pool viewed front slightly down: sand floor begins at 35%, clear aqua water, rounded smooth rocks only at corners, short eelgrass and little shell fragments on margins. Clear floor at x10% y76% and x62% y55% for movable shell and hermit crab."
+  },
+  {
+    "id": "ocean-starfish-turn",
+    "theme": "ocean",
+    "asset": "ocean-starfish-turn-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Lagoon seabed with broad golden rippled sand foreground, gentle teal light overhead, rounded sea stones and delicate purple sea plants at outer edges; central sand area clear for single sea star."
+  },
+  {
+    "id": "ocean-octopus-wave",
+    "theme": "ocean",
+    "asset": "ocean-octopus-wave-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Cozy underwater octopus cove with distant natural stone arch at far left, leafy kelp along outer edges and rounded sea pebbles; middle open water and sand, lavender and turquoise palette. Central area clear."
+  },
+  {
+    "id": "ocean-jellyfish-glow",
+    "theme": "ocean",
+    "asset": "ocean-jellyfish-glow-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Deep calm underwater water column, midnight teal fading into luminous blue overhead, soft sun shafts and tiny drifting particles, soft distant seabed only at bottom, bioluminescent coral silhouettes at lower corners. No jellyfish, no animals, dark central open water for glowing target."
+  },
+  {
+    "id": "ocean-seal-ball",
+    "theme": "ocean",
+    "asset": "ocean-seal-ball-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Seal swimming beside a low smooth coastal rock ledge, arctic soft-blue sea and distant pale ice cliffs at extreme horizon. Foreground is shallow sea water, low wet rock platform begins below 55% at right of scene and x62% center reserved for seal. Left lower water clear for ball. No seal or ball."
+  },
+  {
+    "id": "ocean-coral-door",
+    "theme": "ocean",
+    "asset": "ocean-coral-door-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Warm colorful coral reef neighborhood underwater, pastel finger corals and sea fans around outside border, sand pathway towards empty center-right reserved for separate coral house. No doors or houses baked in. Rich small sea textures, clear middle."
+  },
+  {
+    "id": "ocean-shell-goodnight",
+    "theme": "ocean",
+    "asset": "ocean-shell-goodnight-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Peaceful dusk seabed glowing in deep blue, gentle shafts of moonlight through surface far above, quiet rounded coral garden along edges, soft sandy bed below 45%. Empty central area for shell lamp and lower corners for sleeping friends."
+  },
+  {
+    "id": "sky-balloon-launch",
+    "theme": "sky",
+    "asset": "sky-balloon-launch-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Balloon takeoff valley in early morning: open sky occupies upper 80%, small soft clouds at sides, grassy rolling hills and a winding stream occupy bottom 20%, tiny distant garden flowers at bottom corners. Central sky fully clear for separate balloon. No balloons."
+  },
+  {
+    "id": "sky-cloud-clear",
+    "theme": "sky",
+    "asset": "sky-cloud-clear-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. High-altitude fluffy cloud corridor: clear azure sky, distant soft mountains only below 88%, cream cloud banks at far left and lower right, central sky clear for movable large cloud and small balloon to left. No aircraft or balloon."
+  },
+  {
+    "id": "sky-sun-hello",
+    "theme": "sky",
+    "asset": "sky-sun-hello-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Sunny morning over a gentle hill garden: warm pale golden sky, low pastel mountains and blooming meadow below 80%, small wispy clouds only far sides. Large unobstructed upper and middle center for separate smiling sun and cloud. No sun disk or sun face in background."
+  },
+  {
+    "id": "sky-cloud-train",
+    "theme": "sky",
+    "asset": "sky-cloud-train-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Dreamy high sky cloud railway landscape: airy pale blue sky above a distant valley, fluffy continuous cloud bank at bottom 80%, distant layered mountains below 88%, subtle winding ribbon of cloud extending horizontally through lower half without rails or train. Clear x10%-85% around y65% for separate cloud train."
+  },
+  {
+    "id": "sky-rainbow-bridge",
+    "theme": "sky",
+    "asset": "sky-rainbow-bridge-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Two distant lush green rounded hilltops at lower left and lower right separated by a broad open blue valley, small silver river far below center, soft clouds at high outer edges; central upper-middle open sky reserved for single rainbow bridge. No rainbow baked in."
+  },
+  {
+    "id": "sky-airship-letter",
+    "theme": "sky",
+    "asset": "sky-airship-letter-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Gentle sky postal voyage above countryside: pale mint blue sky, fluffy cloud clusters at far sides, tiny winding country road and patchwork fields below 85%, a tiny distant red-roof cottage at lower right. Center-right sky and lower-left clear for airship and envelope. No mailbox aircraft balloons or envelopes."
+  },
+  {
+    "id": "sky-rain-cloud",
+    "theme": "sky",
+    "asset": "sky-rain-cloud-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Refreshing rainy-day foothills: muted sage hills and a small flower meadow at bottom third, a distant winding stream; light gray-blue open sky, softly sunlit edges, no rain or cloud baked into central sky because a separate rain cloud will animate at y52%. No sun face."
+  },
+  {
+    "id": "sky-star-home",
+    "theme": "sky",
+    "asset": "sky-star-home-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Twilight high sky with periwinkle gradients, delicate wispy cloud arc at bottom edge, tiny distant hills only at bottom 10%, faint dispersed pinpoints only at outer margins, middle empty for separate star and moon at upper right. No moon or large stars baked in."
+  },
+  {
+    "id": "sky-moon-blanket",
+    "theme": "sky",
+    "asset": "sky-moon-blanket-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Quiet nighttime cloud bed in indigo sky, soft lavender clouds nest along lower edge and sides, delicate distant small speckles at outside corners, center-right completely open for separate sleepy moon and cloud blanket. No large stars or moon in background."
+  },
+  {
+    "id": "life-slippers-pair",
+    "theme": "life",
+    "asset": "life-slippers-pair-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Warm child bedroom entry corner, full room front view slightly down, soft cream wall with small framed flower art at far left and rounded wardrobe at far right, low wooden skirting line at y40%, broad oak floor with small mint woven rug filling lower half. Center floor and left lower floor empty for two separate slippers. No slippers shoes or toys."
+  },
+  {
+    "id": "life-bear-bib",
+    "theme": "life",
+    "asset": "life-bear-bib-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Cozy breakfast nook front slightly down, warm wooden tabletop begins at 40% and fills bottom, sunny round kitchen window at upper left, tasteful low cabinet and plant at extreme right; clear wide tabletop for separate bear center-right and bib lower-left. No chairs in middle, no dishes bear or bib baked in."
+  },
+  {
+    "id": "life-breakfast-spoon",
+    "theme": "life",
+    "asset": "life-breakfast-spoon-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Detailed sunlit breakfast tabletop scene front slightly down, tabletop begins at y30%, warm pale oak grain fills rest. Soft linen curtains and small sunny kitchen window in upper background, little vase of daisies at far upper left, folded cloth at far upper right. Central and right tabletop clear for separate breakfast plate and spoon slot; lower left clear for movable spoon. No plates food spoons or mats baked in."
+  },
+  {
+    "id": "life-wipe-table",
+    "theme": "life",
+    "asset": "life-wipe-table-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. After-breakfast cleanup nook: broad cream painted tabletop begins at y30% and fills bottom, subtle natural wood edge at bottom, cozy tiled kitchen wall above, sunny mint framed window at upper right, little pot of herbs at far upper left. Center-right and left tabletop clear for separate water stain and tissue. No stains tissue dishes or clutter baked in."
+  },
+  {
+    "id": "life-socks-basket",
+    "theme": "life",
+    "asset": "life-socks-basket-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Airy little laundry room front view, soft patterned cream wall, low cupboards at far right, sunny window at upper left with checked curtains, floor begins at y38%, expansive pale wood floor with sage runner at lower edges. Center right and lower left clear for separate laundry basket and socks. No basket socks or clothing baked in."
+  },
+  {
+    "id": "life-hang-coat",
+    "theme": "life",
+    "asset": "life-hang-coat-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Cozy child-height coat corner in hallway, front view. Large uninterrupted mint wall fills upper 65%, wall panel join at 65%, warm wood floor below. A short bench at far right only, narrow doorframe at far left only. x40% y32% wall completely blank for one separate interactive wall hook, x40% y50% blank wall for hanging coat; lower left floor clear for coat source. No hooks coats or hanging clothing baked in."
+  },
+  {
+    "id": "life-book-shelf",
+    "theme": "life",
+    "asset": "life-book-shelf-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Warm quiet reading nook, front view, pale peach wall with small leaf print at far upper right, soft golden window light from far left, pale wood floor starts y70%, small soft rug foreground. Large central wall region x5%-95% y25%-80% empty for separate very large filled bookshelf. No shelves books or furniture baked in center; only one small cushion at extreme lower right.",
+    "final_edit_prompt": "Move wall-to-floor skirting higher to 58% canvas height, wood floor lower 42%, so separate bookshelf feet at 68% stand on floor. Preserve peach wall, edge window, sunlight and leaves. Reposition edge pot and cushion naturally. No furniture, books, characters or text in center."
+  },
+  {
+    "id": "music-soft-drum",
+    "theme": "music",
+    "asset": "music-soft-drum-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Cheerful small drum performance stage with warm coral curtains at extreme sides, layered apricot scalloped backdrop, soft round overhead golden spotlight, honey-colored wood stage floor begins y48%. Decorative rounded pennant bunting high above title area edges, clear center lower stage for separate drum. No instruments or music symbols."
+  },
+  {
+    "id": "music-bell-ring",
+    "theme": "music",
+    "asset": "music-bell-ring-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Gentle bell concert pavilion, soft lavender theater backdrop, pale gold rounded arch trim at far sides, small warm fairy lights only along upper edges, smooth pale oak stage floor below 45%. Clear center lower area for separate bell. No bells instruments or music notes in background."
+  },
+  {
+    "id": "music-shaker",
+    "theme": "music",
+    "asset": "music-shaker-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Sunny garden rhythm stage, pastel yellow and sage bunting high at sides, leafy garden and white picket fence in distant background at edges, warm rounded wooden performance platform fills bottom 55%, clear middle for two separate maracas. No instruments characters or musical symbols baked in."
+  },
+  {
+    "id": "music-xylophone",
+    "theme": "music",
+    "asset": "music-xylophone-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Colorful wooden concert corner, mint-and-cream acoustic wall panels above a maple stage, soft pastel curved arch decorations at far edges, scattered little paper stars only high outer corners, gentle warm sunlight. Stage floor begins at 40%, clear middle for separate xylophone. No keys instruments or musical symbols."
+  },
+  {
+    "id": "music-pluck-string",
+    "theme": "music",
+    "asset": "music-pluck-string-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Peaceful acoustic string recital nook, warm honey and peach palette, soft linen stage curtains at far sides, simple wooden acoustic wall with shallow rounded decorative slats and gentle golden spotlight, wide low wood platform fills bottom 55%. Center clear for separate string instrument. No instruments strings or music notes baked in."
+  },
+  {
+    "id": "music-trumpet",
+    "theme": "music",
+    "asset": "music-trumpet-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Joyful little brass concert stage, muted sky-blue fan-pattern wall with cream and gold arch accents at outer edges, peach side curtains, gentle golden oval spotlight without harsh beams, broad oak stage floor below 45%. Clear center for separate trumpet. No instruments brass objects or music notes."
+  },
+  {
+    "id": "music-accordion",
+    "theme": "music",
+    "asset": "music-accordion-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Cozy storybook folk concert pavilion, muted teal curtain edges, cream backdrop with embroidered-looking small floral motifs only at edges, warm lantern glows above at sides, rounded wooden stage floor below 45%. Spacious center for separate accordion. No instruments buttons characters or music notes baked in."
+  },
+  {
+    "id": "music-bear-dance",
+    "theme": "music",
+    "asset": "music-bear-dance-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Gentle pastel dance party stage, coral and lilac draped ribbons high at outer edges, broad polished wood dance floor below 40%, warm soft spotlights cast a pale circular pool at middle-lower floor, subtle star garland high in corners. Open central dance space for single separate bear. No characters animals instruments or music notes."
+  },
+  {
+    "id": "music-note-score",
+    "theme": "music",
+    "asset": "music-note-score-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Quiet music composing room, front slightly down, wide cream oak writing table begins at 35% and fills bottom, soft pale mint wall with rounded window at upper left, warm hanging light far upper right, small closed pencil jar at extreme right edge. Center-right table reserved for separate music staff sheet, lower left table clear for movable note. No manuscript notes staff paper or instruments baked in."
+  },
+  {
+    "id": "music-box-goodnight",
+    "theme": "music",
+    "asset": "music-box-goodnight-bg",
+    "prompt": "Create a distinct square children's watercolor game background, gentle hand-painted storybook style, rich natural textures and beautiful layered lighting but uncluttered interaction area. Pastel colors, warm rounded forms, no text, logos, UI or characters. Decoration stays at margins so there is only one interactive-looking target added separately. Keep top-center 20% quiet for title. Composition must work cropped at sides on narrow phones. Dreamy bedtime music corner, blue-lavender moonlit wall, small rounded night window at far upper left showing faint clouds and tiny stars, long sheer curtain edge far right, broad warm wooden bedside tabletop fills lower 60%, soft warm lamp glow from outside frame. Clear center for separate open music box. No moon face, music box, instruments, characters or music symbols."
+  }
+]

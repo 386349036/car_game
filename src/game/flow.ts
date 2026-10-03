@@ -1,6 +1,58 @@
 import type { SceneId } from './sceneTypes'
 
-export type JourneyId = 'car' | 'animals' | 'farm' | 'garden'
+export type NewThemeJourneyId = 'ocean' | 'sky' | 'life' | 'music'
+export type JourneyId = 'car' | 'animals' | 'farm' | 'garden' | NewThemeJourneyId
+
+const NEW_THEME_JOURNEY_ORDER: Record<NewThemeJourneyId, readonly SceneId[]> = {
+  ocean: [
+    'ocean-shell-pearl',
+    'ocean-crab-home',
+    'ocean-hermit-shell',
+    'ocean-starfish-turn',
+    'ocean-octopus-wave',
+    'ocean-jellyfish-glow',
+    'ocean-whale-splash',
+    'ocean-seal-ball',
+    'ocean-coral-door',
+    'ocean-shell-goodnight',
+  ],
+  sky: [
+    'sky-balloon-launch',
+    'sky-cloud-clear',
+    'sky-sun-hello',
+    'sky-cloud-train',
+    'sky-rainbow-bridge',
+    'sky-airship-letter',
+    'sky-rain-cloud',
+    'sky-windmill-spin',
+    'sky-star-home',
+    'sky-moon-blanket',
+  ],
+  life: [
+    'life-slippers-pair',
+    'life-wash-hands',
+    'life-dry-hands',
+    'life-bear-bib',
+    'life-breakfast-spoon',
+    'life-wipe-table',
+    'life-socks-basket',
+    'life-hang-coat',
+    'life-book-shelf',
+    'life-bear-blanket',
+  ],
+  music: [
+    'music-soft-drum',
+    'music-bell-ring',
+    'music-shaker',
+    'music-xylophone',
+    'music-pluck-string',
+    'music-trumpet',
+    'music-accordion',
+    'music-bear-dance',
+    'music-note-score',
+    'music-box-goodnight',
+  ],
+}
 
 export const CAR_JOURNEY_ORDER: readonly SceneId[] = [
   'stone',
@@ -66,6 +118,11 @@ export const GARDEN_JOURNEY_ORDER: readonly SceneId[] = [
 
 export function getJourneySceneOrder(journeyId: JourneyId): readonly SceneId[] {
   switch (journeyId) {
+    case 'ocean':
+    case 'sky':
+    case 'life':
+    case 'music':
+      return NEW_THEME_JOURNEY_ORDER[journeyId]
     case 'animals':
       return ANIMAL_JOURNEY_ORDER
     case 'farm':
@@ -78,6 +135,46 @@ export function getJourneySceneOrder(journeyId: JourneyId): readonly SceneId[] {
 }
 
 export const SCENE_DETAILS: Record<SceneId, { title: string }> = {
+  'ocean-crab-home': { title: "小螃蟹回沙窝" },
+  'ocean-hermit-shell': { title: "给寄居蟹新家" },
+  'ocean-starfish-turn': { title: "小海星翻个身" },
+  'ocean-octopus-wave': { title: "小章鱼打招呼" },
+  'ocean-jellyfish-glow': { title: "水母亮起来" },
+  'ocean-whale-splash': { title: "小鲸鱼喷水" },
+  'ocean-seal-ball': { title: "小海豹玩皮球" },
+  'ocean-coral-door': { title: "珊瑚小屋开门" },
+  'ocean-shell-goodnight': { title: "海底朋友晚安" },
+  'sky-cloud-clear': { title: "云朵让让路" },
+  'sky-sun-hello': { title: "小太阳露脸" },
+  'sky-cloud-train': { title: "云朵小火车" },
+  'sky-rainbow-bridge': { title: "彩虹连起来" },
+  'sky-airship-letter': { title: "送一封天空信" },
+  'sky-rain-cloud': { title: "小雨云下雨" },
+  'sky-windmill-spin': { title: "风车转起来" },
+  'sky-star-home': { title: "星星回天空" },
+  'sky-moon-blanket': { title: "月亮盖云被" },
+  'life-wash-hands': { title: "泡泡洗小手" },
+  'life-dry-hands': { title: "毛巾擦擦手" },
+  'life-bear-bib': { title: "小熊戴围兜" },
+  'life-breakfast-spoon': { title: "早餐摆勺子" },
+  'life-wipe-table': { title: "纸巾擦桌子" },
+  'life-socks-basket': { title: "袜子进篮子" },
+  'life-hang-coat': { title: "挂好小外套" },
+  'life-book-shelf': { title: "图画书回书架" },
+  'life-bear-blanket': { title: "小朋友盖被子" },
+  'music-bell-ring': { title: "铃铛叮叮" },
+  'music-shaker': { title: "沙锤沙沙" },
+  'music-xylophone': { title: "木琴小旋律" },
+  'music-pluck-string': { title: "拨一下琴弦" },
+  'music-trumpet': { title: "小号唱歌" },
+  'music-accordion': { title: "手风琴伸伸腰" },
+  'music-bear-dance': { title: "古筝小旋律" },
+  'music-note-score': { title: "二胡唱小曲" },
+  'music-box-goodnight': { title: "八音盒晚安" },
+  'ocean-shell-pearl': { title: '贝壳打开啦' },
+  'sky-balloon-launch': { title: '热气球出发' },
+  'life-slippers-pair': { title: '拖鞋摆整齐' },
+  'music-soft-drum': { title: '小鼓咚咚' },
   stone: {
     title: '石头挡路',
   },

@@ -34,12 +34,20 @@ import { LambMeadowScene } from './scenes/LambMeadowScene'
 import { NewAnimalScene } from './scenes/NewAnimalScene'
 import { FarmThemeScene } from './themes/farm/FarmThemeScene'
 import { GardenThemeScene } from './themes/garden/GardenThemeScene'
+import { FirstThemeScene } from './themes/preview/FirstThemeScene'
+import { isFirstThemeScene } from './themes/preview/firstScenes'
+import { ExpandedThemeScene } from './themes/expanded/ExpandedThemeScene'
+import { isExpandedScene } from './themes/expanded/expandedScenes'
 import type { SceneId, SceneProps } from './game/sceneTypes'
 import { useGentleHint } from './game/useGentleHint'
 import { useGameAudio } from './game/audio/useGameAudio'
-import { SceneSelection } from './components/SceneSelection'
+import { SceneSelection, type SelectionPage } from './components/SceneSelection'
 
 const staticScreenContent = {
+  ocean: { eyebrow: '海洋奇遇，旅程完成', title: '海底朋友都开心啦', description: '谢谢你陪海底朋友度过十个温柔的小场景。', action: '再玩一次' },
+  sky: { eyebrow: '天空旅行，旅程完成', title: '天空旅行到家啦', description: '谢谢你陪小气球看过十个天空小惊喜。', action: '再玩一次' },
+  life: { eyebrow: '生活小帮手，旅程完成', title: '小帮手辛苦啦', description: '谢谢你完成十次暖暖的小帮忙。', action: '再玩一次' },
+  music: { eyebrow: '音乐派对，旅程完成', title: '音乐朋友晚安啦', description: '谢谢你和音乐朋友玩过十个开心的小场景。', action: '再玩一次' },
   car: {
     eyebrow: '旅程完成',
     title: '小车到家啦',
@@ -74,10 +82,11 @@ const staticScreenContent = {
 function App() {
   const [flow, dispatch] = useReducer(gameFlowReducer, INITIAL_GAME_FLOW)
   const [parentPanelOpen, setParentPanelOpen] = useState(false)
+  const [selectionPage, setSelectionPage] = useState<SelectionPage>(1)
   const completedSceneRef = useRef<SceneId | null>(null)
   const sceneId = flow.screen === 'scene' ? flow.sceneId : null
 
-  const { settings: audioSettings, setAudioSetting, handleFeedback } = useGameAudio(flow.screen === 'scene')
+  const { settings: audioSettings, setAudioSetting, handleFeedback, playPerformance } = useGameAudio(flow.screen === 'scene')
   const promptedSceneRef = useRef<SceneId | null>(null)
   const { hintVisible, onInteractionActivity } = useGentleHint({
     sceneId,
@@ -123,6 +132,11 @@ function App() {
 
   function goHome(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault()
+    setSelectionPage(1)
+    returnToDirectory()
+  }
+
+  function returnToDirectory() {
     completedSceneRef.current = null
     setParentPanelOpen(false)
     dispatch({ type: 'go-home' })
@@ -208,10 +222,13 @@ function App() {
       >
         {flow.screen === 'home' ? (
           <SceneSelection
+            page={selectionPage}
+            onPageChange={setSelectionPage}
             onStartCar={() => handleMainAction('car')}
             onStartAnimals={() => handleMainAction('animals')}
             onStartFarm={() => handleMainAction('farm')}
             onStartGarden={() => handleMainAction('garden')}
+            onStartNewTheme={handleMainAction}
           />
         ) : flow.screen === 'scene' ? (
           <section
@@ -222,6 +239,7 @@ function App() {
               sceneId={flow.sceneId}
               onComplete={() => handleSceneComplete(flow.sceneId)}
               onFeedback={handleFeedback}
+              onPlayMusic={playPerformance}
               onInteractionActivity={onInteractionActivity}
               hintVisible={hintVisible}
             />
@@ -230,7 +248,7 @@ function App() {
           <section
             className={
               'journey-card journey-card--complete' +
-              (flow.journeyId === 'farm' || flow.journeyId === 'garden' ? ' journey-card--themed-complete' : '')
+              (flow.journeyId !== 'car' && flow.journeyId !== 'animals' ? ' journey-card--themed-complete' : '')
             }
             aria-labelledby="screen-title"
           >
@@ -265,6 +283,8 @@ function App() {
                   alt=""
                   draggable={false}
                 />
+              ) : flow.screen === 'complete' && ['ocean', 'sky', 'life', 'music'].includes(flow.journeyId) ? (
+                <img className="theme-complete-illustration" src={`/images/themes/upcoming/${flow.journeyId}-cover.webp`} alt="" draggable={false} />
               ) : (
                 <>
                   <div className="road">
@@ -296,6 +316,9 @@ function App() {
                   {flow.screen === 'complete' ? <ReplayIcon /> : <ArrowIcon />}
                 </span>
               </button>
+              <button className="note-close directory-return" type="button" onClick={returnToDirectory}>
+                回到目录
+              </button>
             </div>
           </section>
         )}
@@ -312,6 +335,12 @@ function App() {
 }
 
 function GameScene({ sceneId, ...sceneProps }: SceneProps) {
+  if (isExpandedScene(sceneId)) {
+    return <ExpandedThemeScene key={sceneId} sceneId={sceneId} {...sceneProps} />
+  }
+  if (isFirstThemeScene(sceneId)) {
+    return <FirstThemeScene key={sceneId} sceneId={sceneId} {...sceneProps} />
+  }
   if (sceneId.startsWith('animal-') && sceneId !== 'animal-crossing') {
     return <NewAnimalScene key={sceneId} sceneId={sceneId} {...sceneProps} />
   }

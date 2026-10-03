@@ -47,6 +47,46 @@ export const SCENE_IDS = [
   'garden-light-lantern',
   'garden-dandelion-wish',
   'garden-snail-lettuce',
+  'ocean-shell-pearl',
+  'sky-balloon-launch',
+  'life-slippers-pair',
+  'music-soft-drum',
+  'ocean-crab-home',
+  'ocean-hermit-shell',
+  'ocean-starfish-turn',
+  'ocean-octopus-wave',
+  'ocean-jellyfish-glow',
+  'ocean-whale-splash',
+  'ocean-seal-ball',
+  'ocean-coral-door',
+  'ocean-shell-goodnight',
+  'sky-cloud-clear',
+  'sky-sun-hello',
+  'sky-cloud-train',
+  'sky-rainbow-bridge',
+  'sky-airship-letter',
+  'sky-rain-cloud',
+  'sky-windmill-spin',
+  'sky-star-home',
+  'sky-moon-blanket',
+  'life-wash-hands',
+  'life-dry-hands',
+  'life-bear-bib',
+  'life-breakfast-spoon',
+  'life-wipe-table',
+  'life-socks-basket',
+  'life-hang-coat',
+  'life-book-shelf',
+  'life-bear-blanket',
+  'music-bell-ring',
+  'music-shaker',
+  'music-xylophone',
+  'music-pluck-string',
+  'music-trumpet',
+  'music-accordion',
+  'music-bear-dance',
+  'music-note-score',
+  'music-box-goodnight',
 ] as const
 
 export type SceneId = (typeof SCENE_IDS)[number]
@@ -77,4 +117,5 @@ export interface SceneProps {
   onFeedback: GameFeedbackHandler
   onInteractionActivity: (phase?: InteractionPhase) => void
   hintVisible: boolean
+  onPlayMusic?: (sceneId: SceneId, signal: AbortSignal) => Promise<void>
 }

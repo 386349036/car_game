@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useInstrumentPerformance } from './useInstrumentPerformance'
 import type {
   GameFeedbackCue,
   GameFeedbackEvent,
@@ -21,6 +22,58 @@ const DEFAULT_SETTINGS: AudioSettings = {
 }
 
 const VOICE_FILES = {
+  'ocean-crab-home': 'ocean-crab-home-hint.mp3',
+  'ocean-hermit-shell': 'ocean-hermit-shell-hint.mp3',
+  'ocean-starfish-turn': 'ocean-starfish-turn-hint.mp3',
+  'ocean-octopus-wave': 'ocean-octopus-wave-hint.mp3',
+  'ocean-jellyfish-glow': 'ocean-jellyfish-glow-hint.mp3',
+  'ocean-whale-splash': 'ocean-whale-splash-hint.mp3',
+  'ocean-seal-ball': 'ocean-seal-ball-hint.mp3',
+  'ocean-coral-door': 'ocean-coral-door-hint.mp3',
+  'ocean-shell-goodnight': 'ocean-shell-goodnight-hint.mp3',
+  'sky-cloud-clear': 'sky-cloud-clear-hint.mp3',
+  'sky-sun-hello': 'sky-sun-hello-hint.mp3',
+  'sky-cloud-train': 'sky-cloud-train-hint.mp3',
+  'sky-rainbow-bridge': 'sky-rainbow-bridge-hint.mp3',
+  'sky-airship-letter': 'sky-airship-letter-hint.mp3',
+  'sky-rain-cloud': 'sky-rain-cloud-hint.mp3',
+  'sky-windmill-spin': 'sky-windmill-spin-hint.mp3',
+  'sky-star-home': 'sky-star-home-hint.mp3',
+  'sky-moon-blanket': 'sky-moon-blanket-hint.mp3',
+  'life-wash-hands': 'life-wash-hands-hint.mp3',
+  'life-dry-hands': 'life-dry-hands-hint.mp3',
+  'life-bear-bib': 'life-bear-bib-hint.mp3',
+  'life-breakfast-spoon': 'life-breakfast-spoon-hint.mp3',
+  'life-wipe-table': 'life-wipe-table-hint.mp3',
+  'life-socks-basket': 'life-socks-basket-hint.mp3',
+  'life-hang-coat': 'life-hang-coat-hint.mp3',
+  'life-book-shelf': 'life-book-shelf-hint.mp3',
+  'life-bear-blanket': 'life-bear-blanket-hint.mp3',
+  'music-bell-ring': 'music-bell-ring-hint.mp3',
+  'music-shaker': 'music-shaker-hint.mp3',
+  'music-xylophone': 'music-xylophone-hint.mp3',
+  'music-pluck-string': 'music-pluck-string-hint.mp3',
+  'music-trumpet': 'music-trumpet-hint.mp3',
+  'music-accordion': 'music-accordion-hint.mp3',
+  'music-bear-dance': 'music-bear-dance-hint.mp3',
+  'music-note-score': 'music-note-score-hint.mp3',
+  'music-box-goodnight': 'music-box-goodnight-hint.mp3',
+  'ocean-praise': 'ocean-scene-complete.mp3',
+  'sky-praise': 'sky-scene-complete.mp3',
+  'life-praise': 'life-scene-complete.mp3',
+  'music-praise': 'music-scene-complete.mp3',
+  'ocean-start': 'ocean-journey-start.mp3',
+  'sky-start': 'sky-journey-start.mp3',
+  'life-start': 'life-journey-start.mp3',
+  'music-start': 'music-journey-start.mp3',
+  'ocean-shell-pearl': 'ocean-shell-pearl-hint.mp3',
+  'sky-balloon-launch': 'sky-balloon-launch-hint.mp3',
+  'life-slippers-pair': 'life-slippers-pair-hint.mp3',
+  'music-soft-drum': 'music-soft-drum-hint.mp3',
+  'ocean-finish': 'ocean-journey-complete.mp3',
+  'sky-finish': 'sky-journey-complete.mp3',
+  'life-finish': 'life-journey-complete.mp3',
+  'music-finish': 'music-journey-complete.mp3',
   start: 'journey-start.mp3',
   'animal-start': 'animal-journey-start.mp3',
   'animal-squirrel': 'animal-squirrel-hint.mp3',
@@ -185,6 +238,10 @@ function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
   switch (event.cue) {
     case 'journey-start':
       if (event.sceneId === 'animal-squirrel') return 'animal-start'
+      if (event.sceneId === 'ocean-shell-pearl') return 'ocean-start'
+      if (event.sceneId === 'sky-balloon-launch') return 'sky-start'
+      if (event.sceneId === 'life-slippers-pair') return 'life-start'
+      if (event.sceneId === 'music-soft-drum') return 'music-start'
       if (event.sceneId?.startsWith('farm-')) return 'farm-start'
       if (event.sceneId?.startsWith('garden-')) return 'garden-start'
       return 'start'
@@ -193,11 +250,19 @@ function getVoiceClip(event: GameFeedbackEvent): VoiceClip | null {
         ? event.sceneId as VoiceClip
         : null
     case 'scene-complete':
+      if (event.sceneId?.startsWith('ocean-')) return 'ocean-praise'
+      if (event.sceneId?.startsWith('sky-')) return 'sky-praise'
+      if (event.sceneId?.startsWith('life-')) return 'life-praise'
+      if (event.sceneId?.startsWith('music-')) return 'music-praise'
       if (event.sceneId && ANIMAL_SCENE_IDS.has(event.sceneId)) return 'animal-praise'
       if (event.sceneId?.startsWith('farm-')) return 'farm-praise'
       if (event.sceneId?.startsWith('garden-')) return 'garden-praise'
       return 'praise'
     case 'journey-complete':
+      if (event.sceneId === 'ocean-shell-goodnight') return 'ocean-finish'
+      if (event.sceneId === 'sky-moon-blanket') return 'sky-finish'
+      if (event.sceneId === 'life-bear-blanket') return 'life-finish'
+      if (event.sceneId === 'music-box-goodnight') return 'music-finish'
       if (event.sceneId === 'elephant-bath') return 'animal-finish'
       if (event.sceneId === 'farm-barn-goodnight') return 'farm-finish'
       if (event.sceneId === 'garden-snail-lettuce') return 'garden-finish'
@@ -234,6 +299,7 @@ export function useGameAudio(journeyActive: boolean) {
       // An unloaded clip has no playback position to reset.
     }
   }, [])
+
 
   useEffect(() => {
     settingsRef.current = settings
@@ -288,6 +354,8 @@ export function useGameAudio(journeyActive: boolean) {
     }
   }, [])
 
+  const { playPerformance, playingRef } = useInstrumentPerformance(settings.effectsEnabled, stopVoice, ensureAudioContext)
+
   const playNotes = useCallback((
     context: AudioContext,
     notes: number[],
@@ -339,6 +407,7 @@ export function useGameAudio(journeyActive: boolean) {
     if (!context) return
 
     const playNextNote = () => {
+      if (playingRef.current) return
       const note = MUSIC_NOTES[musicIndexRef.current % MUSIC_NOTES.length]
       musicIndexRef.current += 1
       playNotes(context, [note], 0.62, 0.009, 0, 'sine')
@@ -346,7 +415,7 @@ export function useGameAudio(journeyActive: boolean) {
 
     playNextNote()
     musicTimerRef.current = window.setInterval(playNextNote, 1_700)
-  }, [ensureAudioContext, playNotes])
+  }, [ensureAudioContext, playNotes, playingRef])
 
   const playVoiceClip = useCallback((clip: VoiceClip) => {
     if (!settingsRef.current.voiceEnabled) return
@@ -405,6 +474,8 @@ export function useGameAudio(journeyActive: boolean) {
   }, [])
 
   const handleFeedback: GameFeedbackHandler = useCallback((event: GameFeedbackEvent) => {
+    const instrumentAction = event.sceneId?.startsWith('music-') && (event.cue === 'target-tap' || event.cue === 'drag-snap')
+    if (instrumentAction || playingRef.current) return
     if (settingsRef.current.effectsEnabled) {
       const context = ensureAudioContext()
       const pattern = getTonePattern(event.cue)
@@ -432,7 +503,7 @@ export function useGameAudio(journeyActive: boolean) {
         window.speechSynthesis.speak(utterance)
       }
     }
-  }, [ensureAudioContext, playNotes, playVoiceClip])
+  }, [ensureAudioContext, playNotes, playVoiceClip, playingRef])
 
   const setAudioSetting = useCallback((key: AudioSettingKey, value: boolean) => {
     const nextSettings = { ...settingsRef.current, [key]: value }
@@ -458,5 +529,6 @@ export function useGameAudio(journeyActive: boolean) {
     settings,
     setAudioSetting,
     handleFeedback,
+    playPerformance,
   }
 }
